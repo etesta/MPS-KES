@@ -13,6 +13,7 @@
 \usepackage[round,sort&compress]{natbib}
 \usepackage{pdfpages} %include external pdfs
 \usepackage{enumitem} %for noitemsep in lists
+\usepackage{csquotes} %for noitemsep in lists
 \usepackage{subfig}
 \renewcommand{\arraystretch}{1.2} % space in tables
 \usepackage{authblk}
@@ -21,7 +22,7 @@
 
 \begin{document}
 
-\title{Performance of Prompt Gamma fall-off detection in clinical simulations}
+\title{Comparison of Multi-Parallel Slit and Knife-Edge Slit Prompt Gamma Cameras in the context of hadrontherapy verification}
 
 \author[1,2]{Brent F. B. Huisman}
 \author[2]{É. Testa}
@@ -34,15 +35,13 @@
 
 \begin{abstract}
 
-\emph{Purpose:} There is interest in the particle therapy community to use Prompt Gammas (PG) for treatment verification and eventually dose control. As the first detectors are deployed in clinical setting, we present a feasibility study of PG fall-off position (FOP) estimation using PG cameras with active beam delivery; the first where CT, treatment plan (TP) and beam description are all clinical data. FOP estimation precision is determined as function of spot weight (number of protons per spot), and studied for two spot grouping methods in order to ascertain how reliable and clinically meaningful PG detection can be realized.
+\emph{Purpose:} 
 
-\emph{Materials and Methods:} First, spot weight distributions from TPs provided by several proton clinics in Europe were analyzed. Then, a head and neck case with a CT and replanning (RP)CT was selected for a PG detection simulation study. A proton TP was constructed according to clinical protocols and irradiated on both CT and RPCT. During the simulated irradiations, the PG profiles were recorded with two PG cameras implemented according to their published specifications: a multi-parallel-slit (MPS) and knife-edge (KES) camera. A simple FOP estimation algorithm is presented, and executed on 50 CT and 50 RPCT realizations to obtain a shift distribution. A selected spot has its weight modulated, in order to study shift distributions as function of the spot weight, for each camera. Then, an iso-depth ion-range based spot-grouping method is presented and compared to iso-energy spot-grouping.
+\emph{Materials and Methods:} 
 
-\emph{Results:} Three spots were selected for an in depth study, and at the prescribed spot weights (ranging between $9\cdot10^5$ and $5\cdot10^8$) were found to produce results of insufficient precision, rendering usable clinical output on the spot level unlikely. When the spot weight is artificially increased to $10^9$ primaries, the precision on the FOP reaches millimetric precision. On the FOP shift the MPS camera provides between 0.77 - 1.15 mm (1$\upsigma$) precision for the three spots at $10^9$ protons; the KES between 1.93 - 2.25 mm. The precision on the shift obtained with iso-depth grouping improved significantly with respect to iso-energy grouping for the KES camera (1$\upsigma$ = 3.82 and 2.87 mm, iso-energy and iso-depth resp.), but not significantly for the MPS (1$\upsigma$ = 1.17 and 1.05 mm, iso-energy and iso-depth resp.).
+\emph{Results:} 
 
 \emph{Conclusion:} 
-
-Measured shifts were in agreement with PG emission shifts, for both spots and spot groupings, if at least $10^9$ protons were used. We show that grouping spots does not negatively affect the precision compared to the artificially increased spot, which means some form of spot grouping can enable clinical use of these PG cameras, if the sum of the spot weights is at least $10^9$ proton primaries. With all spots or spot groups the MPS has a better signal compared to the KES, thanks to a larger detection efficiency and a lower background level due to time of flight selection.
 
 \end{abstract}
 
@@ -50,58 +49,35 @@ Measured shifts were in agreement with PG emission shifts, for both spots and sp
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
 
-The well-defined range of particles in matter is the main reason they are used in cancer treatment today. Unfortunately we are not able to take full advantage of this property, because of uncertainties in patient positioning, uncertainties on the proton range due to unknown displacements or deformations of organs, ill-defined lung, bowel or bladder filling, weight loss, and the inherent uncertainty in the Hounsfield unit to particle stopping power conversion \citep{Paganetti2013}. Often, medical practice is to plan conservatively, namely adding margins around the tumor, greatly reducing the potential benefits of particle treatment \citep{Knopf2013}. For example, irradiation fields with organs at risk (AOR) located just behind the Bragg Peak (BP) position are usually avoided, although they would better spare the sensitive tissue. Some form of in-vivo, online monitoring is generally considered to be a way out of this predicament. Online monitoring would make measurements of uncertainties such as mentioned above possible, and thereby permit more precise planning which could take maximum advantage of the steep BP fall-off and reduce damage to tissues surrounding the tumor.
+\paragraph{State of the art} At the moment, two papers have proposed a comparison of MPS-KES cameras:
+\begin{itemize}
+	\item Smeets 2016 Fontiers in Oncology: experimental comparison with a non-optimized MPS camera (CLaRyS designed with non-optimized geometrical parameters)
+    \item Lin 2017 Radiation Physics and Chemistry : MC comparison with the MPS Korean design whose optimization procedure is actually questionable
+\end{itemize}
+In overall, the camera configurations present many parameters, namely geometrical parameters and event selections (especially energy deposition selection). Therefore, in principle, some theoretical expectations are required to set relevant parameters and to allow for a fair comparison of the two types of collimators. Although the aforementioned studies may give the impression to provide a fair comparison (use of the same absorbers, same beam-collimator and collimator-absorber distance in the case of Lin 2017), they do not provide a thorough justification of their sets of parameters. Surprisingly, some parameters are even not the same between the two camera types. While it can be understood in Smeets 2016 due to experimental constraints, it is more questionable Lin 2017 (different energy deposition selection).
 
-Currently treatments can be verified by way of (offline) PET \citep{Kraan2015}. Integrating PET imaging in the beam gantry to reduce the effect of washout is being investigated \citep{Sportelli2013}. Another way to perform monitoring is to use prompt gammas (PGs), a natural byproduct in particle treatments. PGs offer the potential of monitoring treatment at the spot level \citep{Smeets2012,Roellinghoff2014a} and are therefore of prime interest \citep{Moteabbed2011,Gueth2013,Golnik2014a,Janssen2014}. These particles are produced in the inelastic nuclear collisions between the incident particle and the medium (tissue) it is traveling through, and they correlate strongly with dose deposition. This has been experimentally demonstrated for protons by \citet{Min2006} and for carbon by \citet{Testa2008}. A knife-edge PG camera \citep{Perali2014,Richter2016} was put into clinical operation in fall 2015, at OncoRay in Dresden, Germany. The aim of such collimated cameras is to obtain a 1D profile of the PG production along the beam direction and obtain the position of the fall-off of the signal, which is strongly correlated to the BP position. Other approaches include detection of the target materials using a spectral PG camera \citep{Verburg2014}, using the primary particle's time of flight (ToF) in a timed PG measurement \citep{Golnik2014a} and Compton camera designs \citep{Roellinghoff2011,Kurosawa2012,Solevi2016,Thirolf2016,Polf2015,Llosa2016}.
+\paragraph{Objectives}
+The objectives of the present paper are the following:
+\begin{itemize}
+	\item Estimate the MPS and KES detection efficiencies and spatial resolution from geometrical considerations 
+    \begin{itemize}
+    	\item Draw some conclusions about the intrinsic features of MPS and KES collimators. 
+        \item Estimate the MPS and KES performances in Smeets 2016 and Lin 2017: the KES/MPS detection efficiency ratio is 1.6 for Smeets 2016 and 5.3 for Lin 2017 (with the energy window)
+        \item Definition of a set of parameters to allow for a fair MPS and KES comparison with MC simulations
+    \end{itemize}
+    \item Fair comparison of the types of collimators with MC simulations. 
+    \begin{itemize}
+    	\item same absorber (the LYSO absorber of the KES prototype that we can consider as the reference) with E> 1 MeV and without TOF
+        \item geometry as close as possible to the prototypes: 
+	\end{itemize}            
+    \item Simulations of the two prototypes as they are published (results of the submitted paper with the \enquote{regular} cylindrical PMMA target of 15 cm diameter and 20 cm lenght). 
+    \begin{itemize}
+		\item the comparison of the two prototypes
+		\item the identification of the impact of energy selection (>1 MeV vs 3-6 MeV selection for KES) and TOF (for MPS) although the latter has been already shown in Roellinghoff PMB 2014.
+	\end{itemize}        
+\end{itemize}
 
-Here an \emph{in silico} study is presented of the clinical relevance of fall-off position (FOP) estimation, based on two collimated PG camera designs: a multi-parallel-slit (MPS) and knife-edge (KES) design. First, the composition of clinical treatment plans (TPs) is analyzed. The main determinant for the available PG signal is the number of primary protons per quantity of interest (whole treatment, iso-energy layer, spot or otherwise). Depending on target type, location, and size the spot distribution varies. That is to say: the number of spots, their average number of protons and their energy distribution have consequences for PG detection. Then, a brief analysis of the data and some treatment planning effects are presented in context of these spot distributions. In the second part of this paper, performances of the two PG cameras are studied on a clinical case, fully implemented in a Monte-Carlo simulation performed with Gate/Geant4. For a patient with a cranial tumor, significant weight loss was observed and a replanning CT (RPCT) obtained. The planning and replanning CTs provide an 'easy' case where PG camera should reliably detect the difference. The minimum number of protons required for a reliable FOP retrieval is established. To conclude, two spot-grouping methods that improve the reliability of fall-off retrieval under clinical conditions are proposed and compared.
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Preliminary observations / Clinical Analysis}\label{sec:tpanalysis}
-
-A small study into the spot weights prescribed by current treatment planning software (TPS) is included here to help focus the targets that PG cameras must be able to reach. Apart from detector performance and PG discrimination, the main determinant of the PG signal is the spot weight.
-
-In \cite{Smeets2012} the composition of a particular TP is displayed: a scatter plot of the spot intensity as function of the proton energy. In greyscale the $1\upsigma$ precision on the fall-off retrieval with the IBA Knife-Edge PG camera prototype, at that time, is colored in. Only for the three or four spots with the highest intensities is the precision lower than 2 mm. In previous work \citep{Grevillot2011}, TPs contructed with the Elekta Xio TPS, for an IBA proton accelerator with scanning nozzle, produces similar maximum spot weights; around $10^8$ at their top ends. More modern accelerator designs are able to produce smaller spots, more closely packed, in order to increase dose conformity. Alternatively, moving the patient closer to the beam nozzle, non-isocentric planning, is a recent development \cite{Grevillot2015} enabling smaller spots. The cost of these more conformal treatments with higher numbers of spots is a lower average spot weight. The XiO TPS used in this study produces plans with about 500 to 1000 spots per field, while newer accelerators and associated plans may have thousands of spots per field.
-
-A small set of clinical TPs were analyzed to establish what clinical spot counts and spot weights are, of which we present three 'archetypes' obtained from Uppsala University Hospital: a low precision case, a typical, medium precision case and a high precision case.
-
-\begin{enumerate}[noitemsep]
-\item Low precision: Arteriovenous Malformation (AVM) case, figure~\ref{fig:planlow}.
-
-\begin{figure}[htp]
-  \centering
-  \includegraphics[width=0.8\linewidth]{AVM_F1nonorm-plot}
-  \caption{TP for a Arteriovenous Malformation (AVM) case. On top: the spots are binned as function of energy and spot weight (number of protons), with high spot counts in red (hot spots) and low spot counts in blue (cool spots). Color scale chosen such that figures \ref{fig:planlow} through \ref{fig:planhigh} have the same scale.}
-  \label{fig:planlow}
-\end{figure}
-
-\item[] AVMs are not cancers, but tangles of blood vessels that divert arterial blood from the brain. The dose tolerance is high (up to 10\%) in such cases. This high tolerance leads to fewer spots, with on average a higher proton count, which enables a quicker TP delivery and therefore higher patient throughput.
-
-\item Typical precision: Meningioma case, figure~\ref{fig:planmid}.
-
-\begin{figure}[htp]
-  \centering
-  \includegraphics[width=0.8\linewidth]{MENINGIOMA_F1nonorm-plot}
-  \caption{TP for a Meningioma case.}
-  \label{fig:planmid}
-\end{figure}
-
-\item[] These medium tolerance plans involve a lower average proton count per spot with respect to the AVM case. Some spots reach the type of statistics that is commonly quoted in PG literature. This being a good representation for typical plans insofar we have been able to establish, it would be correct to uphold $10^8$ protons as typical \emph{for the maximum weight spots}. As presented in the figure, the mean spot-weight here is $1.08\cdot10^7$.
-
-\item High precision: a large and complex pediatric brain and spine case, figure~\ref{fig:planhigh}.
-
-\begin{figure}[htp]
-  \centering
-  \includegraphics[width=0.8\linewidth]{CSI_F1nonorm-plot}
-  \caption{TP for a large and complex pediatric brain and spine case. The left two fields are for the brain, the right two for the spine.}
-  \label{fig:planhigh}
-\end{figure}
-
-\item[] Smaller spots, and therefore more spots, are used in plans where dose conformality is more pertinent. Much lower tolerances than usual are set because the patients are young and the side-effects must be minimized, which explains why the spot-count is over an order of magnitude more than the other TPs. This increase is accompanied with a decrease in per spot proton counts. The mean spot weight does not exceed $10^7$, with the majority of spots below this number.
-\end{enumerate}
-
-In conclusion, the number of spots can vary over more than an order of magnitude per plan, and therefore spot weights inversely vary over an order of magnitude as well. The trend most plans follow is roughly an oval spot distribution, tilted towards a positive correlation with energy. Translated to energy layers, the weights roughly follow a forwardly skewed normal distribution. The negative correlation between the typical spot weight and plan robustness is an important observation, and presents a challenge: in robust plans where precision is required, and treatment verification seems most pertinent, PG cameras must be able to deal with lower spot weights than previously anticipated. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Materials and Methods}
