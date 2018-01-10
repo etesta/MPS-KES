@@ -51,7 +51,7 @@
 
 \paragraph{State of the art} At the moment, two papers have proposed a comparison of MPS-KES cameras:
 \begin{itemize}
-	\item Smeets 2016 Fontiers in Oncology: experimental comparison with a non-optimized MPS camera (CLaRyS designed with non-optimized geometrical parameters)
+	\item Smeets 2016 Fontiers in Oncology: experimental comparison with a non-optimized CLaRyS MPS camera (some technical constraints prevented the authors to use the \enquote{optimal CLaRyS design})
     \item Lin 2017 Radiation Physics and Chemistry : MC comparison with the MPS Korean design whose optimization procedure is actually questionable
 \end{itemize}
 In overall, the camera configurations present many parameters, namely geometrical parameters and event selections (especially energy deposition selection). Therefore, in principle, some theoretical expectations are required to set relevant parameters and to allow for a fair comparison of the two types of collimators. Although the aforementioned studies may give the impression to provide a fair comparison (use of the same absorbers, same beam-collimator and collimator-absorber distance in the case of Lin 2017), they do not provide a thorough justification of their sets of parameters. Surprisingly, some parameters are even not the same between the two camera types. While it can be understood in Smeets 2016 due to experimental constraints, it is more questionable Lin 2017 (different energy deposition selection).
@@ -61,11 +61,14 @@ The objectives of the present paper are the following:
 \begin{itemize}
 	\item Estimate the MPS and KES detection efficiencies and spatial resolution from geometrical considerations 
     \begin{itemize}
-    	\item Draw some conclusions about the intrinsic features of MPS and KES collimators. 
-        \item Estimate the MPS and KES performances in Smeets 2016 and Lin 2017: the KES/MPS detection efficiency ratio is 1.6 for Smeets 2016 and 5.3 for Lin 2017 (with the energy window)
-        \item Definition of a set of parameters to allow for a fair MPS and KES comparison with MC simulations
+    	\item Draw some conclusions about the intrinsic features of MPS and KES collimators:  
+        \begin{itemize}
+        	\item same efficiency
+        \end{itemize}
+        \item Estimate the MPS and KES performances in Smeets 2016 and Lin 2017: the KES/MPS detection efficiency ratio is 1.6 for Smeets 2016 and 5.3 for Lin 2017 (assuming the use of the same energy window)
+        \item Allow for the definition of a set of parameters that provide a fair MPS and KES comparison with MC simulations (next section)
     \end{itemize}
-    \item Fair comparison of the types of collimators with MC simulations. 
+    \item Fair comparison of the two types of collimators with MC simulations. 
     \begin{itemize}
     	\item same absorber (the LYSO absorber of the KES prototype that we can consider as the reference) with E> 1 MeV and without TOF
         \item geometry as close as possible to the prototypes: 
@@ -76,6 +79,7 @@ The objectives of the present paper are the following:
 		\item the identification of the impact of energy selection (>1 MeV vs 3-6 MeV selection for KES) and TOF (for MPS) although the latter has been already shown in Roellinghoff PMB 2014.
 	\end{itemize}        
 \end{itemize}
+
 
 
 
