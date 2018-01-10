@@ -58,28 +58,36 @@ In overall, the camera configurations present many parameters, namely geometrica
 
 \paragraph{Objectives}
 The objectives of the present paper are the following:
+
 \begin{itemize}
-	\item Estimate the MPS and KES detection efficiencies and spatial resolution from geometrical considerations 
+  \item Estimate the MPS and KES detection efficiencies and spatial resolution from geometrical considerations (figure~\ref{GeomCons})
+  \begin{itemize}
+    \item Draw some conclusions about the intrinsic features of MPS and KES collimators:  
     \begin{itemize}
-    	\item Draw some conclusions about the intrinsic features of MPS and KES collimators:  
-        \begin{itemize}
-        	\item same efficiency
-        \end{itemize}
-        \item Estimate the MPS and KES performances in Smeets 2016 and Lin 2017: the KES/MPS detection efficiency ratio is 1.6 for Smeets 2016 and 5.3 for Lin 2017 (assuming the use of the same energy window)
-        \item Allow for the definition of a set of parameters that provide a fair MPS and KES comparison with MC simulations (next section)
+      \item Efficiency: same efficiency with the same $s, L, H$, $d_2(\text{KES}) = D(\text{MPS})$, $d_2(\text{MPS})=0$ (no space between collimator and absorber in MPS) and $f\longrightarrow0$ (perfect collimator). In practice, $f\ne 0$ ($f=0.4$ in the CLaRyS MPS camera) so that the KES camera has a slightly larger efficiency than the MPS camera with the aforementioned geometrical conditions. It is worth noting that the KES detection efficiency is not constant over the FOV.
+      \item Spatial resolution: same resolution with the same geometrical conditions and perfect collimators. In practice, MPS transparency can be neglected in the CLaRyS prototype ($D = 180$~mm) but not the KES transparency so that the KES camera has a slightly poorer spatial resolution than the one of the MPS camera (still with the aforementioned geometrical conditions).
     \end{itemize}
-    \item Fair comparison of the two types of collimators with MC simulations. 
-    \begin{itemize}
-    	\item same absorber (the LYSO absorber of the KES prototype that we can consider as the reference) with E> 1 MeV and without TOF
-        \item geometry as close as possible to the prototypes: 
-	\end{itemize}            
-    \item Simulations of the two prototypes as they are published (results of the submitted paper with the \enquote{regular} cylindrical PMMA target of 15 cm diameter and 20 cm lenght). 
-    \begin{itemize}
-		\item the comparison of the two prototypes
-		\item the identification of the impact of energy selection (>1 MeV vs 3-6 MeV selection for KES) and TOF (for MPS) although the latter has been already shown in Roellinghoff PMB 2014.
-	\end{itemize}        
+    \item Estimate the MPS and KES performances in Smeets 2016 and Lin 2017: the KES/MPS detection efficiency ratio is 1.6 for Smeets 2016 and 5.3 for Lin 2017 (assuming the use of the same energy window) $\Rightarrow$ these comparisons were unfair\dots    
+  \end{itemize}
+  \item Fair comparison of the two types of collimators with MC simulations. What does it mean? 
+  \begin{itemize}
+    \item Use of same absorbers (the LYSO absorber of the KES prototype that we can consider as the reference), the same energy selection which was not the case in Lin 2017 and the same TOF selection (no TOF)
+    \item Then a discussion of the results in the light of the geometrical considerations
+    \item Note: the KES background level can be obtained from Figure 18 in Perali 2014. Regarding the MPS background level I propose to use the same level as the one of KES for the following reasons: i) the background level in the MPS camera is derived in Pinto 2014 from measurements with large detectors by assuming that the background is proportional to the detector volume. If we apply the same approach, it is reasonable to use the same background levels since we use the same absorbers for MPS and KES. One can argue that the MPS and KES collimators are different. It is true and it is difficult to say whether the larger amount of material in the CLaRyS MPS collimator leads to a larger background with more neutron-induced gammas or a lower background due to a larger attenuation of these gammas\dots At first order the background levels should be similar and a first order estimate is sufficient for a paper that mainly aims at comparing the signal detection of the two cameras.
+  \end{itemize}            
+  \item Simulations of the two prototypes as they are published (results of the submitted paper with the \enquote{regular} cylindrical PMMA target of 15 cm diameter and 20 cm lenght). 
+  \begin{itemize}
+    \item $\Rightarrow$ Comparison of the two prototypes
+    \item Identification of the impact of energy (>1 MeV vs 3-6 MeV selection for KES) and TOF selection (for MPS) although the latter has been already shown in Roellinghoff PMB 2014 with a large detector placed behind a single slit collimator.
+  \end{itemize}        
 \end{itemize}
 
+  \begin{figure}[htp]
+    \centering
+    \subfloat[Schemes]{\includegraphics[width=.45\textwidth]{SchemeMPS-KES}}\quad
+    \subfloat[Formulas]{\includegraphics[width=.45\textwidth]{FormuleMPS-KES}}
+    \caption{\label{GeomCons}Schemes, detection efficiencies and spatial resolution of MPS and KES cameras obtained by geometrical considerations.}
+  \end{figure}      
 
 
 
