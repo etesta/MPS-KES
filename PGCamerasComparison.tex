@@ -82,7 +82,57 @@ The objectives of the present paper are the following:
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Definitions and figures of merit}
+\subsection{Features of PG profiles}
+
+Figure~\ref{ProfileParameters} defines the 3 parameters of a typical PG profile measured with a collimated camera in the falloff region and in the case of a homogeneous target irradiation.
+
+\begin{figure}[htp]
+  \centering
+  \includegraphics[width=.45\textwidth]{ProfileParameters}
+  \caption{\label{ProfileParameters} PG profile parameters.}
+\end{figure} 
+
+The 3 parameters are the following:
+\begin{itemize}
+  \item the contrat $C$ corresponding to the falloff amplitude,
+  \item the background level $B$,
+  \item and the falloff $FW$ width related to the camera spatial resolution (Note that the PG emission profile has an intrinsic width of a few millimiters. In practice the width of PG emission profiles measured by the collimated camera prototypes is dominated by the camera resolution of the order of 20 mm).
+\end{itemize}
+
+As expected, these 3 parameters have very different impacts on the falloff retrieval precision ($FRP$). As mentioned in [Roellinghoff MPB 2014], $FRP$ is mainly determined by the contrast-to-noise ratio of the profile. The detailed study of the influence of $C$, $B$ et $FW$ on $FRP$ has shnown that [Roellinghoff PhD thesis 2014]:
+\begin{itemize}
+ \item $FRP\propto \frac{\sqrt{B}}{C}$
+ \item The influence of $FW$ is negligible
+\end{itemize}
+
+As a consequence, the optimization of the collimated cameras is actually a compromise between $FRP$ and spatial resolution $FW$. In principle, collimator slits has to be as large as possible to increase detection efficiency and minimize $FRP$. However, a \enquote{reasonable} spatial resolution has obviously to be defined and it has been set in the range of $\sim1$ to 2 cm depending on the collimator types. Morevover, this spatial resolution can play a major role in clinical conditions since the beam might cross highly heretrogeneous regions. More specifically, Priegnitz et al. have shown that the KES prototype is not able to detect the filling of a cavity located 5~mm upstream to the Bragg peak position [Priegnitz PMB 2015].
+
+
+\subsection{Geometrical considerations}
+
+
+
+\begin{itemize}
+  \item Rationale: geometrical considerations should provide good predictions of collimated camera performances while providing a good understanding of the intrinsic features of the 2 types of collimators. 
+  \item Estimate the MPS and KES performances in Smeets 2016 and Lin 2017: the KES/MPS detection efficiency ratio is 1.6 for Smeets 2016 and 5.3 for Lin 2017 (assuming the use of the same energy window) $\Rightarrow$ these comparisons were unfair\dots    
+\end{itemize}
+
+\subsubsection{Parameters}
+
+\begin{itemize}
+  \item Geometrical parameters (Figure~\ref{GeomSchemes})
+  \item Energy and TOF selections
+\end{itemize}
+
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=.45\textwidth]{SchemeMPS-KES}
+    \caption{\label{GeomSchemes}Schemes of MPS and KES cameras.}
+\end{figure}          
+
+\subsubsection{Definitions and figures of merit}
+
+
 
 \paragraph{Definitions}
 
@@ -95,26 +145,20 @@ The objectives of the present paper are the following:
   \item Spatial resolution: PSF width. In the context of PG detection, the gamma source can be considered at first order as a linear source. Hence one can estimate the spatial resolution of the collimated camera from the derivative of the PG profile that has a gaussian-like shape. The width of the derivative can be defined as the spatial resolution of the collimated cameras in the context of PG detection.
 \end{itemize}
 
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=.45\textwidth]{PGprofile_FW}
+    \caption{\label{PGprofile_FW}Example of PG profile falloff width (FW) estimate with the first derivative of the PG profile (Figure 4.15 of Frauke's manuscript).}
+\end{figure}          
+
+
 \paragraph{Figures of merit}
 
 \begin{itemize}
   \item Linear collection efficiency
   \item Spatial resolution
+  \item Falloff retrieval precision ($FRP$)
 \end{itemize}
-
-
-\subsection{Geometrical considerations}
-
-\begin{itemize}
-  \item Rationale: geometrical considerations should provide good predictions of collimated camera performances while providing a good understanding of the intrinsic features of the 2 types of collimators. 
-  \item Estimate the MPS and KES performances in Smeets 2016 and Lin 2017: the KES/MPS detection efficiency ratio is 1.6 for Smeets 2016 and 5.3 for Lin 2017 (assuming the use of the same energy window) $\Rightarrow$ these comparisons were unfair\dots    
-\end{itemize}
-
-\begin{figure}[htp]
-    \centering
-    \includegraphics[width=.45\textwidth]{SchemeMPS-KES}
-    \caption{\label{GeomSchemes}Schemes of MPS and KES cameras.}
-\end{figure}          
 
 
 \subsection{Monte Carlo simulations}
@@ -269,7 +313,7 @@ Therefore the fitting method was not chosen as a topic for study in this paper. 
 \begin{itemize}
   \item Formulas of the the MPS and KES detection efficiencies and spatial resolution from geometrical considerations (figure~\ref{GeomFormulas})
   \begin{itemize}
-    \item Draw some conclusions about the intrinsic features of MPS and KES collimators:  
+    \item Draw some conclusions about the intrinsic features of MPS and KES collimators knowing that the falloff retrieval precision (FRP)   
     \begin{itemize}
       \item Efficiency: same efficiency with the same $s, L, H$, $d_2(\text{KES}) = D(\text{MPS})$, $d_2(\text{MPS})=0$ (no space between collimator and absorber in MPS) and $f\longrightarrow0$ (perfect collimator). In practice, $f\ne 0$ ($f=0.4$ in the CLaRyS MPS camera) so that the KES camera has a slightly larger efficiency than the MPS camera with the aforementioned geometrical conditions. It is worth noting that the KES detection efficiency is not constant over the FOV.
       \item Spatial resolution: same resolution with the same geometrical conditions and perfect collimators. In practice, MPS transparency can be neglected in the CLaRyS prototype ($D = 180$~mm) but not the KES transparency so that the KES camera has a slightly poorer spatial resolution than the one of the MPS camera (still with the aforementioned geometrical conditions).
@@ -309,6 +353,8 @@ Figures~\ref{PGprofileFairComp} and \ref{CameraPerformancesFairComp}.
 
 \subsubsection{Comparison of the two prototypes}
 
+\paragraph{PG profiles}
+
 Figure~\ref{PGprofileProtoComp}.
 
 \begin{figure}[!htp]
@@ -319,6 +365,12 @@ Figure~\ref{PGprofileProtoComp}.
 \end{figure}  
 
 KES/MPS ratio $\sim 400/350 \sim 0.9$.
+
+\paragraph{FRP}
+
+Figure showing the falloff retrieval precision (FRP) (standard deviation of the falloff position distributions) for the 2 prototypes as a function of the number of incident protons ($10^7$, $10^8$, $10^9$).
+
+\textcolor{red}{We do not have this figure yet. The figure in the spot grouping paper shows the mean and standard deviations on the falloff position differences for the 3 spots considered.}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Discussion}
