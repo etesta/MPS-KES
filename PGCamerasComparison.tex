@@ -105,7 +105,7 @@ As expected, these 3 parameters have very different impacts on the falloff retri
  \item The influence of $FW$ is negligible
 \end{itemize}
 
-As a consequence, the optimization of the collimated cameras is actually a compromise between $FRP$ and spatial resolution $FW$. In principle, collimator slits has to be as large as possible to increase detection efficiency and minimize $FRP$. However, a \enquote{reasonable} spatial resolution has obviously to be defined and it has been set in the range of $\sim1$ to 2 cm depending on the collimator types. Morevover, this spatial resolution can play a major role in clinical conditions since the beam might cross highly heretrogeneous regions. More specifically, Priegnitz et al. have shown that the KES prototype is not able to detect the filling of a cavity located 5~mm upstream to the Bragg peak position [Priegnitz PMB 2015].
+As a consequence, the optimization of the collimated cameras is actually a compromise between $FRP$ and spatial resolution $FW$. In principle, collimator slits have to be as large as possible to increase detection efficiency and minimize $FRP$. However, a \enquote{reasonable} spatial resolution has obviously to be defined and it has been set in the range of $\sim1$ to 2 cm depending on the collimator types. Morevover, this spatial resolution can play a major role in clinical conditions since the beam might cross highly heretrogeneous regions. More specifically, Priegnitz et al. have shown that the KES prototype is not able to detect the filling of a cavity located 5~mm upstream to the Bragg peak position [Priegnitz PMB 2015].
 
 
 \subsection{Geometrical considerations}
@@ -136,9 +136,8 @@ As a consequence, the optimization of the collimated cameras is actually a compr
 
 \paragraph{Definitions}
 
-\textcolor{red}{The following list is a draft.}
 \begin{itemize}
-  \item Detector unit field of view. For MPS: This is the part of the source that can be “seen” through a single slit. It consists of a part that is directly facing the slit and a part penumbra. The probability of a photon emitted at a given point along a linear source (perpendicular to the slit plane) to reach the detector through a given slit can be described as a trapezoid. \textcolor{red}{Add the definition for KES.}
+  \item Detector unit field of view: This is the part of the source that can be “seen” through a single camera unit: a single slit for the MPS (naturally associated to a single detector unit) and a single detector unit for KES. The probability of a photon emitted at a given point along a linear source (perpendicular to the slit plane) to reach this detector unit can be described as a trapezoid: the part that can be seen from every points on the detector unit and the penumbra.
   \item Collection efficiency: The probability of a photon emitted at a point facing a slit (in the middle part of the trapezoid) to reach the detector is described by the solid angle that the point sees of the detector.
   \item Linear collection efficiency: collection efficiency divided by the pitch that corresponds to the collection efficiency of the camera per unit of length
   \item Effective Slit Opening (especially for KES): At the particle energies that occur in prompt-gamma imaging, a non-negligible amount of particles will cross the collimator slit edges. This effect can be approximated by introducing an effective slit opening that can be used in the evaluation of the field of view and the efficiency in place of the geometrical slit opening. 
@@ -370,7 +369,7 @@ KES/MPS ratio $\sim 400/350 \sim 0.9$.
 
 Figure showing the falloff retrieval precision (FRP) (standard deviation of the falloff position distributions) for the 2 prototypes as a function of the number of incident protons ($10^7$, $10^8$, $10^9$).
 
-\textcolor{red}{We do not have this figure yet. The figure in the spot grouping paper shows the mean and standard deviations on the falloff position differences for the 3 spots considered.}
+\textcolor{red}{We do not have this figure yet. The figure in the spot grouping paper shows the mean and standard deviations on the falloff position differences for the 3 spots considered. }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Discussion}
