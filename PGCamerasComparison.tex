@@ -110,11 +110,33 @@ As a consequence, the optimization of the collimated cameras is actually a compr
 
 \subsection{Geometrical considerations}
 
-\begin{figure}[htp]
-    \centering
-    \includegraphics[width=.85\textwidth]{FormuleMPS-KES}
-    \caption{\label{GeomFormulas} MPS and KES detection efficiencies and spatial resolution from geometrical considerations. The parameters of the cameras are defined in figure~\ref{GeomSchemes}.  }
-  \end{figure}
+
+
+\begin{table}
+\centering
+\begin{tabular}{lllll}
+	\midrule
+	                            & MPS & MPS calc. & KES & KES calc. \\
+	\midrule
+	Effective slit width ($s_e$)& $s$                              & 5.4 mm
+	 & $s + \frac{ln(2)}{\mu~tan(\alpha)}$                         & 6 mm (TODO add transparency) \\
+ 	Det. unit FOV               & $s(1+\frac{d_1}{D})$             & 14.52 mm
+ 	 & $s_e(1+\frac{d_1}{d_2})$                                    & 13.5 mm\\
+ 	Lin. collection efficiency  & $\frac{H s}{ 4 \pi L D } (1-f) $ & $4.18 \cdot 10^5$
+ 	 & $\frac{H s}{ 4 \pi L d_2 } (1 + x^2/d^2_2)^{-3/2} $         & $6.67 \cdot 10^5$ \\
+ 	Effective thickness ($T_e$) & $D_f$                            & 58.5 mm
+ 	 & $T$                                                         & 40 mm\\
+	\midrule
+\end{tabular}
+\caption{MPS and KES detection efficiencies and spatial resolution from geometrical considerations. The parameters of the cameras are defined in figure~\ref{GeomSchemes}.}
+\label{GeomFormulas}
+\end{table}
+
+%\begin{figure}[htp]
+%    \centering
+%    \includegraphics[width=.85\textwidth]{FormuleMPS-KES}
+%    \caption{MPS and KES detection efficiencies and spatial resolution from geometrical considerations. The parameters of the cameras are defined in figure~\ref{GeomSchemes}.  }
+%  \end{figure}
 
 
 
@@ -156,14 +178,6 @@ As a consequence, the optimization of the collimated cameras is actually a compr
     \caption{\label{PGprofile_FW}Example of PG profile falloff width (FW) estimate with the first derivative of the PG profile (Figure 4.15 of Frauke's manuscript).}
 \end{figure}          
 
-
-\paragraph{Figures of merit}
-
-\begin{itemize}
-  \item Linear collection efficiency ($LCE$)
-  \item Spatial resolution ($SR$)
-  \item Falloff retrieval precision ($FRP$)
-\end{itemize}
 
 
 \subsection{Monte Carlo simulations}
@@ -235,6 +249,18 @@ From a clinical perspective, the range estimate could be more interesting than F
 
 Therefore the fitting method was not chosen as a topic for study in this paper. Instead, a simple method that works on most the data available to the authors was used: first a smoothed and interpolated spline function is fitted against the detected PG data points, after which a baseline and (distal) peak position are determined. The intersection of the spline with the half-height of the peak above the baseline is then taken as the FOP. A more detailed description of the procedure may be found in appendix~\ref{sec:fopproc}.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Fall-off width estimation procedure}
+
+\begin{figure}[htp]
+  \centering
+  \subfloat[KES]{\label{FOWKES}\includegraphics[width=.45\textwidth]{FOW_PMMA_phantom-iba-auger-tof-3}}\quad
+  \subfloat[MPS]{\label{FOWMPS}\includegraphics[width=.45\textwidth]{FOW_PMMA_phantom-ipnl-auger-tof-3}}
+  \caption{\label{FOWCOMP} MPS and KES FOW estimation illustrated.}
+\end{figure}
+
+\textcolor{red}{TODO}
+
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % \subsection{Spot grouping}
 
@@ -250,20 +276,31 @@ Therefore the fitting method was not chosen as a topic for study in this paper. 
 % As established in section~\ref{sec:tpanalysis}, a difference was expected between the number of protons per spot as planned and sufficient for reconstruction. Depending on the beam line, the minimum unit of PG detection may be a spot (beam scanning) or an iso-energy layer (passive scattering). Since most new centers employ active beam scanning, new grouping methods are possible. Here a spot grouping method is proposed based on the notion of depth proximity. On the planning CT the 3D dose distribution is computed per spot, and then a dose FOP is determined with the same algorithm as for PG FOP. The FOPs for each spot are binned along the beam line, and these bins we call iso-depth layers. The assumption is that due to inhomogeneities, protons within an iso-energy layer may have very different FOPs in the patient. This iso-depth grouping method will be compared to grouping by iso-energy.
 
 
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% \subsection{Figures of merit}\label{figmerit}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Figures of merit}\label{figmerit}
 
-% When evaluating a detector, principally the accuracy and precision are of interest: does the PG camera estimate the FOP correctly (accurate) and is the result reproducible (precise)? A more clinical point of view could be: does the detector correctly signal significant changes? A precise FOP estimate or FOP shift estimate is perhaps not required, but a correct indication of significant change \emph{is}.
+We use the test-case presented in \cite{Perali2014} as the KES detector properties such as background were published for that scenario, again in order to remove any doubt that a difference in camera performance could be due to a difference in implementation or setup. A 160 MeV mono-energetic proton beam is shot into a cylindrical PMMA phantom (length 30 cm, radius 15 cm). Employing the batch method we realize between 50 simulations for each experiment.%, each resulting in a FOP estimate, giving us a mean $\upmu_\textrm{FOP}$ and a standard deviation $\upsigma_\textrm{FOP}$ for a certain experiment. Since we are studying the effect of replacing the CT with a RPCT to simulate patient change, we run each experiment with both CT and RPCT. Each FOP estimate of the N CT realizations is compared to each FOP estimate of the N RPCT realizations, resulting in N$\times$N possible \emph{FOP shift} measurements. These distributions have a $\upmu_\Delta$ and a $\upsigma_\Delta$. The shift initially obtained with the dose is denoted $\Delta_\textrm{dose}$
 
-% Employing the batch method we realize between 20 and 50 simulations for each experiment, each resulting in a FOP estimate, giving us a mean $\upmu_\textrm{FOP}$ and a standard deviation $\upsigma_\textrm{FOP}$ for a certain experiment. Since we are studying the effect of replacing the CT with a RPCT to simulate patient change, we run each experiment with both CT and RPCT. Each FOP estimate of the N CT realizations is compared to each FOP estimate of the N RPCT realizations, resulting in N$\times$N possible \emph{FOP shift} measurements. These distributions have a $\upmu_\Delta$ and a $\upsigma_\Delta$. The shift initially obtained with the dose is denoted $\Delta_\textrm{dose}$
 
-% Grading the performance of the detectors will be done according to a few figures of merit: 
+Grading the performance of the detectors will be done according to these figures of merit: 
 
-% \begin{itemize}[noitemsep]
-% \item Accuracy: $| \upmu_{\Delta} - \Delta_\textrm{dose}|$.
-% \item Precision: $\upsigma_\Delta$. For this estimate of the standard deviation of the Gaussian distribution a standard deviation can be computed once again based on the number of realization $n$ used to obtain it: $\upsigma(\upsigma_\Delta)=\frac{\upsigma_\Delta}{\sqrt{2\times(n-1)}}$, as per \citet[formula 4.54]{Leo1994}.
-% \item Confidence: the percentage of RPCT FOP realizations that fall outside $\upmu_\textrm{FOP,CT}\pm2\upsigma_\textrm{FOP,CT}$ indicates the likelihood any difference from the expected FOP is measured. In other words, given that in this analysis we know that a shift should be detected, what is the probability that a particular realization does so? It will be denoted as P$_\Delta$.
-% \end{itemize}
+%\begin{itemize}[noitemsep]
+%\item Accuracy: $| \upmu_{\Delta} - \Delta_\textrm{dose}|$.
+%\item Precision: $\upsigma_\Delta$. For this estimate of the standard deviation of the Gaussian distribution a standard deviation can be computed once again based on the number of realization $n$ used to obtain it: $\upsigma(\upsigma_\Delta)=\frac{\upsigma_\Delta}{\sqrt{2\times(n-1)}}$, as per \citet[formula 4.54]{Leo1994}.
+%\item Confidence: the percentage of RPCT FOP realizations that fall outside $\upmu_\textrm{FOP,CT}\pm2\upsigma_\textrm{FOP,CT}$ indicates the likelihood any difference from the expected FOP is measured. In other words, given that in this analysis we know that a shift should be detected, what is the probability that a particular realization does so? It will be denoted as P$_\Delta$.
+%\end{itemize}
+
+\begin{itemize}
+  \item Linear collection efficiency ($LCE$)
+  \item[] The LCE is the detection yield in the absorber per unit length of the detector. Since a full MC validation (in particular the background) has not been performed, the most honest way to use the LCE is as ratio between the cameras. Any bias should be divided out.
+  \item[] \textcolor{red}{SHOULD we here talk about studying only the MPS/KES ratio? ALSO, will we compare to the formula?}
+  \item Spatial resolution ($SR$)
+  \item[] The SR is obtained by taking the point spread function of the PG profile in this particular case of the mono-energetic beam in a mono-material box. The BP is as sharp as it can be in such a scenario, and any blur seen in the detected PG profile is then due to the collimator design.
+  \item Falloff retrieval precision ($FRP$)
+  \item[] The FRP is the standard deviation of the FOP, which is obtained by way of the batch method.
+\end{itemize}
+
+Each of these can then be examined as function of the energy and ToF selections.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -317,7 +354,37 @@ Therefore the fitting method was not chosen as a topic for study in this paper. 
 
 \subsection{Geometrical considerations}
 
-For the validation of the theoretical expressions in table~\ref{GeomFormulas}, the two cameras are equalized by settings the absorber material to LYSO in the MPS camera and the PG energy selection window to 1-8 MeV.
+\subsubsection{Linear collection efficiency}
+\textcolor{red}{TODO} detection yields. compare to prediction.
+\subsubsection{Spatial resolution}
+\textcolor{red}{TODO}
+\subsubsection{Falloff retrieval precision}
+
+\begin{table}
+\centering
+\begin{tabular}{lllllllll}
+	\midrule
+	Time selection 					& ToF &     &     &     & none&     &     &     \\
+	Energy selection 				& 1   &     & 3   &     & 1   &     & 3   &     \\
+	Camera 							& MPS & KES & MPS & KES & MPS & KES & MPS & KES \\
+	\midrule
+ 	FOW                         	& 19.7& 20.9& 18.3& 19.3& 19.8& 21.9& 17.9& 23.6\\
+ 	FOW (perfect collimator) 	& 17.8& 13.7& 16.9& 13.7& 18.3& 14.2& 17.0& 11.6\\
+	\midrule
+\end{tabular}
+\caption{FOW PSF.}
+\label{FOWCOMP}
+\end{table}
+
+The FOW shown in table~\ref{FOWCOMP} shows that both cameras perform similar with ToF selection. For the MPS the ToF selection makes no difference (up to 2\%), while for the KES it gives a 10-20\% improvement. The results are a bit worse than the calculated values in table~\ref{GeomFormulas}, but close to the 20 mm as postulated in \cite{Priegnitz2015}.
+
+When we make the collimator perfectly absorbing (we kill any tracks entering the material), we can see the KES's effective slit width in action: the transmission through the collimator creating a wider $s_e$ is gone and we see the FOW decrease between 40 and 100\%. This is roughly in line with the calculated $s_e$: \textcolor{red}{ETIENNE?} Surprisingly the FOW of the KES approaches the theoretical value nearly, while the MPS is still a few millimeters worse than calculated.
+
+
+
+
+
+===================================================
 
 \begin{itemize}
   \item Formulas of the the MPS and KES detection efficiencies and spatial resolution from geometrical considerations (figure~\ref{GeomFormulas})
