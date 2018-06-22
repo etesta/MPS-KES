@@ -110,6 +110,12 @@ As a consequence, the optimization of the collimated cameras is actually a compr
 
 \subsection{Geometrical considerations}
 
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=.85\textwidth]{FormuleMPS-KES}
+    \caption{\label{GeomFormulas} MPS and KES detection efficiencies and spatial resolution from geometrical considerations. The parameters of the cameras are defined in figure~\ref{GeomSchemes}.  }
+  \end{figure}
+
 
 
 \begin{itemize}
@@ -154,8 +160,8 @@ As a consequence, the optimization of the collimated cameras is actually a compr
 \paragraph{Figures of merit}
 
 \begin{itemize}
-  \item Linear collection efficiency
-  \item Spatial resolution
+  \item Linear collection efficiency ($LCE$)
+  \item Spatial resolution ($SR$)
   \item Falloff retrieval precision ($FRP$)
 \end{itemize}
 
@@ -193,8 +199,6 @@ Two PG detectors tailored to FOP verification (illustrated in fig.~\ref{fig:dete
 \item[] The purpose of this camera consists of verifying the BP position with a FoV of 100 mm. \cite{Richter2016} provides the first clinically obtained results. At this time, no other camera has been subjected to clinical tests, which is why we consider this prototype a benchmark.
 \end{itemize}
 
-\textcolor{red}{Add a few words to present the fair comparison of the camera: same absorber and same time and energy selections.}
-
 \begin{figure}[htp]
   \centering
   \includegraphics[width=0.9\linewidth]{detectors}
@@ -206,10 +210,14 @@ Regarding background ToF selection, for the IBA C230 accelerator with a period o
 
 Both PG camera prototypes have different photodetectors and different detector electronics. In this study, these differences are not implemented. Instead, the method as described in \cite{Gueth2013} was used to obtain the interaction point of an impinging photon. If the integrated energy deposited in a crystal lies in the acceptable energy and ToF window, the event is recorded. The position of the event in the crystal is considered as the energy weighed barycenter of all interactions in the crystal, plus a random value taken from a 5mm FWHM Gaussian to simulate the electronics and the detector resolution.
 
+\paragraph{Fair Comparison}
+
+Since we are using a simulation for the validation of the theoretical expressions in table~\ref{GeomFormulas}, for the fairest comparison possible, we can equalize certain aspects which might cause one camera or the other to give favorable impression. In principle this comparison is not about absorption materials, acquisition electronics or PG selections, but PG collimator characteristics. So, for the validation of the expressions in table~\ref{GeomFormulas} and comparison on LCE, SR and FRP we set the absorber material of the MPS to that of the KES: LYSO. The energy and ToF selection windows are kept identical for both cameras, and are varied in order to study their impact on the figures of merit.
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Background estimation}
 
-Background estimation in PG simulation is a difficult and largely unsolved issue \citep{Huisman2016,Sterpin2015,Pinto2014a,Perali2014}. Simulations would ideally include beam nozzle and whole room modeling, but these are habitually omitted. ToF selection techniques can improve the signal-to-noise ratio (SNR) \citep{Testa2008}, but then depend on the proper simulation of the beam accelerator time structure. As noted in \cite{Huisman2016}, no validation for background in PG simulations has been performed at this time. In this study, the stable time structure of current generation cyclotrons was assumed, in which the neutron background is largely constant. Estimates of background counts in the detector are taken from \cite{Pinto2014a,Perali2014}, which are both based on measured data:
+Background estimation in PG simulation is a difficult and largely unsolved issue \citep{Huisman2016,Sterpin2015,Pinto2014a,Perali2014}. Simulations would ideally include beam nozzle and whole room modeling, but these are habitually omitted. ToF selection techniques can improve the signal-to-noise ratio (SNR) \citep{Testa2008,Roellinghoff2014a}, but then depend on the proper simulation of the beam accelerator time structure. As noted in \cite{Huisman2016}, no validation for background in PG simulations has been performed at this time. In this study, the stable time structure of current generation cyclotrons was assumed, in which the neutron background is largely constant. Estimates of background counts in the detector are taken from \cite{Pinto2014a,Perali2014}, which are both based on measured data:
 
 \begin{itemize}[noitemsep]
 \item MPS: \cite{Pinto2014a} fig.~9: $1 \cdot 10^{3} \pm 1 \cdot 10^{2}$ per $4\cdot10^9$ primary protons per 8 mm bin
@@ -217,7 +225,7 @@ Background estimation in PG simulation is a difficult and largely unsolved issue
 \item KES: \cite{Perali2014} fig.~11: $5 \cdot 10^{-7} \pm 0.5 \cdot 10^{-7}$ per primary proton per 4 mm bin
 \end{itemize}
 
-Per unit of bin length, the background yield of the MPS with ToF is therefore 4 times as low as the background seen with the KES.
+Per unit of bin length, the background yield of the MPS with ToF is therefore 4 times as low as the background seen with the KES. In the context of the fair comparison, for the KES camera the background with ToF can be obtained by multiplying the background with the same $\frac{4 ns}{10 ns} = 0.4$ fraction as with the MPS.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -309,13 +317,11 @@ Therefore the fitting method was not chosen as a topic for study in this paper. 
 
 \subsection{Geometrical considerations}
 
+For the validation of the theoretical expressions in table~\ref{GeomFormulas}, the two cameras are equalized by settings the absorber material to LYSO in the MPS camera and the PG energy selection window to 1-8 MeV.
+
 \begin{itemize}
   \item Formulas of the the MPS and KES detection efficiencies and spatial resolution from geometrical considerations (figure~\ref{GeomFormulas})
-  \begin{figure}[htp]
-    \centering
-    \includegraphics[width=.85\textwidth]{FormuleMPS-KES}
-    \caption{\label{GeomFormulas} MPS and KES detection efficiencies and spatial resolution from geometrical considerations. The parameters of the cameras are defined in figure~\ref{GeomSchemes}.  }
-  \end{figure}     
+
   \begin{itemize}
     \item Draw some conclusions about the intrinsic features of MPS and KES collimators knowing that the falloff retrieval precision (FRP)   
     \begin{itemize}
@@ -332,6 +338,8 @@ Therefore the fitting method was not chosen as a topic for study in this paper. 
   \subfloat[Lin's setup]{\label{LinComparison}\includegraphics[width=.45\textwidth]{LinComparison}}
   \caption{\label{LitteratureComp} MPS and KES comparisons in litterature.}
 \end{figure}   
+
+( \cite{Roellinghoff2014a} shows impact of TOF )
 
 \subsection{Monte Carlo simulations}
 
@@ -355,7 +363,9 @@ Figures~\ref{PGprofileFairComp} and \ref{CameraPerformancesFairComp}.
   \caption{\label{CameraPerformancesFairComp} MPS and KES comparisons with the same absorber, energy and TOF selection. The first columns of the table correspond to the geometrical calculations. \textcolor{red}{It is interesting to show the results for the two energy selections but it would be nice to have only one TOF selection (no TOF).}}
 \end{figure}
 
-\subsubsection{Comparison of the two prototypes}
+\subsection{Clinical case study}
+
+Performance under clinical conditions is the eventual purpose of these PG cameras, and therefore we here include the results of the clinical case study.. Since both cameras prototypes were optimized assuming their particular choice for absorber and energy selection window, here we chose to set 
 
 \paragraph{PG profiles}
 
@@ -437,5 +447,5 @@ To verify the implementation of the MPS camera, the precision on the FOP, obtain
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \bibliographystyle{plainnat}
-\bibliography{../library.bib}
+\bibliography{lib.bib}
 \end{document}%\grid
