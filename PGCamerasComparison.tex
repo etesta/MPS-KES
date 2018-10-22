@@ -17,6 +17,11 @@
 \usepackage{subfig}
 \renewcommand{\arraystretch}{1.2} % space in tables
 \usepackage{authblk}
+\usepackage{multirow}
+
+\newcommand{\tcb}[1]{\textcolor{blue}{#1}}
+\newcommand{\tcr}[1]{\textcolor{red}{#1}}
+
 % \usepackage[toc,page]{appendix} %for appendix titles
 % \usepackage[titletoc,title]{appendix} %for appendix titles
 \usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes} %todo note in margin
@@ -26,10 +31,10 @@
 \title{Comparison of Multi-Parallel Slit and Knife-Edge Slit Prompt Gamma Cameras in the context of hadrontherapy verification}
 
 \author[1,2]{Brent F. B. Huisman}
-\author[2]{É. Testa}
+\author[2]{\'E. Testa}
 \author[1]{D. Sarrut}
-\affil[1]{~CREATIS, Université de Lyon; CNRS UMR5220; INSERM U1206; INSA-Lyon; Université Lyon 1; Centre Léon Bérard, Lyon, France}
-\affil[2]{~IPNL, Université de Lyon; CNRS/IN2P3 UMR5822; Université Lyon 1 Lyon, France}
+\affil[1]{~CREATIS, Universit\'e de Lyon; CNRS UMR5220; INSERM U1206; INSA-Lyon; Universit\'e Lyon 1; Centre L\'eon B\'erard, Lyon, France}
+\affil[2]{~IPNL, Universit\'e de Lyon; CNRS/IN2P3 UMR5822; Universit\'e Lyon 1 Lyon, France}
 \affil[ ]{~E-mail: brent.huisman@cern.ch}
 
 \maketitle
@@ -55,8 +60,8 @@
 
 \paragraph{State of the art} At the moment, two papers have proposed a comparison of MPS-KES cameras:
 \begin{itemize}
-	\item Smeets 2016 Fontiers in Oncology: experimental comparison with a non-optimized CLaRyS MPS camera (some technical constraints prevented the authors to use the \enquote{optimal CLaRyS design})
-    \item Lin 2017 Radiation Physics and Chemistry : MC comparison with the MPS Korean design whose optimization procedure is actually questionable
+  \item Smeets 2016 Fontiers in Oncology: experimental comparison with a non-optimized CLaRyS MPS camera (some technical constraints prevented the authors to use the \enquote{optimal CLaRyS design})
+  \item Lin 2017 Radiation Physics and Chemistry : MC comparison with the MPS Korean design whose optimization procedure is actually questionable
 \end{itemize}
 In overall, the camera configurations present many parameters, namely geometrical parameters and event selections (especially energy deposition selection). Therefore, in principle, some theoretical expectations are required to set relevant parameters and to allow for a fair comparison of the two types of collimators. Although the aforementioned studies may give the impression to provide a fair comparison (use of the same absorbers, same beam-collimator and collimator-absorber distance in the case of Lin 2017), they do not provide a thorough justification of their sets of parameters. Surprisingly, some parameters are even not the same between the two camera types. While it can be understood in Smeets 2016 due to experimental constraints, it is more questionable Lin 2017 (different energy deposition selection).
 
@@ -64,7 +69,7 @@ In overall, the camera configurations present many parameters, namely geometrica
 The objectives of the present paper are the following:
 
 \begin{itemize}
-  \item Estimate the MPS and KES detection efficiencies and spatial resolution from geometrical considerations
+  \item Estimate the MPS and KES detection efficiencies and spatial resolution from analytical models
   \begin{itemize}
     \item Draw some conclusions about the intrinsic features of MPS and KES collimators:  
     \item Estimate various MPS and KES performances 
@@ -73,7 +78,7 @@ The objectives of the present paper are the following:
         \item "Official" MPS and KES prototypes with identical absorbers 
     \end{itemize}    
   \end{itemize}
-  \item MC simulation: geometrical considerations verification and prototype direct comparison
+  \item MC simulation: analytical models verification and prototype direct comparison
 \end{itemize}  
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -84,116 +89,117 @@ The objectives of the present paper are the following:
 
 \subsection{Features of PG profiles}
 
+\tcb{Etienne: todo => Explain the context of PG verifications: detection of PG profiles obtained at the scale of a spot or several spots => line source in which we mainly look for edges (entrance rise and fall-off in the Bragg peak region)}
+
 Figure~\ref{ProfileParameters} defines the 3 parameters of a typical PG profile measured with a collimated camera in the falloff region and in the case of a homogeneous target irradiation.
 
 \begin{figure}[htp]
   \centering
   \includegraphics[width=.45\textwidth]{ProfileParameters}
-  \caption{\label{ProfileParameters} PG profile parameters.}
+	\caption{\label{ProfileParameters} PG profile parameters. \tcb{Etienne: todo => make an original figure}}
 \end{figure} 
 
 The 3 parameters are the following:
 \begin{itemize}
-  \item the contrat $C$ corresponding to the falloff amplitude,
+  \item the contrast $C$ corresponding to the falloff amplitude,
   \item the background level $B$,
-  \item and the falloff $FW$ width related to the camera spatial resolution (Note that the PG emission profile has an intrinsic width of a few millimiters. In practice the width of PG emission profiles measured by the collimated camera prototypes is dominated by the camera resolution of the order of 20 mm).
+  \item and the falloff width $FW$ related to the camera spatial resolution (Note that the PG emission profile has an intrinsic width of a few millimiters. In practice the width of PG emission profiles measured by the collimated camera prototypes is dominated by the camera resolution of the order of 20 mm).
 \end{itemize}
 
-As expected, these 3 parameters have very different impacts on the falloff retrieval precision ($FRP$). As mentioned in [Roellinghoff MPB 2014], $FRP$ is mainly determined by the contrast-to-noise ratio of the profile. The detailed study of the influence of $C$, $B$ et $FW$ on $FRP$ has shnown that [Roellinghoff PhD thesis 2014]:
+As expected, these 3 parameters have very different impacts on the falloff retrieval precision ($FRP$). As mentioned in [Roellinghoff MPB 2014], $FRP$ is mainly determined by the contrast-to-noise ratio of the profile. The detailed study of the influence of $C$, $B$ et $FW$ on $FRP$ in a homogeneous target has shown that [Roellinghoff PhD thesis 2014]:
 \begin{itemize}
  \item $FRP\propto \frac{\sqrt{B}}{C}$
  \item The influence of $FW$ is negligible
 \end{itemize}
 
-As a consequence, the optimization of the collimated cameras is actually a compromise between $FRP$ and spatial resolution $FW$. In principle, collimator slits have to be as large as possible to increase detection efficiency and minimize $FRP$. However, a \enquote{reasonable} spatial resolution has obviously to be defined and it has been set in the range of $\sim1$ to 2 cm depending on the collimator types. Morevover, this spatial resolution can play a major role in clinical conditions since the beam might cross highly heretrogeneous regions. More specifically, Priegnitz et al. have shown that the KES prototype is not able to detect the filling of a cavity located 5~mm upstream to the Bragg peak position [Priegnitz PMB 2015].
+As a consequence, the optimization of the collimated cameras is actually a compromise between $FRP$ and spatial resolution $FW$. In principle, collimator slits have to be as large as possible to increase detection efficiency and minimize $FRP$. However, a \enquote{reasonable} spatial resolution has obviously to be defined and it has been set in the range of $\sim1$ to 2 cm depending on the collimator types. Morevover, this spatial resolution can play a major role in clinical conditions since the beam might cross highly heterogeneous regions. More specifically, Priegnitz et al. have shown that the KES prototype is not able to detect the filling of a cavity located 5~mm upstream to the Bragg peak position [Priegnitz PMB 2015].
 
 
-\subsection{Geometrical considerations}
-
-
-
-\begin{table}
-\centering
-\begin{tabular}{lllll}
-	\midrule
-	                            & MPS & MPS calc. & KES & KES calc. \\
-	\midrule
-	Effective slit width ($s_e$)& $s$                              & 5.4 mm
-	 & $s + \frac{ln(2)}{\mu~tan(\alpha)}$                         & 6 mm (TODO add transparency) \\
- 	Det. unit FOV               & $s(1+\frac{d_1}{D})$             & 14.52 mm
- 	 & $s_e(1+\frac{d_1}{d_2})$                                    & 13.5 mm\\
- 	Lin. collection efficiency  & $\frac{H s}{ 4 \pi L D } (1-f) $ & $4.18 \cdot 10^5$
- 	 & $\frac{H s}{ 4 \pi L d_2 } (1 + x^2/d^2_2)^{-3/2} $         & $6.67 \cdot 10^5$ \\
- 	Effective thickness ($T_e$) & $D_f$                            & 58.5 mm
- 	 & $T$                                                         & 40 mm\\
-	\midrule
-\end{tabular}
-\caption{MPS and KES detection efficiencies and spatial resolution from geometrical considerations. The parameters of the cameras are defined in figure~\ref{GeomSchemes}.}
-\label{GeomFormulas}
-\end{table}
+\subsection{Analytical model}
 
 %\begin{figure}[htp]
 %    \centering
 %    \includegraphics[width=.85\textwidth]{FormuleMPS-KES}
-%    \caption{MPS and KES detection efficiencies and spatial resolution from geometrical considerations. The parameters of the cameras are defined in figure~\ref{GeomSchemes}.  }
+%    \caption{MPS and KES detection efficiencies and spatial resolution from analytical models. The parameters of the cameras are defined in figure~\ref{GeomSchemes}.  }
 %  \end{figure}
 
 
 
 \begin{itemize}
-  \item Rationale: geometrical considerations should provide good predictions of collimated camera performances while providing a good understanding of the intrinsic features of the 2 types of collimators. 
+  \item Rationale: analytical models should give good predictions of collimated camera performances while providing a good understanding of the intrinsic features of the 2 types of collimators. 
   \item Estimate the MPS and KES performances in Smeets 2016 and Lin 2017: the KES/MPS detection efficiency ratio is 1.6 for Smeets 2016 and 5.3 for Lin 2017 (assuming the use of the same energy window) $\Rightarrow$ these comparisons were unfair\dots    
 \end{itemize}
 
 \subsubsection{Parameters}
 
-\begin{itemize}
-  \item Geometrical parameters (Figure~\ref{GeomSchemes})
-  \item Energy and TOF selections
-\end{itemize}
+The parameters of the cameras can be classified in three categories: geometrical parameters, energy selection and TOF selections.
+
+Figure~\ref{GeomSchemes} defines the geometrical parameters of the two types of cameras. As the study first aims at comparing the two types of collimation, we assume at this stage that the MPS and KES cameras have the same absorbers with therefore the same photon detection efficiency. Then in a second stage, the comparison of the MPS and KES prototypes will lead to considerations on the composition and the geometry of the respective absorbers.
 
 \begin{figure}[htp]
     \centering
     \includegraphics[width=.45\textwidth]{SchemeMPS-KES}
-    \caption{\label{GeomSchemes}Schemes of MPS and KES cameras.}
+    \caption{\label{GeomSchemes}Schemes of MPS and KES cameras. \tcb{Etienne: todo => make an original figure}}
 \end{figure}          
 
-\subsubsection{Definitions and figures of merit}
+\subsubsection{Definitions of spatial resolution and detection efficiency}
+
+\paragraph{Spatial resolution}
+From a geometrical point of view, the spatial resolution is characterized by the \textit{detector unit field of view} ($FOV_{du}$): this is the part of the source that can be seen through a single camera unit: a single slit for the MPS (naturally associated to a single detector unit) and a single detector unit for KES. The probability of a photon emitted at a given point along a linear source (perpendicular to the slit plane) to reach this detector unit can be described as a trapezoid: the part that can be seen from every points on the detector unit and the penumbra. We defined $FOV_{du}$ as the FWHM of this trapezoid.
+
+If we neglect collimator transparency, $FOV_{du}$ is fully defined by geometrical parameters, in particular the slit opening. However PG have high penetration capability that can not be neglected especially in the case of KES where the collimator depth is very small in the region of the knife edge around the slit. This leads to the definition of an \textit{Effective Slit Opening} $s_e$ that can be used in the evaluation of the field of view and the efficiency in place of the geometrical slit opening. 
+
+Metzler et al.~\cite{Metzler2005} proposes a method to estimate the effective slit opening specifically to calculate the spatial resolution accurately. His expressions are based on one-dimensional cuts through the pinhole geometry and can be applied directly to a knife-edge geometry without modification. Their approach is for a point source and dependent on the location of the source within the FOV. For a source in the center, it simplifies to:
+\begin{align}
+  s_e &= s + \frac{\ln2}{\mu\tan\alpha} 
+\end{align}
+with $\mu$ the linear attenuation length of the radiation in the collimator material and $\alpha$ the collimator angle.
 
 
+\paragraph{Detection efficiency}
 
-\paragraph{Definitions}
-
+As already mentioned, PG emission during hadrontherapy can can be considered as a line source. Let us consider a detection unit corresponding to a single detector. The corresponding detection efficiency ($DE_{cu}$) can be expressed as:
+\begin{equation}
+	DE_{cu} = \epsilon_g\times f_\mathrm{FOV}
+\end{equation}
+where:
 \begin{itemize}
-  \item Detector unit field of view: This is the part of the source that can be “seen” through a single camera unit: a single slit for the MPS (naturally associated to a single detector unit) and a single detector unit for KES. The probability of a photon emitted at a given point along a linear source (perpendicular to the slit plane) to reach this detector unit can be described as a trapezoid: the part that can be seen from every points on the detector unit and the penumbra.
-  \item Collection efficiency: The probability of a photon emitted at a point facing a slit (in the middle part of the trapezoid) to reach the detector is described by the solid angle that the point sees of the detector.
-  \item Linear collection efficiency: collection efficiency divided by the pitch that corresponds to the collection efficiency of the camera per unit of length
-  \item Effective Slit Opening (especially for KES): At the particle energies that occur in prompt-gamma imaging, a non-negligible amount of particles will cross the collimator slit edges. This effect can be approximated by introducing an effective slit opening that can be used in the evaluation of the field of view and the efficiency in place of the geometrical slit opening. 
-  \item Spatial resolution: PSF width. In the context of PG detection, the gamma source can be considered at first order as a linear source. Hence one can estimate the spatial resolution of the collimated camera from the derivative of the PG profile that has a gaussian-like shape. The width of the derivative can be defined as the spatial resolution of the collimated cameras in the context of PG detection.
+	\item $\epsilon_g=\frac{\Omega}{4\Pi}$ is the geometrical detection efficiency with $\Omega$ the solid angle of a point that sees a detector unit through the slit.
+	\item $f_\mathrm{FOV} = \frac{FOV_{du}}{p}$ is the FOV factor where $p$ is the pitch of the camera (in practice the width of the detector unit). This FOV factor correponds to the fraction of the source that is seen by the camera. It is in principle larger than 1 since cameras are usually designed to see all the source without any hidden regions.
 \end{itemize}
 
-\begin{figure}[htp]
-    \centering
-    \includegraphics[width=.45\textwidth]{PGprofile_FW}
-    \caption{\label{PGprofile_FW}Example of PG profile falloff width (FW) estimate with the first derivative of the PG profile (Figure 4.15 of Frauke's manuscript).}
-\end{figure}          
+The total detection efficiency is then given by:
+\begin{equation}
+	DE = N \times DE_{cu}
+\end{equation}
+where $N$ is the number of detectors (and slits in the case of MPS).
 
+% \begin{figure}[htp]
+%     \centering
+%     \includegraphics[width=.45\textwidth]{PGprofile_FW}
+%     \caption{\label{PGprofile_FW}Example of PG profile falloff width (FW) estimate with the first derivative of the PG profile (Figure 4.15 of Frauke's manuscript).}
+% \end{figure}          
 
+\subsubsection{Model}
 
-\subsection{Monte Carlo simulations}
+\paragraph{MPS}
+
+\paragraph{KES}
+
+\subsection{Monte Carlo simulations}\label{sec:MC}
 
 \begin{itemize}
-  \item Geometrical considerations verification: Fair comparison of the two types of collimators with MC simulations. What does it mean? 
+  \item Analytical model verification: Fair comparison of the two types of collimators with MC simulations. What does it mean? 
   \begin{itemize}
     \item Use of same absorbers (the LYSO absorber of the KES prototype that we can consider as the reference), the same energy selection which was not the case in Lin 2017 and the same TOF selection (no TOF)
-    \item Then a discussion of the results in the light of the geometrical considerations
+    \item Then a discussion of the results in the light of the analytical models
     \item Note: the KES background level can be obtained from Figure 18 in Perali 2014. Regarding the MPS background level I propose to use the same level as the one of KES for the following reasons: i) the background level in the MPS camera is derived in Pinto 2014 from measurements with large detectors by assuming that the background is proportional to the detector volume. If we apply the same approach, it is reasonable to use the same background levels since we use the same absorbers for MPS and KES. One can argue that the MPS and KES collimators are different. It is true and it is difficult to say whether the larger amount of material in the CLaRyS MPS collimator leads to a larger background with more neutron-induced gammas or a lower background due to a larger attenuation of these gammas\dots At first order the background levels should be similar and a first order estimate is sufficient for a paper that mainly aims at comparing the signal detection of the two cameras.
   \end{itemize}    
   \item Simulations of the two prototypes as they are published (results of the submitted paper with the \enquote{regular} cylindrical PMMA target of 15 cm diameter and 20 cm lenght). 
   \begin{itemize}
     \item $\Rightarrow$ Comparison of the two prototypes
     \item Identification of the impact of energy (>1 MeV vs 3-6 MeV selection for KES) and TOF selection (for MPS) although the latter has been already shown in Roellinghoff PMB 2014 with a large detector placed behind a single slit collimator
-    \item Note that the absobers have different thicknesses
+    \item Note that the absorbers have different thicknesses
   \end{itemize}     
 \end{itemize}
 
@@ -204,6 +210,9 @@ Imaging paradigms such as PG detection are evaluated against experiments, and of
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{PG camera modeling}\label{sec:camera}
 
+\tcb{Etienne : Add the beam energy and size + the target (160 MeV protons and cylindrical PMMA target?)}
+	
+\paragraph{Setup for prototypes comparison}
 
 Two PG detectors tailored to FOP verification (illustrated in fig.~\ref{fig:detectors}) were chosen:
 \begin{itemize}[noitemsep]
@@ -224,14 +233,51 @@ Regarding background ToF selection, for the IBA C230 accelerator with a period o
 
 Both PG camera prototypes have different photodetectors and different detector electronics. In this study, these differences are not implemented. Instead, the method as described in \cite{Gueth2013} was used to obtain the interaction point of an impinging photon. If the integrated energy deposited in a crystal lies in the acceptable energy and ToF window, the event is recorded. The position of the event in the crystal is considered as the energy weighed barycenter of all interactions in the crystal, plus a random value taken from a 5mm FWHM Gaussian to simulate the electronics and the detector resolution.
 
-\paragraph{Fair Comparison}
+\paragraph{Setup for analytical model verifications (AMV)}
 
-Since we are using a simulation for the validation of the theoretical expressions in table~\ref{GeomFormulas}, for the fairest comparison possible, we can equalize certain aspects which might cause one camera or the other to give favorable impression. In principle this comparison is not about absorption materials, acquisition electronics or PG selections, but PG collimator characteristics. So, for the validation of the expressions in table~\ref{GeomFormulas} and comparison on LCE, SR and FRP we set the absorber material of the MPS to that of the KES: LYSO. The energy and ToF selection windows are kept identical for both cameras, and are varied in order to study their impact on the figures of merit.
+% Since we are using a simulation for the validation of the theoretical expressions in table~\ref{GeomFormulas}, for the fairest comparison possible, we can equalize certain aspects which might cause one camera or the other to give favorable impression. In principle this comparison is not about absorption materials, acquisition electronics or PG selections, but PG collimator characteristics. So, for the validation of the expressions in table~\ref{GeomFormulas} and comparison on LCE, SR and FRP we set the absorber material of the MPS to that of the KES: LYSO. The energy and ToF selection windows are kept identical for both cameras, and are varied in order to study their impact on the figures of merit.
+
+In the case of simulation for analytical model verifications, we use identical absorbers for both prototypes, namely the absorber of the KES prototype and we apply the same energy and TOF selection: the same energy selection ($E> 1~MeV$) (\tcb{Etienne: I changed the energy selection that was 3--6~MeV!)} and the same TOF selection (no TOF selection).
+
+\tcb{Etienne: I commented the former paragraph where only the composition issue was mentioned. As far as I remember, for this study you used the absorber both in terms of material composition and geometry.}
+
+Note that these two studies will provide information on the influence of TOF and energy selection on the cameras. Indeed, only one parameter will change from the setup used for AMV to the setup for prototypes comparison:
+\begin{itemize}
+	\item TOF for MPS
+	\item Energy selection for MPS
+\end{itemize}
+
+Table~\ref{table:FOM} gives an overview of the main cameras parameters used for AMV and prototypes comparison.
+
+\begin{table}
+\centering
+\begin{tabular}{|l|l|l|l|}
+	\hline
+	\multicolumn{2}{|c|}{}& 	Analytical model verification & Prototypes comparison\\
+	\hline
+	Absorber				& MPS & \multicolumn{2}{c|}{LYSO} \\
+									& KES & 	\multicolumn{2}{c|}{} \\
+	\hline
+	Energy & MPS & \multirow{2}{*}{>1 MeV}			&		>1 MeV						\\
+	\cline{2-2}\cline{4-4}
+	selection				& KES & & 3--6 MeV \\
+	\hline	
+	TOF & MPS & \multirow{2}{*}{no TOF}			&		TOF						\\
+	\cline{2-2}\cline{4-4}
+	selection				& KES & & no TOF \\
+	\hline		
+\end{tabular}
+\caption{Summary of the main cameras parameters used for AMV and prototypes comparison.}
+\label{table:FOM}
+\end{table}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{Background estimation}
+\subsubsection{Background modeling}
 
-Background estimation in PG simulation is a difficult and largely unsolved issue \citep{Huisman2016,Sterpin2015,Pinto2014a,Perali2014}. Simulations would ideally include beam nozzle and whole room modeling, but these are habitually omitted. ToF selection techniques can improve the signal-to-noise ratio (SNR) \citep{Testa2008,Roellinghoff2014a}, but then depend on the proper simulation of the beam accelerator time structure. As noted in \cite{Huisman2016}, no validation for background in PG simulations has been performed at this time. In this study, the stable time structure of current generation cyclotrons was assumed, in which the neutron background is largely constant. Estimates of background counts in the detector are taken from \cite{Pinto2014a,Perali2014}, which are both based on measured data:
+Background estimation in PG simulation is a difficult and largely unsolved issue \citep{Huisman2016,Sterpin2015,Pinto2014a,Perali2014}. Simulations would ideally include beam nozzle and whole room modeling, but these are habitually omitted. ToF selection techniques can improve the signal-to-noise ratio (SNR) \citep{Testa2008,Roellinghoff2014a}, but then depend on the proper simulation of the beam accelerator time structure. As noted in \cite{Huisman2016}, no validation for background in PG simulations has been performed at this time. In this study, the stable time structure of current generation cyclotrons was assumed, in which the neutron background is largely constant. 
+
+\paragraph{MPS and KES prototypes}
+Estimates of background counts in the detector are taken from \cite{Pinto2014a,Perali2014}, which are both based on measured data:
 
 \begin{itemize}[noitemsep]
 \item MPS: \cite{Pinto2014a} fig.~9: $1 \cdot 10^{3} \pm 1 \cdot 10^{2}$ per $4\cdot10^9$ primary protons per 8 mm bin
@@ -241,6 +287,91 @@ Background estimation in PG simulation is a difficult and largely unsolved issue
 
 Per unit of bin length, the background yield of the MPS with ToF is therefore 4 times as low as the background seen with the KES. In the context of the fair comparison, for the KES camera the background with ToF can be obtained by multiplying the background with the same $\frac{4 ns}{10 ns} = 0.4$ fraction as with the MPS.
 
+\paragraph{Setup for analytical model verifications}
+
+\tcb{For the comparison of MPS and KES with the same absorber, we use the same background level for MPS as the one of KES for the following reasons: i) the background level in the MPS camera is derived in Pinto 2014 from measurements with large detectors by assuming that the background is proportional to the detector volume. If we apply the same approach, it is reasonable to use the same background levels since we use the same absorbers for MPS and KES. One can argue that the MPS and KES collimators are different. It is true and it is difficult to say whether the larger amount of material in the CLaRyS MPS collimator leads to a larger background with more neutron-induced gammas or a lower background due to a larger attenuation of these gammas\dots At first order the background levels should be similar and a first order estimate is sufficient for a paper that mainly aims at comparing the signal detection of the two cameras.}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Figures of merit}\label{figmerit}
+% 
+% We use the test-case presented in \cite{Perali2014} as the KES detector properties such as background were published for that scenario, again in order to remove any doubt that a difference in camera performance could be due to a difference in implementation or setup. A 160 MeV mono-energetic proton beam is shot into a cylindrical PMMA phantom (length 30 cm, radius 15 cm). Employing the batch method we realize between 50 simulations for each experiment.
+% \tcb{The previous paragraph refers to the verification of our simulations and data analysis by comparing the FOP with the results published in Perali, right ? It is presented in Appendix }
+%, each resulting in a FOP estimate, giving us a mean $\upmu_\textrm{FOP}$ and a standard deviation $\upsigma_\textrm{FOP}$ for a certain experiment. Since we are studying the effect of replacing the CT with a RPCT to simulate patient change, we run each experiment with both CT and RPCT. Each FOP estimate of the N CT realizations is compared to each FOP estimate of the N RPCT realizations, resulting in N$\times$N possible \emph{FOP shift} measurements. These distributions have a $\upmu_\Delta$ and a $\upsigma_\Delta$. The shift initially obtained with the dose is denoted $\Delta_\textrm{dose}$
+
+
+% Grading the performance of the detectors will be done according to these figures of merit: 
+
+%\begin{itemize}[noitemsep]
+%\item Accuracy: $| \upmu_{\Delta} - \Delta_\textrm{dose}|$.
+%\item Precision: $\upsigma_\Delta$. For this estimate of the standard deviation of the Gaussian distribution a standard deviation can be computed once again based on the number of realization $n$ used to obtain it: $\upsigma(\upsigma_\Delta)=\frac{\upsigma_\Delta}{\sqrt{2\times(n-1)}}$, as per \citet[formula 4.54]{Leo1994}.
+%\item Confidence: the percentage of RPCT FOP realizations that fall outside $\upmu_\textrm{FOP,CT}\pm2\upsigma_\textrm{FOP,CT}$ indicates the likelihood any difference from the expected FOP is measured. In other words, given that in this analysis we know that a shift should be detected, what is the probability that a particular realization does so? It will be denoted as P$_\Delta$.
+%\end{itemize}
+
+% \begin{table}
+% \centering
+% \begin{tabular}{lllll}
+% 	\midrule
+% 																& Analytical	& Monte Carlo \\
+% 	\midrule
+% 	\mr{2}{Efficiency}		& MPS		& \mr{2}{LCE}	& 
+% 												& KES 				
+% 	\midrule
+% \end{tabular}
+% \caption{Figures of merit.}
+% \label{tab:FOM}
+% \end{table}
+
+
+
+\subsubsection{Analytical model verification}
+
+
+
+\paragraph{Detection efficiency (DE)}
+
+We can compare the detection efficiency of camera unit with two MC estimates:
+\begin{itemize}
+	\item the detection yield of a camera unit defined as the ratio of the mean number of detected gammas over the number of emitted gammas for camera units seeing the PG profile,
+	\item the contrast of the PG falloff.
+\end{itemize}
+The two quantities are strongly correlated. The former directly corresponds to the definition of the anaytical detection efficiency $DE_{cu}$ the latter accouts for the partial collimator transparency and it is the camera endpoint in the context of ion-range verification.
+
+
+\paragraph{Spatial resolution (SR)}
+ The BP is as sharp as it can be in such a scenario, and any blur seen in the detected PG profile is then due to the collimator design. The MC estimate of the PG profile will be performed by computing the first derivative of the PG profile that measuring the FWHM of the resulting peak.
+
+\paragraph{Analytical model and MC comparison}
+
+Besides since the analytical model does not intend to be as precise as MC but is rather seen as a tool to understand the collimator performances, we will mainly compare ratios the DE and SR values with the two cameras.
+
+Table~\ref{table:FOM} presents the figures of merit used for the analytical model verification.
+
+\begin{table}
+\centering
+\begin{tabular}{|l|l|c|c|}
+	\hline
+						& Analytical & \multicolumn{2}{c|}{ MC}\\
+	\hline
+	Detection efficiency	& $DE_{cu}$	& Detection yield & Contrast \\
+	\hline
+	Spatial resolution & $s_e$								& \multicolumn{2}{c|}{Fall-off width}\\
+	\hline	
+\end{tabular}
+\caption{Figures of merit for the analytical model verification.}
+\label{table:FOM}
+\end{table}
+
+
+\subsubsection{Prototype comparison with clinical case}
+
+In addition to the aforementioned figures of merit, we will consider as well the Falloff retrieval precision ($FRP$): The FRP is the standard deviation of the FOP, which is obtained by way of the batch method.
+
+Each of these can then be examined as function of the energy and ToF selections.
+
+
+\subsection{Data analysis}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Fall-off position estimation procedure}
@@ -274,33 +405,6 @@ Therefore the fitting method was not chosen as a topic for study in this paper. 
 % \end{figure}
 
 % As established in section~\ref{sec:tpanalysis}, a difference was expected between the number of protons per spot as planned and sufficient for reconstruction. Depending on the beam line, the minimum unit of PG detection may be a spot (beam scanning) or an iso-energy layer (passive scattering). Since most new centers employ active beam scanning, new grouping methods are possible. Here a spot grouping method is proposed based on the notion of depth proximity. On the planning CT the 3D dose distribution is computed per spot, and then a dose FOP is determined with the same algorithm as for PG FOP. The FOPs for each spot are binned along the beam line, and these bins we call iso-depth layers. The assumption is that due to inhomogeneities, protons within an iso-energy layer may have very different FOPs in the patient. This iso-depth grouping method will be compared to grouping by iso-energy.
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Figures of merit}\label{figmerit}
-
-We use the test-case presented in \cite{Perali2014} as the KES detector properties such as background were published for that scenario, again in order to remove any doubt that a difference in camera performance could be due to a difference in implementation or setup. A 160 MeV mono-energetic proton beam is shot into a cylindrical PMMA phantom (length 30 cm, radius 15 cm). Employing the batch method we realize between 50 simulations for each experiment.%, each resulting in a FOP estimate, giving us a mean $\upmu_\textrm{FOP}$ and a standard deviation $\upsigma_\textrm{FOP}$ for a certain experiment. Since we are studying the effect of replacing the CT with a RPCT to simulate patient change, we run each experiment with both CT and RPCT. Each FOP estimate of the N CT realizations is compared to each FOP estimate of the N RPCT realizations, resulting in N$\times$N possible \emph{FOP shift} measurements. These distributions have a $\upmu_\Delta$ and a $\upsigma_\Delta$. The shift initially obtained with the dose is denoted $\Delta_\textrm{dose}$
-
-
-Grading the performance of the detectors will be done according to these figures of merit: 
-
-%\begin{itemize}[noitemsep]
-%\item Accuracy: $| \upmu_{\Delta} - \Delta_\textrm{dose}|$.
-%\item Precision: $\upsigma_\Delta$. For this estimate of the standard deviation of the Gaussian distribution a standard deviation can be computed once again based on the number of realization $n$ used to obtain it: $\upsigma(\upsigma_\Delta)=\frac{\upsigma_\Delta}{\sqrt{2\times(n-1)}}$, as per \citet[formula 4.54]{Leo1994}.
-%\item Confidence: the percentage of RPCT FOP realizations that fall outside $\upmu_\textrm{FOP,CT}\pm2\upsigma_\textrm{FOP,CT}$ indicates the likelihood any difference from the expected FOP is measured. In other words, given that in this analysis we know that a shift should be detected, what is the probability that a particular realization does so? It will be denoted as P$_\Delta$.
-%\end{itemize}
-
-\begin{itemize}
-  \item Linear collection efficiency ($LCE$)
-  \item[] The LCE is the detection yield in the absorber per unit length of the detector. Since a full MC validation (in particular the background) has not been performed, the most honest way to use the LCE is as ratio between the cameras. Any bias should be divided out.
-  \item[] \textcolor{red}{SHOULD we here talk about studying only the MPS/KES ratio? ALSO, will we compare to the formula?}
-  \item Spatial resolution ($SR$)
-  \item[] The SR is obtained by taking the point spread function of the PG profile in this particular case of the mono-energetic beam in a mono-material box. The BP is as sharp as it can be in such a scenario, and any blur seen in the detected PG profile is then due to the collimator design.
-  \item Falloff retrieval precision ($FRP$)
-  \item[] The FRP is the standard deviation of the FOP, which is obtained by way of the batch method.
-\end{itemize}
-
-Each of these can then be examined as function of the energy and ToF selections.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -352,13 +456,33 @@ Each of these can then be examined as function of the energy and ToF selections.
 
 \section{Results}
 
-\subsection{Geometrical considerations}
+\subsection{Model verification}
+
+\begin{table}
+\centering
+\begin{tabular}{lllll}
+	\midrule
+	                            & MPS & MPS calc. & KES & KES calc. \\
+	\midrule
+	Effective slit width ($s_e$)& $s$                              & 5.4 mm
+	 & $s + \frac{ln(2)}{\mu~tan(\alpha)}$                         & 6 mm (TODO add transparency) \\
+ 	Det. unit FOV               & $s(1+\frac{d_1}{D})$             & 14.52 mm
+ 	 & $s_e(1+\frac{d_1}{d_2})$                                    & 13.5 mm\\
+ 	Lin. collection efficiency  & $\frac{H s}{ 4 \pi L D } (1-f) $ & $4.18 \cdot 10^5$
+ 	 & $\frac{H s}{ 4 \pi L d_2 } (1 + x^2/d^2_2)^{-3/2} $         & $6.67 \cdot 10^5$ \\
+ 	Effective thickness ($T_e$) & $D_f$                            & 58.5 mm
+ 	 & $T$                                                         & 40 mm\\
+	\midrule
+\end{tabular}
+\caption{MPS and KES detection efficiencies and spatial resolution from analytical models. The parameters of the cameras are defined in figure~\ref{GeomSchemes}.}
+\label{GeomFormulas}
+\end{table}
 
 \subsubsection{Linear collection efficiency}
 \textcolor{red}{TODO} detection yields. compare to prediction.
 \subsubsection{Spatial resolution}
 \textcolor{red}{TODO}
-\subsubsection{Falloff retrieval precision}
+% \subsubsection{Falloff retrieval precision}
 
 \begin{table}
 \centering
@@ -387,7 +511,7 @@ When we make the collimator perfectly absorbing (we kill any tracks entering the
 ===================================================
 
 \begin{itemize}
-  \item Formulas of the the MPS and KES detection efficiencies and spatial resolution from geometrical considerations (figure~\ref{GeomFormulas})
+  \item Formulas of the the MPS and KES detection efficiencies and spatial resolution from analytical models (figure~\ref{GeomFormulas})
 
   \begin{itemize}
     \item Draw some conclusions about the intrinsic features of MPS and KES collimators knowing that the falloff retrieval precision (FRP)   
@@ -412,7 +536,7 @@ When we make the collimator perfectly absorbing (we kill any tracks entering the
 
 \textcolor{red}{TODO: Estimate of the falloff width from the PG profile derivative (see Material and methods section).}
 
-\subsubsection{Geometrical considerations verification}
+\subsubsection{Analytical considerations verification}
 
 \textcolor{red}{I think it would be better to show PG profiles with 1-8 MeV energy selection with no TOF selection. The advantage of these selections is that it allows us to show the impact of energy (>1 MeV vs 3-6 MeV selection for KES) and TOF selection (for MPS) when we move to the prototypes configurations. We can put in the table of Figure~\ref{CameraPerformancesFairComp} the result with the 3-6 MeV energy selection to show that the results do not depend on energy selection).}
 
@@ -430,7 +554,7 @@ Figures~\ref{PGprofileFairComp} and \ref{CameraPerformancesFairComp}.
   \caption{\label{CameraPerformancesFairComp} MPS and KES comparisons with the same absorber, energy and TOF selection. The first columns of the table correspond to the geometrical calculations. \textcolor{red}{It is interesting to show the results for the two energy selections but it would be nice to have only one TOF selection (no TOF).}}
 \end{figure}
 
-\subsection{Clinical case study}
+\subsubsection{Prototype comparison with clinical case}
 
 Performance under clinical conditions is the eventual purpose of these PG cameras, and therefore we here include the results of the clinical case study.. Since both cameras prototypes were optimized assuming their particular choice for absorber and energy selection window, here we chose to set 
 
