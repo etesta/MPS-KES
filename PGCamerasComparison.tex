@@ -58,15 +58,13 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
 
-\paragraph{State of the art} At the moment, two papers have proposed a comparison of MPS-KES cameras:
-\begin{itemize}
-  \item Smeets 2016 Fontiers in Oncology: experimental comparison with a non-optimized CLaRyS MPS camera (some technical constraints prevented the authors to use the \enquote{optimal CLaRyS design})
-  \item Lin 2017 Radiation Physics and Chemistry : MC comparison with the MPS Korean design whose optimization procedure is actually questionable
-\end{itemize}
-In overall, the camera configurations present many parameters, namely geometrical parameters and event selections (especially energy deposition selection). Therefore, in principle, some theoretical expectations are required to set relevant parameters and to allow for a fair comparison of the two types of collimators. Although the aforementioned studies may give the impression to provide a fair comparison (use of the same absorbers, same beam-collimator and collimator-absorber distance in the case of Lin 2017), they do not provide a thorough justification of their sets of parameters. Surprisingly, some parameters are even not the same between the two camera types. While it can be understood in Smeets 2016 due to experimental constraints, it is more questionable Lin 2017 (different energy deposition selection).
+The well-defined range of particles in matter is the main reason they are used in cancer treatment today. Unfortunately we are not able to take full advantage of this property, because of uncertainties in patient positioning, the proton range, patient anatomy, and the Hounsfield unit to particle stopping power conversion \citep{Paganetti2012}. Often, medical practice is to plan conservatively, namely adding margins around the tumor, greatly reducing the potential benefits of particle treatment \citep{Knopf2013}. Online monitoring would make measurements of uncertainties such as mentioned above possible, and thereby permit more precise planning which could take maximum advantage of the steep BP fall-off and reduce damage to tissues surrounding the tumor. A new way to perform monitoring is to use prompt gammas (PGs), a natural byproduct in particle treatments and are of prime interest \citep{Moteabbed2011,Gueth2013,Golnik2014a,Janssen2014}. A knife-edge PG camera \citep{Perali2014,Richter2016} was put into clinical operation in fall 2015, at OncoRay in Dresden, Germany. The aim of such collimated cameras is to obtain a 1D profile of the PG production along the beam direction and obtain the position of the fall-off of the signal, which is strongly correlated to the BP position. Other approaches include detection of the target materials using a spectral PG camera \citep{Verburg2014}, using the primary particle's time of flight (ToF) in a timed PG measurement \citep{Golnik2014a} and Compton camera designs \citep{Roellinghoff2011,Kurosawa2012,Solevi2016,Thirolf2016,Polf2015,Llosa2016}.
 
-\paragraph{Objectives}
-The objectives of the present paper are the following:
+To date two publications have attempted to perform an in-depth comparison between two collimated PG camera designs. \cite{Smeets2016} showed an experimental comparison of the knife-edge camera with a non-optimized CLaRyS MPS camera (some technical constraints prevented the authors to use the \enquote{optimal CLaRyS design}. In \cite{Lin2017} a MC comparison is executed on their own two collimator designs. Although the aforementioned studies may give the impression to provide a fair comparison (use of the same absorbers, same beam-collimator and collimator-absorber distance in the case of \cite{Lin2017}), they do not provide a thorough justification of their sets of parameters. Surprisingly, some parameters are even not the same between the two camera types. While it can be understood in \cite{Smeets2016} due to experimental constraints, it is more questionable in \cite{Lin2017} (different energy deposition selection).
+
+While very interesting, such comparisons could be supported by more theoretical considerations on the expected output and camera parameters. Taking a step back, the 1D PG signal can be paramatrized, as well as the relevant dimensions of the PG collimator, the event selection criteria. A simple model could be built relating these factors which in turn can be tested in a study.
+
+This publication will demonstrate and validate a model for a knife-edge slit (KES) and multiparallel slit (MPS) collimator designs, using Monte Carlo studies. The objectives of the present paper are the following:
 
 \begin{itemize}
   \item Estimate the MPS and KES detection efficiencies and spatial resolution from analytical models
@@ -89,7 +87,8 @@ The objectives of the present paper are the following:
 
 \subsection{Features of PG profiles}
 
-\tcb{Etienne: todo => Explain the context of PG verifications: detection of PG profiles obtained at the scale of a spot or several spots => line source in which we mainly look for edges (entrance rise and fall-off in the Bragg peak region)}
+\todo{Etienne: todo => Explain the context of PG verifications: detection of PG profiles obtained at the scale of a spot or several spots => line source in which we mainly look for edges (entrance rise and fall-off in the Bragg peak region)}
+\todo{Brent: We here explain that although PG FOP is in the end (one of) the goals of PG detection, the quality of the PG signal isn't determined by it, but the 'classical' signal analysis quanities, such as SNR, amplitude, and so on. Agreed or am I mistaken? I (and the paper) lack clarity here: why are we here talking about these things and not about FOP precision?}
 
 Figure~\ref{ProfileParameters} defines the 3 parameters of a typical PG profile measured with a collimated camera in the falloff region and in the case of a homogeneous target irradiation.
 
@@ -115,7 +114,7 @@ As expected, these 3 parameters have very different impacts on the falloff retri
 As a consequence, the optimization of the collimated cameras is actually a compromise between $FRP$ and spatial resolution $FW$. In principle, collimator slits have to be as large as possible to increase detection efficiency and minimize $FRP$. However, a \enquote{reasonable} spatial resolution has obviously to be defined and it has been set in the range of $\sim1$ to 2 cm depending on the collimator types. Morevover, this spatial resolution can play a major role in clinical conditions since the beam might cross highly heterogeneous regions. More specifically, Priegnitz et al. have shown that the KES prototype is not able to detect the filling of a cavity located 5~mm upstream to the Bragg peak position [Priegnitz PMB 2015].
 
 
-\subsection{Analytical model}
+\subsection{Features of PG collimators}
 
 %\begin{figure}[htp]
 %    \centering
@@ -123,14 +122,6 @@ As a consequence, the optimization of the collimated cameras is actually a compr
 %    \caption{MPS and KES detection efficiencies and spatial resolution from analytical models. The parameters of the cameras are defined in figure~\ref{GeomSchemes}.  }
 %  \end{figure}
 
-
-
-\begin{itemize}
-  \item Rationale: analytical models should give good predictions of collimated camera performances while providing a good understanding of the intrinsic features of the 2 types of collimators. 
-  \item Estimate the MPS and KES performances in Smeets 2016 and Lin 2017: the KES/MPS detection efficiency ratio is 1.6 for Smeets 2016 and 5.3 for Lin 2017 (assuming the use of the same energy window) $\Rightarrow$ these comparisons were unfair\dots    
-\end{itemize}
-
-\subsubsection{Parameters}
 
 The parameters of the cameras can be classified in three categories: geometrical parameters, energy selection and TOF selections.
 
@@ -180,13 +171,18 @@ where $N$ is the number of detectors (and slits in the case of MPS).
 %     \caption{\label{PGprofile_FW}Example of PG profile falloff width (FW) estimate with the first derivative of the PG profile (Figure 4.15 of Frauke's manuscript).}
 % \end{figure}          
 
-\subsubsection{Model}
+\subsection{Theoretical Model and Validation}
+\todo{Brent: I collected some bits in this section that seem like notes at the moment. I think you are going for an explanation of how we will test the above?}
+
+\begin{itemize}
+  \item Rationale: analytical models should give good predictions of collimated camera performances while providing a good understanding of the intrinsic features of the 2 types of collimators. 
+  \item Estimate the MPS and KES performances in Smeets 2016 and Lin 2017: the KES/MPS detection efficiency ratio is 1.6 for Smeets 2016 and 5.3 for Lin 2017 (assuming the use of the same energy window) $\Rightarrow$ these comparisons were unfair\dots    
+\end{itemize}
+
 
 \paragraph{MPS}
 
 \paragraph{KES}
-
-\subsection{Monte Carlo simulations}\label{sec:MC}
 
 \begin{itemize}
   \item Analytical model verification: Fair comparison of the two types of collimators with MC simulations. What does it mean? 
@@ -203,6 +199,8 @@ where $N$ is the number of detectors (and slits in the case of MPS).
   \end{itemize}     
 \end{itemize}
 
+\subsection{Monte Carlo simulations}\label{sec:MC}
+
 \subsubsection{Simulation tool}
 
 Imaging paradigms such as PG detection are evaluated against experiments, and often also with Monte Carlo (MC) simulations~\citep{Moteabbed2011,Gueth2013,Robert2013,Golnik2014a,Janssen2014}. For rarely occurring processes such as PG simulation, convergence to the model of the truth to within acceptable statistical error can be slow. This paper presents an \emph{in silico} study of the feasibility of the clinical relevance of PG FOP estimation using collimated cameras, and uses the vpgTLE variance reduction method described in \cite{Huisman2016}. vpgTLE is a two stage process, where firstly a PG yield distribution image is estimated, which in the second stage is used as a PG source with which detectors can be investigated. Gate 7.2~\citep{Sarrut2014} with Geant 4.10.02 and the QGSP\_BIC\_HP\_EMY physics list, commonly used for PG studies, are used in this analysis. Thanks to vpgTLE, simulations for about $10^9$ protons (about $6\times10^8$ photons) took 1-2 hours on a single core of an Intel(R) Core(TM) i7-3740QM.
@@ -210,7 +208,7 @@ Imaging paradigms such as PG detection are evaluated against experiments, and of
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{PG camera modeling}\label{sec:camera}
 
-\tcb{Etienne : Add the beam energy and size + the target (160 MeV protons and cylindrical PMMA target?)}
+\todo{Etienne : Add the beam energy and size + the target (160 MeV protons and cylindrical PMMA target?)}
 	
 \paragraph{Setup for prototypes comparison}
 
@@ -237,9 +235,9 @@ Both PG camera prototypes have different photodetectors and different detector e
 
 % Since we are using a simulation for the validation of the theoretical expressions in table~\ref{GeomFormulas}, for the fairest comparison possible, we can equalize certain aspects which might cause one camera or the other to give favorable impression. In principle this comparison is not about absorption materials, acquisition electronics or PG selections, but PG collimator characteristics. So, for the validation of the expressions in table~\ref{GeomFormulas} and comparison on LCE, SR and FRP we set the absorber material of the MPS to that of the KES: LYSO. The energy and ToF selection windows are kept identical for both cameras, and are varied in order to study their impact on the figures of merit.
 
-In the case of simulation for analytical model verifications, we use identical absorbers for both prototypes, namely the absorber of the KES prototype and we apply the same energy and TOF selection: the same energy selection ($E> 1~MeV$) (\tcb{Etienne: I changed the energy selection that was 3--6~MeV!)} and the same TOF selection (no TOF selection).
+In the case of simulation for analytical model verifications, we use identical absorbers for both prototypes, namely the absorber of the KES prototype and we apply the same energy and TOF selection: the same energy selection ($E> 1~MeV$) (\todo{Etienne: I changed the energy selection that was 3--6~MeV!)} and the same TOF selection (no TOF selection).
 
-\tcb{Etienne: I commented the former paragraph where only the composition issue was mentioned. As far as I remember, for this study you used the absorber both in terms of material composition and geometry.}
+\todo{Etienne: I commented the former paragraph where only the composition issue was mentioned. As far as I remember, for this study you used the absorber both in terms of material composition and geometry.}
 
 Note that these two studies will provide information on the influence of TOF and energy selection on the cameras. Indeed, only one parameter will change from the setup used for AMV to the setup for prototypes comparison:
 \begin{itemize}
@@ -295,34 +293,6 @@ Per unit of bin length, the background yield of the MPS with ToF is therefore 4 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Figures of merit}\label{figmerit}
-% 
-% We use the test-case presented in \cite{Perali2014} as the KES detector properties such as background were published for that scenario, again in order to remove any doubt that a difference in camera performance could be due to a difference in implementation or setup. A 160 MeV mono-energetic proton beam is shot into a cylindrical PMMA phantom (length 30 cm, radius 15 cm). Employing the batch method we realize between 50 simulations for each experiment.
-% \tcb{The previous paragraph refers to the verification of our simulations and data analysis by comparing the FOP with the results published in Perali, right ? It is presented in Appendix }
-%, each resulting in a FOP estimate, giving us a mean $\upmu_\textrm{FOP}$ and a standard deviation $\upsigma_\textrm{FOP}$ for a certain experiment. Since we are studying the effect of replacing the CT with a RPCT to simulate patient change, we run each experiment with both CT and RPCT. Each FOP estimate of the N CT realizations is compared to each FOP estimate of the N RPCT realizations, resulting in N$\times$N possible \emph{FOP shift} measurements. These distributions have a $\upmu_\Delta$ and a $\upsigma_\Delta$. The shift initially obtained with the dose is denoted $\Delta_\textrm{dose}$
-
-
-% Grading the performance of the detectors will be done according to these figures of merit: 
-
-%\begin{itemize}[noitemsep]
-%\item Accuracy: $| \upmu_{\Delta} - \Delta_\textrm{dose}|$.
-%\item Precision: $\upsigma_\Delta$. For this estimate of the standard deviation of the Gaussian distribution a standard deviation can be computed once again based on the number of realization $n$ used to obtain it: $\upsigma(\upsigma_\Delta)=\frac{\upsigma_\Delta}{\sqrt{2\times(n-1)}}$, as per \citet[formula 4.54]{Leo1994}.
-%\item Confidence: the percentage of RPCT FOP realizations that fall outside $\upmu_\textrm{FOP,CT}\pm2\upsigma_\textrm{FOP,CT}$ indicates the likelihood any difference from the expected FOP is measured. In other words, given that in this analysis we know that a shift should be detected, what is the probability that a particular realization does so? It will be denoted as P$_\Delta$.
-%\end{itemize}
-
-% \begin{table}
-% \centering
-% \begin{tabular}{lllll}
-% 	\midrule
-% 																& Analytical	& Monte Carlo \\
-% 	\midrule
-% 	\mr{2}{Efficiency}		& MPS		& \mr{2}{LCE}	& 
-% 												& KES 				
-% 	\midrule
-% \end{tabular}
-% \caption{Figures of merit.}
-% \label{tab:FOM}
-% \end{table}
-
 
 
 \subsubsection{Analytical model verification}
@@ -387,76 +357,14 @@ Therefore the fitting method was not chosen as a topic for study in this paper. 
   \centering
   \subfloat[KES]{\label{FOWKES}\includegraphics[width=.45\textwidth]{FOW_PMMA_phantom-iba-auger-tof-3}}\quad
   \subfloat[MPS]{\label{FOWMPS}\includegraphics[width=.45\textwidth]{FOW_PMMA_phantom-ipnl-auger-tof-3}}
-  \caption{\label{FOWCOMP} MPS and KES FOW estimation illustrated.}
+  \caption{\label{FOWILLUS} MPS and KES FOW estimation illustrated.}
 \end{figure}
 
-\textcolor{red}{TODO}
-
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% \subsection{Spot grouping}
-
-% In particle therapy and particle therapy imaging literature often it is mentioned that a spread out Bragg Peak (SOBP) is achieved by giving the most distal iso-energy layer the highest weight and each successive iso-energy layer is of lower energy and of lower weight. This is correct when positions in the transverse plane (to the beam direction) are considered, for homogeneous phantoms, and when interpolation is not required. Interpolation happens when the energy levels of the beam delivery system do not correspond with the distal tumor contour \citep{0031-9155-57-21-N405}, in which case the dose contour is approximated by spreading the distal dose of the nearest two possible energies (see fig.~\ref{fig:planning}).
-
-% \begin{figure}[htp]
-%   \centering
-%   \includegraphics[width=0.6\linewidth]{planning}
-%   \caption{A schematic view of a patient (light gray), planned treatment volume (peach-pink), and a proton beam (black horizontal lines coming in from the left). Superimposed are various spots, where the size of the circles indicate spot weights. The spot colors indicate the iso-energy layer of which the spot is part. On the right, the weights (proton counts) per iso-energy layer are plotted, in similar fashion to fig.~\ref{fig:planmid}. On top, the PG profile is sketched for an iso-energy layer. On the bottom, the PG profile is sketched for iso-depth layer (spots of various color on the dotted line). In violet and red, the four dots on the distal end of the two most central beam lines, the effect of interpolation is illustrated: not always is every distal spot planned with a high weight.}
-%   \label{fig:planning}
-% \end{figure}
-
-% As established in section~\ref{sec:tpanalysis}, a difference was expected between the number of protons per spot as planned and sufficient for reconstruction. Depending on the beam line, the minimum unit of PG detection may be a spot (beam scanning) or an iso-energy layer (passive scattering). Since most new centers employ active beam scanning, new grouping methods are possible. Here a spot grouping method is proposed based on the notion of depth proximity. On the planning CT the 3D dose distribution is computed per spot, and then a dose FOP is determined with the same algorithm as for PG FOP. The FOPs for each spot are binned along the beam line, and these bins we call iso-depth layers. The assumption is that due to inhomogeneities, protons within an iso-energy layer may have very different FOPs in the patient. This iso-depth grouping method will be compared to grouping by iso-energy.
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% \subsection{CT data, treatment plans}
-
-% \begin{figure}[htp]
-%   \centering
-%   \includegraphics[width=0.5\linewidth]{ourpatient}
-%   \caption{A slice of the CT used in this study is shown with the dose due to field 2 of the plan overlaid, color scale in Grey, with in red the planned treatment volume (PTV).}
-%   \label{fig:our-patient}
-% \end{figure}
-
-% To study real patient change, a planning and replanning CT (CT and RPCT) set was chosen for a patient with a head and neck tumor, wrapped around the trachea. The CT and RPCT were co-registered on bony structures. A realistic two-field TP was created on the CT, and then simulated with Gate \citep{Grevillot2012}. In this paper, only the main field will be studied. The CT with the dose due to this field and the PTV structure are seen in fig.~\ref{fig:our-patient}.
-
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% \subsection{Spot selection}
-
-% \begin{figure}[htp]
-%   \centering
-%   \includegraphics[width=0.99\linewidth]{spotprofiles}
-%   \caption{The three chosen spots, based on their shifts and quality of shift. Dose is normalized by mass, which explains the lack of structure. Top row: dose profiles, bottom row: PG emission profiles as used in the second stage of the simulation (PG detection). The yield is the integral yield of the whole image, so 6\% means 6 out of 100 protons generate a PG.}
-%   \label{fig:the-spots}
-% \end{figure}
-
-% \begin{table}
-% \centering
-% \begin{tabular}{llll}
-% 	 & Spot A & Spot B & Spot C\\
-% 	\midrule
-% 	Dose shift [mm] & 2.77 & 4.08 & 12.4\\
-% 	PG emission shift [mm] & 2.32 & 3.34 & 13.9\\
-% 	\midrule
-% 	Iso-energy layer [MeV] & 145.86 & 143.02 & 143.02 \\
-% 	x-pos [mm] & -24.0 &  -24.0 &  -24.0 \\
-% 	y-pos [mm] & 16.0 & 40.0 & -40.0 \\
-% 	Nr. protons & $2.75\cdot10^7$ & $2.72\cdot10^7$ & $4.73\cdot10^7$ \\
-% \end{tabular}
-% \caption{Summary of the properties of the selected spots.}
-% \label{table:spotselec}
-% \end{table}
-
-% Three spots (table~\ref{table:spotselec}) were selected for presentation in this study. Spot C, with a large shift of over a centimeter with a whiff of overshoot: the beam partially exits the patient causing the distal elevation seen in figure~\ref{fig:the-spots}. An expected shift of over a centimeter should be reliably detectable for any PG camera. Spots A and B are more challenging; with expected shifts between 2 and 4 mm they represent a minimum shift that the PG cameras should be able to detect.
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+Figure~\ref{FOWILLUS} shows and illustration of the procedure for two selected profiles obtained with each collimator. To estimate the fall-off with FOW, we smooth the profile in a similar manner as for the FOP estimation, as detailed in appendix~\ref{sec:fopproc} (row 1 in fig.~\ref{FOWILLUS}). Then, a first and second order derivative is computed. On the first order derivative, a Gaussian is fitted (dashed line on second row), on the interval (solid line) between the profile maximum (Bragg Peak) and the first inflection point past the FOP on the second order derivative (here the 1D PG profile is at the baseline of the background, see third row). The Gaussian is fit with a fixed offset of zero, because the baseline of the background is zero. The full width half max of the fitted Gaussian is then taken as the FOW (second row).
 
 \section{Results}
 
-\subsection{Model verification}
+\subsection{Theoretical Model Validation}
 
 \begin{table}
 \centering
@@ -478,10 +386,10 @@ Therefore the fitting method was not chosen as a topic for study in this paper. 
 \label{GeomFormulas}
 \end{table}
 
-\subsubsection{Linear collection efficiency}
-\textcolor{red}{TODO} detection yields. compare to prediction.
-\subsubsection{Spatial resolution}
-\textcolor{red}{TODO}
+%\subsubsection{Linear collection efficiency}
+%\textcolor{red}{TODO} detection yields. compare to prediction.
+%\subsubsection{Spatial resolution}
+%\textcolor{red}{TODO}
 % \subsubsection{Falloff retrieval precision}
 
 \begin{table}
@@ -489,7 +397,7 @@ Therefore the fitting method was not chosen as a topic for study in this paper. 
 \begin{tabular}{lllllllll}
 	\midrule
 	Time selection 					& ToF &     &     &     & none&     &     &     \\
-	Energy selection 				& 1   &     & 3   &     & 1   &     & 3   &     \\
+	Energy selection [MeV]			& >1   &     & 3-6 &     & >1   &     & 3-6 &     \\
 	Camera 							& MPS & KES & MPS & KES & MPS & KES & MPS & KES \\
 	\midrule
  	FOW                         	& 19.7& 20.9& 18.3& 19.3& 19.8& 21.9& 17.9& 23.6\\
@@ -502,7 +410,7 @@ Therefore the fitting method was not chosen as a topic for study in this paper. 
 
 The FOW shown in table~\ref{FOWCOMP} shows that both cameras perform similar with ToF selection. For the MPS the ToF selection makes no difference (up to 2\%), while for the KES it gives a 10-20\% improvement. The results are a bit worse than the calculated values in table~\ref{GeomFormulas}, but close to the 20 mm as postulated in \cite{Priegnitz2015}.
 
-When we make the collimator perfectly absorbing (we kill any tracks entering the material), we can see the KES's effective slit width in action: the transmission through the collimator creating a wider $s_e$ is gone and we see the FOW decrease between 40 and 100\%. This is roughly in line with the calculated $s_e$: \textcolor{red}{ETIENNE?} Surprisingly the FOW of the KES approaches the theoretical value nearly, while the MPS is still a few millimeters worse than calculated.
+When we make the collimator perfectly absorbing (we kill any tracks entering the material), we can see the KES's effective slit width in action: the transmission through the collimator creating a wider $s_e$ is gone and we see the FOW decrease between 40 and 100\%. This is roughly in line with the calculated $s_e$: \todo{ETIENNE?} Surprisingly the FOW of the KES approaches the theoretical value nearly, while the MPS is still a few millimeters worse than calculated.
 
 
 
