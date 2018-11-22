@@ -83,10 +83,6 @@ The objectives of the present paper are the following:
   \item MC simulation: analytical models verification and prototype direct comparison
 \end{itemize}  
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -210,14 +206,14 @@ angle approximation, the solid angle is given eq.~\ref{eq:solid_angle_kes}.
 
 We consider that a detection unit correspond to a single detector. The
 corresponding detection efficiency, denoted $\DE_{\du}$, can be expressed as:
-$\DE_{\du} = GDE \times f_{\FOV}$, with $GDE$ the geometrical detection
-efficiency with the solid angle of a point that sees a detector through the
-slit, and $f_{\FOV} = \frac{\FOV_{\du}}{p}$ the FOV factor where $p$ is the
-pitch of the camera (in practice the width of the detector unit). This FOV
-factor corresponds to the fraction of the source seen by the camera. It is in
-principle larger than 1 since cameras are usually designed to see all the source
-without any hidden regions. The detection efficiency per detector unit is then
-given by eq.~\ref{eq:de_mps} and~\ref{eq:de_kes}.
+$\DE_{\du} = \textrm{GDE} \times f_{\textrm{FOV}}$, with $\textrm{GDE}$ the geometrical
+detection efficiency with the solid angle of a point that sees a detector
+through the slit, and $f_{\textrm{FOV}} = \frac{\FOV_{\du}}{p}$ the FOV factor
+where $p$ is the pitch of the camera (in practice the width of the detector
+unit). This FOV factor corresponds to the fraction of the source seen by the
+camera. It is in principle larger than 1 since cameras are usually designed to
+see all the source without any hidden regions. The detection efficiency per
+detector unit is then given by eq.~\ref{eq:de_mps} and~\ref{eq:de_kes}.
 
 \begin{eqnarray}
   \label{eq:de_mps}
@@ -255,20 +251,19 @@ systems.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Monte Carlo simulations}\label{sec:MC}
+\subsection{Monte Carlo simulations}
+\label{sec:MC}
 
 \begin{itemize}
   \item Analytical model verification: Fair comparison of the two types of collimators with MC simulations. What does it mean? 
   \begin{itemize}
     \item Use of same absorbers (the LYSO absorber of the KES prototype that we can consider as the reference), the same energy selection which was not the case in Lin 2017 and the same TOF selection (no TOF)
     \item Then a discussion of the results in the light of the analytical models
-    \item Note: the KES background level can be obtained from Figure 18 in Perali 2014. Regarding the MPS background level I propose to use the same level as the one of KES for the following reasons: i) the background level in the MPS camera is derived in Pinto 2014 from measurements with large detectors by assuming that the background is proportional to the detector volume. If we apply the same approach, it is reasonable to use the same background levels since we use the same absorbers for MPS and KES. One can argue that the MPS and KES collimators are different. It is true and it is difficult to say whether the larger amount of material in the CLaRyS MPS collimator leads to a larger background with more neutron-induced gammas or a lower background due to a larger attenuation of these gammas\dots At first order the background levels should be similar and a first order estimate is sufficient for a paper that mainly aims at comparing the signal detection of the two cameras.
+    \item Note: the KES background level can be obtained from Figure 18 in
+      Perali 2014. Regarding the MPS background level I propose to use the same
+      level as the one of KES for the following reasons: i)
+      the background level in the MPS camera is derived in Pinto 2014 from measurements with large detectors by assuming that the background is proportional to the detector volume. If we apply the same approach, it is reasonable to use the same background levels since we use the same absorbers for MPS and KES. One can argue that the MPS and KES collimators are different. It is true and it is difficult to say whether the larger amount of material in the CLaRyS MPS collimator leads to a larger background with more neutron-induced gammas or a lower background due to a larger attenuation of these gammas\dots At first order the background levels should be similar and a first order estimate is sufficient for a paper that mainly aims at comparing the signal detection of the two cameras.
   \end{itemize}    
   \item Simulations of the two prototypes as they are published (results of the submitted paper with the \enquote{regular} cylindrical PMMA target of 15 cm diameter and 20 cm lenght). 
   \begin{itemize}
