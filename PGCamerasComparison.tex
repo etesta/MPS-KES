@@ -377,7 +377,7 @@ For the AMV, we use the same background level for MPS as the one of KES for the 
 We can compare the detection efficiency of camera unit with two MC estimates:
 \begin{itemize}
 	\item the detection yield of a camera unit defined as the ratio of the mean number of detected gammas over the number of emitted gammas for camera units seeing the PG profile,
-	\item the contrast of the PG falloff.
+	\item the contrast of the PG falloff, which we define as the difference between peak and background, normalized by the number of primaries and per millimeter (since the two cameras have differing bin sizes).
 \end{itemize}
 The two quantities are strongly correlated. The former directly corresponds to the definition of the anaytical detection efficiency $DE_{cu}$ the latter accouts for the partial collimator transparency and it is the camera endpoint in the context of ion-range verification.
 \todo{we must mention which background we use here.}
@@ -431,19 +431,38 @@ In the comparison of the nominal (unequalized) prototypes, we also take a look a
 \label{GeomFormulas}
 \end{table}
 
+
 \begin{table}
 \centering
-\begin{tabular}{lllll}
+\begin{tabular}{lllllllll}
 	\midrule
-	                            & MPS MC & MPS AM & KES MC & KES AM \\
+	Time selection 					& ToF &     &     &     & none&     &     &     \\
+	Energy selection 				& 1   &     & 3   &     & 1   &     & 3   &     \\
+	Camera 							& MPS & KES & MPS & KES & MPS & KES & MPS & KES \\
 	\midrule
- 	Spatial resolution               & $s(1+\frac{d_1}{D})$             & 14.52 mm
- 	 & $s_e(1+\frac{d_1}{d_2})$                                    & 13.5 mm\\
- 	Efficiency  & $\frac{H s}{ 4 \pi L D } (1-f) $ & $4.18 \cdot 10^5$
- 	 & $\frac{H s}{ 4 \pi L d_2 } (1 + x^2/d^2_2)^{-3/2} $         & $6.67 \cdot 10^5$ \\
+% 	FOW                     	& 19.7& 20.9& 18.3& 19.3& 19.8& 21.9& 17.9& 23.6\\
+    FOW (both LYSO)            & 17.7 & 13.6 & 17.0 & 12.4 & 17.8 & 13.3 & 17.1 & 12.5 \\
+
+ 	%FOW (perfect collimator) 	& 17.8& 13.7& 16.9& 13.7& 18.3& 14.2& 17.0& 11.6\\
+	\midrule
+\end{tabular}
+\caption{FOW PSF.}
+\label{FOWCOMP}
+\end{table}
+
+\begin{table}
+\centering
+\begin{tabular}{lllllll}
+	\midrule
+	                            & MPS AM & MPS PRED & MPS MC & KES AM & KES PRED & KES MC\\
+	\midrule
+ 	Spatial resolution               & $s(1+\frac{d_1}{D})$             & 14.52 mm & 17.35 mm
+ 	 & $s_e(1+\frac{d_1}{d_2})$                                    & 13.5 mm & 12.94 mm\\
+ 	Efficiency  & $\frac{H s}{ 4 \pi L D } (1-f) $ & $4.18 \cdot 10^5$ & $2.22\cdot10^{-5}$
+ 	 & $\frac{H s}{ 4 \pi L d_2 } (1 + x^2/d^2_2)^{-3/2} $         & $6.67 \cdot 10^5$  & $3.96\cdot10^{-5}$\\
  	\midrule
 \end{tabular}
-\caption{MPS and KES detection efficiencies and spatial resolution from analytical models. The predictions of the analytical model (AM column) are given in table~\ref{GeomFormulas}.
+\caption{MPS and KES detection efficiencies and spatial resolution from analytical models. The predictions of the analytical model (AM column) are given in table~\ref{GeomFormulas}. The MC data is the average of the results for all selection criteria combinations.
 TODO: put in correct MC data, but first wait for decision on which selection to take.}
 \label{AMVResults}
 \end{table}
@@ -456,12 +475,12 @@ TODO: put in correct MC data, but first wait for decision on which selection to 
 	Energy selection 				& 1   &     & 3   &     & 1   &     & 3   &     \\
 	Camera 							& MPS & KES & MPS & KES & MPS & KES & MPS & KES \\
 	\midrule
- 	FOW                         	& 19.7& 20.9& 18.3& 19.3& 19.8& 21.9& 17.9& 23.6\\
- 	FOW (perfect collimator) 	& 17.8& 13.7& 16.9& 13.7& 18.3& 14.2& 17.0& 11.6\\
+ 	FRP (detectors as proposed)     & -- \\
+ 	FRP (both LYSO absorber)        & 0.55 & 1.04 & 0.70 & 1.51 & 0.94 & 1.97 & 1.40 & 5.51 \\
 	\midrule
 \end{tabular}
-\caption{FOW PSF.}
-\label{FOWCOMP}
+\caption{Fall-off retrieval precision (defined as the standard deviation of the FOP over the number of times the simulation is ran.}
+\label{FRPCOMP}
 \end{table}
 
 The FOW shown in table~\ref{FOWCOMP} shows that both cameras perform similar with ToF selection. For the MPS the ToF selection makes no difference (up to 2\%), while for the KES it gives a 10-20\% improvement. The results are a bit worse than the calculated values in table~\ref{GeomFormulas}, but close to the 20 mm as postulated in \cite{Priegnitz2015}.
