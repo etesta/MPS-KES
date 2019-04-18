@@ -121,15 +121,15 @@ distance values are in millimeters.
 	Slit width										& \multicolumn{2}{c}{s} \\
 	\midrule
 \end{tabular}
-\caption{MPS and KES detection efficiencies and spatial resolutions from the analytical model. The parameters of the cameras are defined in figure~\ref{GeomSchemes}.}
-\label{table:AMformulas}
+\caption{Geometrical parameters of the MPS and KES cameras.}
+\label{table:CamerasParameters}
 \end{table}
 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=.8\textwidth]{MPS-KES_scheme}
     \caption{Schemes of MPS and KES cameras. }
-    \label{fig:GeomSchemes}
+    \label{fig:CamerasParameters}
 \end{figure}    
 \todo{Etienne: todo => make an original figure,Change notation d1 MPS is not d1 KES. Use d1, d2, D MPS and d3 d4 for KES}
 \answ{I think it better to keep the current notations to reflect the fact that these parameters play the same role in the cameras features.}
@@ -254,12 +254,12 @@ The formulas of detection efficiency and spatial resolution of MPS and KES camer
 	                            & MPS                              & KES \\
 	\midrule
 	Effective slit width ($s_e$)& $s$                              & $s + \frac{\ln(2)}{\mu~\tan(\alpha)}$ \\
- 	Spatial resolution (Res)		& $s \left(1+\frac{d_1}{D}\right)$             & $s_e \left( 1+\frac{d_1}{d_2} \right)$ \\
-	Detection efficiency (Eff)	& $\frac{H s}{ 4 \pi L D } (1-f) $ & $\frac{H s_e}{ 4 \pi L d_2 } \left( 1 + \frac{x^2}{d^2_2} \right)^{-3/2} $ \\
- 	Collimator effective thickness ($T_e$) & $D\times f$                            & $T$ \\
+ 	Spatial resolution (Res)		& $s \left(1+\frac{d_1}{D}\right)$ & $s_e \left( 1+\frac{d_1^{'}}{d_2^{'}} \right)$ \\
+	Detection efficiency (Eff)	& $\frac{H s}{ 4 \pi L D } (1-f) $ & $\frac{H s_e}{ 4 \pi L d_2^{'} } \left( 1 + \frac{x^2}{d_2^{'2}} \right)^{-3/2} $ \\
+ 	Collimator effective thickness ($T_e$) & $D\times f$           & $T$ \\
 	\midrule
 \end{tabular}
-\caption{MPS and KES detection efficiencies and spatial resolutions from the analytical model. The parameters of the cameras are defined in figure~\ref{GeomSchemes}.}
+\caption{MPS and KES detection efficiencies and spatial resolutions from the analytical model. The parameters of the cameras are defined in figure~\ref{fig:CamerasParameters}.}
 \label{table:AMformulas}
 \end{table}
 
