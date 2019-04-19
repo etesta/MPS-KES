@@ -490,22 +490,6 @@
          inkscape:connector-curvature="0" />
     </marker>
     <marker
-       inkscape:stockid="Arrow1Lend"
-       orient="auto"
-       refY="0"
-       refX="0"
-       id="Arrow1Lend-4-25"
-       style="overflow:visible"
-       inkscape:isstock="true"
-       inkscape:collect="always">
-      <path
-         inkscape:connector-curvature="0"
-         id="path1207-5-4"
-         d="M 0,0 5,-5 -12.5,0 5,5 Z"
-         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.00000003pt;stroke-opacity:1"
-         transform="matrix(-0.8,0,0,-0.8,-10,0)" />
-    </marker>
-    <marker
        inkscape:stockid="Arrow1Lstart"
        orient="auto"
        refY="0"
@@ -622,13 +606,13 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.5"
-     inkscape:cx="589.84842"
+     inkscape:cx="970.23178"
      inkscape:cy="625.84683"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="1641"
-     inkscape:window-height="1022"
+     inkscape:window-width="1881"
+     inkscape:window-height="1052"
      inkscape:window-x="39"
      inkscape:window-y="0"
      inkscape:window-maximized="1" />
@@ -837,11 +821,6 @@
        d="M 416.45125,250.9434 H 389.22333"
        id="path2596"
        inkscape:connector-curvature="0" />
-    <path
-       style="fill:none;stroke:#000000;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#Arrow1Lstart);marker-end:url(#marker2712)"
-       d="M 297.41521,53.904538 V 129.15831"
-       id="path2702"
-       inkscape:connector-curvature="0" />
     <flowRoot
        xml:space="preserve"
        id="flowRoot2846"
@@ -857,12 +836,7 @@
    style="font-size:64.99999762%;baseline-shift:sub"
    id="flowSpan2872">2</flowSpan>'<flowSpan
    style="font-size:64.99999762%;baseline-shift:sub"
-   id="flowSpan2854"> </flowSpan></flowPara></flowRoot>    <path
-       style="fill:none;stroke:#000000;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#Arrow1Lstart-9);marker-end:url(#marker2712-1)"
-       d="M 297.41521,131.15614 V 266.52671"
-       id="path2702-4"
-       inkscape:connector-curvature="0" />
-    <flowRoot
+   id="flowSpan2854"> </flowSpan></flowPara></flowRoot>    <flowRoot
        xml:space="preserve"
        id="flowRoot2846-7"
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
@@ -1181,12 +1155,7 @@
            height="51.012703"
            x="543.96716"
            y="1012.4131" /></flowRegion><flowPara
-         id="flowPara7225-0">Res</flowPara></flowRoot>    <path
-       style="fill:none;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#marker7115-91);marker-end:url(#Arrow1Lend-4-25)"
-       d="M 419.90119,258.44643 H 404.08691"
-       id="path2596-2-4"
-       inkscape:connector-curvature="0" />
-    <flowRoot
+         id="flowPara7225-0">Res</flowPara></flowRoot>    <flowRoot
        xml:space="preserve"
        id="flowRoot4197-3"
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
@@ -1375,5 +1344,15 @@
            height="53"
            x="627.5"
            y="651.51965" /></flowRegion><flowPara
-         id="flowPara19509">p</flowPara></flowRoot>  </g>
+         id="flowPara19509">p</flowPara></flowRoot>    <path
+       style="fill:none;stroke:#000000;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#Arrow1Lstart);marker-end:url(#marker2712)"
+       d="M 297.41521,53.904538 V 129.15831"
+       id="path2702"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#Arrow1Lstart-9);marker-end:url(#marker2712-1)"
+       d="M 297.41521,131.15614 V 266.52671"
+       id="path2702-4"
+       inkscape:connector-curvature="0" />
+  </g>
 </svg>
