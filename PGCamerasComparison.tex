@@ -172,8 +172,7 @@ one-dimensional cuts through the pinhole geometry and can be applied directly to
 a knife-edge geometry without modification. Their approach is for a point source
 and dependent on the location of the source within the \FOV. For a source in the
 center, it simplifies to eq.~\ref{eq:se} with $\mu$ the linear attenuation
-length of the radiation in the collimator material. \todo{Why not se for MPS ?} \answ{because the slabs of the MPS prototype have a negligible transparency.}
-\todo{Add alpha and mu in the figure}
+length of the radiation in the collimator material.
 
 \begin{eqnarray}
   s_e & = & s + \frac{\ln2}{\mu\tan\alpha}   \label{eq:se} \\
@@ -200,7 +199,6 @@ consider the solid angle for a point of the source that is within the central
 part of the field of view of the crystal at location $x$ on the detector plane
 (the origin of the detector plane facing the center of the slit). Under small
 angle approximation, the solid angle is given eq.~\ref{eq:solid_angle_kes}.
-\todo{figure with variable needed.}
 
 \begin{align}  
   \Omega\,_D^{\MPS} & = \frac{H}{L} \frac{s}{D+d_1} \label{eq:solid_angle_mps} \\
@@ -324,7 +322,7 @@ Estimates of background counts in the detector are taken from \cite{Pinto2014a,P
 \item KES: \cite{Perali2014} fig.~11: $5 \cdot 10^{-7} \pm 0.5 \cdot 10^{-7}$ per primary proton per 4 mm bin
 \end{itemize}
 
-Per unit of bin length, the background yield of the MPS with ToF is therefore 4 times as low as the background seen with the KES. \answ{We do not apply background modeling in AMV anymore. The following sentence can be removed.\texttt{}} In the context of the fair comparison, for the KES camera the background with ToF can be obtained by multiplying the background with the same $\frac{4 ns}{10 ns} = 0.4$ fraction as with the MPS.
+Per unit of bin length, the background yield of the MPS with ToF is therefore 4 times as low as the background seen with the KES. In the context of the fair comparison, for the KES camera the background with ToF can be obtained by multiplying the background with the same $\frac{4 ns}{10 ns} = 0.4$ fraction as with the MPS. For the AMV, the background will be left out, as only PG detection was modelled.
 
 \subsubsection{Beam and target}
 
