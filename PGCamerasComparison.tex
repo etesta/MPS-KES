@@ -487,7 +487,7 @@ When we make the collimator perfectly absorbing (we kill any tracks entering the
 	\midrule
  	Res	& Real coll.		& 												& 17.8 mm 	 					&  											& 13.3 mm						&&\\
 			& Perfect coll.	& 14.52 mm								& 18.3 mm 	 					& 13.5 mm								& 14.2 mm						&&\\
-	Eff &								&  $6.66 \cdot 10^{-4}$ 	& $2.22\cdot10^{-5}$	&	$1.06 \cdot 10^{-3}$  & $3.96\cdot10^{-5}$& 1.59	&	\\
+	Eff &								&  $6.66 \cdot 10^{-4}$ 	& $1.64\cdot10^{-5}$	&	$1.06 \cdot 10^{-3}$  & $3.96\cdot10^{-5}$& 1.08	& 0.66	\\
  	\midrule
 \end{tabular}
 \caption{MPS and KES detection efficiencies and spatial resolution from analytical models and MC. The predictions of the analytical model (AM column) are derived from the equations of table~\ref{table:AMformulas}, at the center of the camera in the case of KES ($x=0$). MC data have been obtained with energy selection E>1~MeV.}
@@ -543,14 +543,19 @@ Figure showing the falloff retrieval precision (FRP) (standard deviation of the 
 
 \begin{table}[h]
 \centering
-\begin{tabular}{lllllllll}
+\begin{tabular}{llllllllll}
 	\midrule
-	Time selection 					& ToF &     &     &     & none&     &     &     \\
-	Energy selection 				& 1   &     & 3   &     & 1   &     & 3   &     \\
-	Camera 							& MPS & KES & MPS & KES & MPS & KES & MPS & KES \\
+	Primaries & Time selection 					& ToF &     &     &     & none&     &     &     \\
+	          & Energy selection 				& 1   &     & 3   &     & 1   &     & 3   &     \\
+	          & Camera 							& MPS & KES & MPS & KES & MPS & KES & MPS & KES \\
 	\midrule
- 	FRP (detectors as proposed)     & -- \\
- 	FRP (both LYSO absorber)        & 0.55 & 1.04 & 0.70 & 1.51 & 0.94 & 1.97 & 1.40 & 5.51 \\
+ 	$10^9$    & FRP (both LYSO absorber)        & 0.40 & 0.44 & 0.49 & 0.52 & 0.42 & 0.40 & 0.45 & 0.55 \\
+ 	$10^8$    & FRP (both LYSO absorber)        & 1.28 & 1.22 & 1.70 & 1.74 & 1.24 & 1.29 & 1.63 & 1.48 \\
+ 	$10^7$    & FRP (both LYSO absorber)        & 4.04 & 4.03 & 5.88 & 5.65 & 3.76 & 4.89 & 5.65 & 10.76 \\
+	\midrule
+ 	$10^9$    & FRP (detectors as proposed)     & 0.37 & 0.55 & 0.44 & 1.07 & 0.42 & 0.74 & 0.66 & 1.32 \\
+ 	$10^8$    & FRP (detectors as proposed)     & 1.35 & 2.08 & 1.60 & 4.22 & 1.36 & 1.82 & 2.00 & 9.70 \\
+ 	$10^7$    & FRP (detectors as proposed)     & 4.41 & 11.88 & 20.36 & 20.50 & 22.45 & 17.18 & 56.92 & 19.39 \\
 	\midrule
 \end{tabular}
 \caption{Fall-off retrieval precision (defined as the standard deviation of the FOP over the number of times the simulation is ran.}
