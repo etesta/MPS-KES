@@ -286,7 +286,7 @@ Estimate the MPS and KES performances in Smeets 2016 and Lin 2017: the KES/MPS d
 
 \subsubsection{Simulation tool}
 
-Imaging paradigms such as PG detection are evaluated against experiments, and often also with Monte Carlo (MC) simulations~\citep{Moteabbed2011,Gueth2013,Robert2013,Golnik2014a,Janssen2014}. For rarely occurring processes such as PG simulation, convergence to the model of the truth to within acceptable statistical error can be slow. This paper presents an \emph{in silico} study of the feasibility of the clinical relevance of PG FOP estimation using collimated cameras, and uses the vpgTLE variance reduction method described in \cite{Huisman2016}. vpgTLE is a two stage process, where firstly a PG yield distribution image is estimated, which in the second stage is used as a PG source with which detectors can be investigated. Gate 7.2~\citep{Sarrut2014} with Geant 4.10.02 and the QGSP\_BIC\_HP\_EMY physics list, commonly used for PG studies, are used in this analysis. Thanks to vpgTLE, simulations for about $10^9$ protons (about $6\times10^8$ photons) took 1-2 hours on a single core of an Intel(R) Core(TM) i7-3740QM.
+Imaging paradigms such as PG detection are evaluated against experiments, and often also with Monte Carlo (MC) simulations~\citep{Moteabbed2011,Gueth2013,Robert2013,Golnik2014a,Janssen2014}. For rarely occurring processes such as PG simulation, convergence to the model of the truth to within acceptable statistical error can be slow. This paper presents an \emph{in silico} study of the feasibility of the clinical relevance of PG FOP estimation using collimated cameras, and uses the vpgTLE variance reduction method described in \cite{Huisman2016}. vpgTLE is a two stage process, where firstly a PG yield distribution image is estimated, which in the second stage is used as a PG source with which  can be investigated. Gate 7.2~\citep{Sarrut2014} with Geant 4.10.02 and the QGSP\_BIC\_HP\_EMY physics list, commonly used for PG studies, are used in this analysis. Thanks to vpgTLE, simulations for about $10^9$ protons (about $6\times10^8$ photons) took 1-2 hours on a single core of an Intel(R) Core(TM) i7-3740QM.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{PG Camera modeling}\label{sec:camera}
@@ -301,7 +301,7 @@ Two PG detectors tailored to FOP verification (illustrated in fig.~\ref{fig:dete
 
 \begin{figure}[htp]
   \centering
-  \includegraphics[width=0.9\linewidth]{detectors}
+  \includegraphics[width=0.9\linewidth]{detectors_cyl}
   \caption{Schematic presentation of the two PG cameras considered in this study. The green arrow represents the proton beam. In red the collimation elements and in blue detection elements. The dimensions were taken from \cite{Pinto2014a} and \cite{Perali2014,Sterpin2015}. Note that the two cameras have an identical detector height ($\odot$ symbol), the two cameras were positioned at an identical location above the head during all simulations, and that here they are not drawn to scale.}
   \label{fig:detectors}
 \end{figure}
