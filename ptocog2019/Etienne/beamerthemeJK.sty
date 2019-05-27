@@ -1,0 +1,140 @@
+\ProvidesPackage{beamerthemeJK} % this style was created by Rob J Hyndman and is an adapation of i6dv by David Vilar, modifs by JK
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\selectcolormodel{cmyk}
+\mode<presentation>
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% custom colors
+\definecolor{i6blue}{cmyk}{1,0.305,0,0.06}
+\definecolor{i6bluedark}{rgb}{0.0156,0.2578,0.5625}
+\definecolor{i6lightblue}{rgb}{0.68,0.85,0.9}
+\definecolor{lightskyblue}{rgb}{0.53, 0.81, 0.98}
+\definecolor{richelectricblue}{rgb}{0.03, 0.57, 0.82}
+\definecolor{trueblue}{rgb}{0.0, 0.45, 0.81}
+\definecolor{bleudefrance}{rgb}{0.19, 0.55, 0.91}
+\definecolor{anti-flashwhite}{rgb}{0.95, 0.95, 0.96}
+\definecolor{i6yellow}{rgb}{1,1,0} 
+\definecolor{i6colorscheme1}{HTML}{FF6518}  % e.g. for block title
+\definecolor{i6colorblockbg}{HTML}{0033cc}
+\definecolor{i6colorblockfg}{HTML}{FCE94F}
+\definecolor{i6colorscheme2}{HTML}{000000}  % e.g. title in headline
+\definecolor{i6colorscheme3}{HTML}{C3DFFF}  % e.g. for poster background
+\definecolor{i6colorscheme4}{HTML}{000000} 
+\definecolor{i6colorschemeHeadline}{HTML}{0033cc}  % for headline bg
+\definecolor{i6colorschemeFootline}{HTML}{100D09}  % for headline bg
+
+% headline colors and fonts
+%\setbeamercolor{headline}{fg=white,bg=i6colorschemeHeadline}
+%\setbeamercolor{headline}{fg=red,bg=lightskyblue}
+\setbeamercolor{headline}{fg=red,bg=trueblue}
+\setbeamercolor{title in headline}{fg=yellow}
+\setbeamercolor{author in headline}{fg=white}
+\setbeamercolor{institute in headline}{fg=white}
+\setbeamercolor{logo in headline}{fg=black,bg=lightgray}
+%\setbeamercolor{author in headline}{fg=lightgray}
+%\setbeamercolor{institute in headline}{fg=lightgray}
+%\setbeamercolor{logo in headline}{fg=black,bg=lightgray}
+\setbeamercolor{separation line}{bg=i6colorscheme1}
+
+% footline colors and fonts
+%\setbeamercolor{footline}{fg=blue,bg=i6yellow}
+%\setbeamercolor{footline}{fg=yellow,bg=lightskyblue}
+\setbeamercolor{footline}{fg=yellow,bg=trueblue}
+% \setbeamerfont{footline}{fg=blue, size=\normalsize}
+\setbeamerfont{footline}{size=\normalsize}
+
+% body colors and fonts
+\setbeamercolor*{normal text}{fg=black,bg=lightgray}
+%\setbeamercolor*{normal text}{fg=black,bg=white}
+%\setbeamercolor*{normal text}{fg=black,bg=lightgray}
+
+% block environment
+\setbeamercolor*{block body}{bg=white,fg=black}
+%\setbeamercolor*{block title}{fg=i6colorblockfg,bg=i6colorblockbg}
+%\setbeamercolor*{block title}{fg=yellow,bg=lightskyblue}
+\setbeamercolor*{block title}{fg=yellow,bg=trueblue}
+\setbeamerfont{block title}{size=\large,series=\bf}
+
+\setbeamercolor{eeck}{bg=lightskyblue,fg=red}
+\setbeamercolor{eeck2}{bg=yellow,fg=blue}
+
+% example environment
+\setbeamercolor*{example title}{fg=white,bg=i6colorscheme1}
+% \setbeamerfont{example title}{size=\large,series=\bf,bg=i6colorscheme1,fg=white}
+\setbeamerfont{example title}{size=\large,series=\bf}
+\setbeamercolor{alerted text}{fg=i6colorscheme1}
+
+\setbeamertemplate{itemize items}[triangle]
+\setbeamertemplate{navigation symbols}{}  % no navigation on a poster
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setbeamertemplate{block begin}{
+  \vskip.75ex
+ % \begin{framed}
+  \begin{beamercolorbox}[leftskip=1cm,colsep*=.75ex, rounded=true, shadow=true]{block title}%
+    \usebeamerfont*{block title}\centering\insertblocktitle
+  \end{beamercolorbox}%
+  {\ifbeamercolorempty[bg]{block body}{}{\nointerlineskip\vskip-0.5pt}}%
+  \usebeamerfont{block body}%
+  \begin{beamercolorbox}[colsep*=.75ex,sep=.75ex,vmode, rounded=true,shadow=true]{block body}%
+    \ifbeamercolorempty[bg]{block body}{\vskip-.25ex}{\vskip-.75ex}\vbox{}%
+  }
+  \setbeamertemplate{block end}{
+  \end{beamercolorbox}
+%  \end{framed}
+}
+
+%\setbeamertemplate{block begin}{
+%  \vskip.75ex
+%  \begin{beamerboxesrounded}[lower={block body}, upper={block title}, colsep*=.75ex, shadow=true]{\centering\insertblocktitle}}
+% {\ifbeamercolorempty[bg]{block body}{}{\nointerlineskip\vskip-0.5pt}}%
+%\usebeamerfont{block body}%
+%  \setbeamertemplate{block end}{
+%  \end{beamerboxesrounded}
+%}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setbeamertemplate{headline}{  
+  \leavevmode
+
+  \begin{beamercolorbox}[wd=\paperwidth]{headline}
+				\centering
+        \vskip2ex
+        \usebeamercolor{title in headline}{\color{fg}\textbf{\LARGE{\inserttitle}}\\[1ex]}
+        \usebeamercolor{author in headline}{\color{fg}\large{\insertauthor}\\[1ex]}
+	\usebeamercolor{institute in headline}{\color{fg}\large{\insertinstitute}\\[1ex]}  
+  \end{beamercolorbox}
+  
+  \begin{beamercolorbox}[wd=\paperwidth]{lower separation line head}
+    \rule{0pt}{2pt}
+  \end{beamercolorbox}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setbeamertemplate{footline}{
+  \begin{beamercolorbox}[wd=\paperwidth]{upper separation line foot}
+    \rule{0pt}{2pt}
+  \end{beamercolorbox}
+  
+  \begin{beamercolorbox}[ht=4ex,leftskip=1cm,rightskip=1cm]{footline}%
+    \hfill \raisebox{-0.4cm}{\insertfooter}
+    \vskip1ex
+  \end{beamercolorbox}
+
+  \begin{beamercolorbox}[wd=\paperwidth]{lower separation line foot}
+    \rule{0pt}{2pt}
+  \end{beamercolorbox}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\mode<all>
+
+\def\footer#1{\def\insertfooter{#1}}
+\def\Red#1{\textcolor{red}{#1}}
+\def\Black#1{\textcolor{black}{#1}}
+\def\NavyBlue#1{\textcolor{blue}{#1}}
+\def\Blue#1{\textcolor{blue}{#1}}
+\def\Green#1{\textcolor{green}{#1}}
+

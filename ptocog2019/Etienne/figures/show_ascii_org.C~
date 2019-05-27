@@ -1,0 +1,179 @@
+gROOT->Reset();
+
+#define NCHAN 4100                    // just a large number 
+#define NOF 3                       // No. of files to display
+
+#define XMIN 0                     // Min and Max x and y-values
+#define XMAX 150
+#define YMIN 0.00000000001
+//#define YMAX 0.0001
+#define YMAX 1
+
+int show_ascii_org()
+{
+
+  Float_t x_val[NOF][NCHAN], x_err[NOF][NCHAN];  // x-values and errors
+  Float_t y_val[NOF][NCHAN], y_err[NOF][NCHAN];  // y_values and errors
+
+  // Double_t f_fac[NOF] = {1, 0.93,1};
+  Double_t f_fac[NOF];
+
+  Int_t i,j,i_line,j_line;
+
+  int nchan[NOF];
+
+  char fname[NOF][120];
+
+  char hname[20];
+  char htitle[100];
+
+
+  TGraphErrors *graph[NOF];
+  TH1F *h[NOF];
+
+  TF1 *f1 = new TF1("f1","gaus(0)+pol1(3)",70,95);
+  //f1->SetParameters(0.1,80.9,12,0.5,0);
+  f1->SetParameters(0.1,80.9,2,0.1,0);
+
+
+
+  // Initialize histograms
+  for(j=0; j<NOF; j++)
+    {
+      sprintf(hname,"h%d",j);
+      sprintf(htitle,"%s",fname[j]);
+      h[j] = new TH1F(hname,htitle,NCHAN,XMIN,XMAX);
+      f_fac[j] = 1;
+    }
+  f_fac[1] = 4;
+  f_fac[2] = 5.5;
+
+  // ascii-files to be displayed 
+  sprintf(fname[0],"../../run/04Feb14/results/tdc/tdc_run16.txt");
+  sprintf(fname[1],"../../run/04Feb14/results/tdc/tdc_run17.txt");
+  sprintf(fname[2],"../../run/04Feb14/results/tdc/tdc_run14.txt");
+  //sprintf(fname[2],"../../run/04Feb14/results/tdc/tdc_run13.txt");
+  //sprintf(fname[3],"../../run/04Feb14/results/tdc/tdc_run13.txt");
+  
+  /*
+  sprintf(fname[0],"../../run/HIT_Nov13/results/adc/rebin_8/adc_labr_0_53_nocut_norm.txt");
+  sprintf(fname[1],"../../run/HIT_Nov13/results/adc/rebin_8/adc_labr_0_54_nocut_norm.txt");
+  sprintf(fname[2],"../../run/HIT_Nov13/results/adc/rebin_8/adc_labr_0_55_nocut_norm.txt");
+  */
+  /*
+  sprintf(fname[0],"../../run/HIT_Nov13/results/tdc/rebin_4/tdc_labr_0_67_nocut_perion.txt");
+  sprintf(fname[1],"../../run/HIT_Nov13/results/tdc/rebin_4/tdc_labr_0_68_nocut_perion.txt");
+  sprintf(fname[2],"../../run/HIT_Nov13/results/tdc/rebin_4/tdc_labr_0_69_nocut_perion.txt");
+  */
+  /*
+    sprintf(fname[0],"../../run/HIT_Nov13/results/adc/rebin_8/adc_labr_67_77_cut_gamma1.txt");
+    sprintf(fname[1],"../../run/HIT_Nov13/results/adc/rebin_8/adc_labr_67_77_cut_neutron1.txt");
+    sprintf(fname[2],"../../run/HIT_Nov13/results/adc/rebin_8/adc_labr_67_77_cut_random1.txt");
+  */
+  //  sprintf(fname[2],"../run/10Sep13/efficiency_pos_mult4_4_4mm.txt");
+  //sprintf(fname[3],"../run/10Sep13/efficiency_pos_mult4_4_2mm.txt");
+
+  char f_line[132];
+  FILE *fp;
+
+  for(i=0; i<NOF; i++)
+    {
+      if((fp = fopen(fname[i],"r")) == NULL)
+	{
+	  fprintf(stderr,"Error : Can't open %s for reading !\n",fname[i]);
+	  return(-1);
+	}
+      
+      for(i_line=0, j_line=0; fgets(f_line,132,fp) != NULL ; i_line++)
+	{
+	  if(sscanf(f_line,"%f%f%f%f",&x_val[i][j_line],&x_err[i][j_line],
+		    &y_val[i][j_line], &y_err[i][j_line]) != 4)
+	    {
+	      fprintf(stderr,"looks like header in line %d\n",i_line);
+	      continue;
+	    }
+	  else
+	    {
+	      //x_val[i][j_line] -= 40.9104;
+	      y_val[i][j_line] *= f_fac[i];
+	      h[i]->Fill(x_val[i][j_line],y_val[i][j_line]);
+	      j_line++;
+	    }
+	}
+      nchan[i] = j_line;
+    }
+  fclose(fp);
+
+  // Set errors to dummy values 
+  /*
+  for(j=0;j<NOF;j++)
+    {
+      for(i=0; i<nchan[j]; i++)
+	{
+	  x_err[j][i] = 0;
+	  y_err[j][i] = 0;
+	}
+	} */
+
+  // Create a new canvas
+
+  TCanvas *c1 = new TCanvas("c1","The Graph",200,10,700,500);
+  c1->SetFillColor(10);
+  c1->SetGrid();
+
+  // draw a frame to define the range
+  TH1F *hr1 = c1->DrawFrame(XMIN,YMIN,XMAX,YMAX);
+  //hr1->SetXTitle("x-value");
+  //hr1->SetXTitle("shaping time [#mus]");
+  //hr1->SetYTitle("noise FWHM [keV]");
+  //hr1->SetXTitle("pos [mm]");
+  hr1->SetXTitle("time [ns]");
+  //hr1->SetXTitle("energy [keV]");
+  // hr1->SetYTitle("cts/s");
+  hr1->SetYTitle("arb. units");
+  //hr1->SetYTitle("cts/ion/#DeltaE");
+  // hr1->SetTitle("n-strip");
+  c1->GetFrame()->SetFillColor(10);
+  c1->GetFrame()->SetBorderSize(12);
+
+  for(i=0; i<NOF; i++)
+    {
+      graph[i] = new TGraphErrors(nchan[i],x_val[i],y_val[i],
+				  x_err[i],y_err[i]);
+
+      graph[i]->SetMarkerColor(i+1);
+      graph[i]->SetMarkerStyle(20+i);
+      graph[i]->SetLineColor(i+1);
+      graph[i]->Draw("Pl");
+      if(i<-1)
+	{
+	  f1->SetLineColor(kBlue);
+	  graph[i]->Fit(f1,"r");
+	}
+      
+    }
+
+  // Create a legend
+  leg = new TLegend(0.3,0.75,0.85,0.89);
+  leg->SetFillColor(10);
+  for(i=0; i<NOF; i++)
+    {
+      //leg->AddEntry(graph[i], fname[i],"pl");
+    }
+
+  leg->AddEntry(graph[0],"single threshold -15mV","pl");
+  leg->AddEntry(graph[1],"single threshold -30mV (*4)","pl");
+  leg->AddEntry(graph[2],"double threshold (*5.5)","pl"); 
+  //leg->AddEntry(graph[0],"BGO: refurbished","pl");
+  //leg->AddEntry(graph[1],"BGO: original (*0.3)","pl");
+  //leg->AddEntry(graph[0],"leading edge","pl");
+  //leg->AddEntry(graph[1],"constant fraction (*1.5)","pl");
+  // leg->AddEntry(graph[0],"single threshold -20mV","pl");
+  //leg->AddEntry(graph[1],"thresholds -15mV and -30mV, scaling *3","pl");
+  //leg->AddEntry(graph[0], "T=  25 #\circ C","p");
+  // leg->AddEntry(graph[1], "T=   0 #\circ C","p");
+  //leg->AddEntry(graph[2], "run 26 T= -10 #\circ C","p");
+  leg->Draw();
+  c1->Update();
+    
+}
