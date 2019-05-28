@@ -1,7 +1,7 @@
 \documentclass[final]{beamer} % beamer 3.10: do NOT use option hyperref={pdfpagelabels=false} !
   %\documentclass[final,hyperref={pdfpagelabels=false}]{beamer} % beamer 3.07: get rid of beamer warnings
 \mode<presentation> {  %% check http://www-i6.informatik.rwth-aachen.de/~dreuw/latexbeamerposter.php for examples
-	\usetheme{JK}    %% you should define your own theme e.g. for big headlines using your own logos 
+	\usetheme{JK2}    %% you should define your own theme e.g. for big headlines using your own logos 
 }
 
 \setbeamertemplate{caption}[numbered] 
@@ -24,7 +24,7 @@
 
 %\usepackage{times}\usefonttheme{professionalfonts}  % times is obsolete
 %  \usepackage[absolute,overlay]{textpos}
-\usefonttheme[onlymath]{serif}
+% \usefonttheme[onlymath]{serif}
 \boldmath
 \usepackage[orientation=portrait,size=a0,scale=1.4,debug]{beamerposter}                       % e.g. for DIN-A0 poster
 %\usepackage[orientation=portrait,size=a1,scale=1.4,grid,debug]{beamerposter}                  % e.g. for DIN-A1 poster, with optional grid and debug output
@@ -152,7 +152,7 @@
 						\item 2 configurations (Table~\ref{CamerasParameters}):
 						\begin{itemize}
 							\item The prototypes as they are published (Figure~\ref{CamerasScheme})
-							\item The prototypes with some alterations for the Analytical Model Verification (AMV), in particular the use of ``perfect`` collimators and detectors (full gamma absorption) 
+							\item The prototypes with some alterations for the Analytical Model Verification (AMV)
 						\end{itemize}
 
 					\end{itemize}		
@@ -236,8 +236,8 @@
 							& AM 											& MC 									&& AM 										& MC								\\
 				\midrule
 
-				FOW		& 14.52 mm								& 17.9 mm 	 					&& 13.5 mm								& 13.8 mm						\\
-				DE		& $6.66 \cdot 10^{-4}$  & \tcr{TODO}	&&	$1.06 \cdot 10^{-3}$   & \tcr{TODO}	\\
+				FOW (mm)& 14.5 								& 17.9  	 					&& 13.5 								& 13.8 						\\
+				DE		& $6.66 \cdot 10^{-4}$  & $6.35 \cdot 10^{-4}$	&&	$1.06 \cdot 10^{-3}$   & $7.54 \cdot 10^{-4}$\\
 				\midrule
 			\end{tabular}
 			\end{table}			
@@ -261,30 +261,44 @@
 			
 				\begin{figure}
 					\includegraphics[width=\textwidth]{./figures/output-crop}			
-					\caption{PG profiles: MPS (left), KES (right). See Table~\ref{CamerasParameters} for the parameters.}
+					\caption{PG profiles: MPS (left), KES (right). See column PC of Table~\ref{CamerasParameters} for the parameters.}
 					\label{PGprofiles}
 				\end{figure}					
 				
 				
 			{\Red{\large{Fall-off Retrieval Precision}}}
+% 			\begin{table}[h]
+% 			\centering
+% 			\begin{tabular}{llllllllllll}
+% 				\midrule
+% 				Time selection 					& \mc{5}{c}{ToF} &   &  \mc{5}{c}{None}     \\
+% 				\cline{2-6}\cline{8-12}
+% 				Energy selection (MeV) 	& \mc{2}{c}{$>1$}    & & \mc{2}{c}{3--6}   & &  \mc{2}{c}{$>1$}    & & \mc{2}{c}{3--6}    \\
+% 				\cline{2-3}\cline{5-6}\cline{8-9}\cline{11-12}
+% 				Camera 						& MPS & KES && MPS & KES & & MPS & KES && MPS & KES \\
+% 				\midrule
+% 				$10^9$ (\# protons)& \textbf{0.37} & 0.55 && 0.44 & 1.07 && 0.42 & 0.74 && 0.66 & \textbf{1.32} \\
+% 				$10^8$    				& \textbf{1.35} & 2.08 && 1.60 & 4.22 && 1.36 & 1.82 && 2.00 & \textbf{9.70} \\
+% 				$10^7$    				& \textbf{4.41} & 11.88 && 20.36 & 20.50 && 22.45 & 17.18 && 56.92 & \textbf{19.39} \\
+% 				\midrule
+% 			\end{tabular}
+% 			\caption{\tcr{TO VERIFY: Standard deviation of the FOP distribution}. In bold, the cuts and ToF selections as proposed.}
+% 			\label{FRPCOMP}
+% 			\end{table}			
 			\begin{table}[h]
 			\centering
-			\begin{tabular}{llllllllllll}
+			\begin{tabular}{lll}
 				\midrule
-				Time selection 		& \mc{5}{c}{ToF} &   &  \mc{5}{c}{None}     \\
-				\cline{2-6}\cline{8-12}
-				Energy selection (MeV) 	& \mc{2}{c}{$>1$}    & & \mc{2}{c}{3--6}   & &  \mc{2}{c}{$>1$}    & & \mc{2}{c}{3--6}    \\
-				\cline{2-3}\cline{5-6}\cline{8-9}\cline{11-12}
-				Camera 						& MPS & KES && MPS & KES & & MPS & KES && MPS & KES \\
+				\# protons 						& MPS & KES  \\
 				\midrule
-				$10^9$ (\# protons)& \textbf{0.37} & 0.55 && 0.44 & 1.07 && 0.42 & 0.74 && 0.66 & \textbf{1.32} \\
-				$10^8$    				& \textbf{1.35} & 2.08 && 1.60 & 4.22 && 1.36 & 1.82 && 2.00 & \textbf{9.70} \\
-				$10^7$    				& \textbf{4.41} & 11.88 && 20.36 & 20.50 && 22.45 & 17.18 && 56.92 & \textbf{19.39} \\
+				$10^9$ & 0.32 & 0.65 \\
+				$10^8$    				& 1.05 & 1.80 \\
+				$10^7$    				& 2.81 & 17.1 \\
 				\midrule
 			\end{tabular}
-			\caption{\tcr{TO VERIFY: Standard deviation of the FOP distribution}. In bold, the cuts and ToF selections as proposed.}
+			\caption{Standard deviation of the FOP distribution. See column PC of Table~\ref{CamerasParameters} for the parameters.}
 			\label{FRPCOMP}
-			\end{table}				
+			\end{table}					
 		\end{block}
 
 	\begin{block}{Discussion and conclusion}	
@@ -292,14 +306,18 @@
 			\item Analytical Model (AM)
 			\begin{itemize}
 				\item Good agreement in overall with MC
-				\item Unlike what can be concluded from previous studies \cite{Smeets2016,Lin2016, Park2019}, \tcr{striking similarities between MPS and KES performances} 
+				\item Unlike what can be concluded from previous studies \cite{Smeets2016,Lin2016,Park2019}, Striking similarities between MPS and KES performances
 				\begin{itemize}
 					\item[$\Rightarrow$] Same DE and FOW with perfect collimators	
 					\item[$\Rightarrow$] With real collimators: slightly poorer DE for MPS and FOW for KES 
-				\end{itemize}
-
-				
+				\end{itemize}			
 			\end{itemize}
+
+			\item Prototypes comparison
+			\begin{itemize}
+				\item PG profiles: MPS prototype with larger FO amplitude and lower BKG level thanks to larger energy selection and TOF selection, respectively
+				\item[$\Rightarrow$] Better Fo Retrieval precision with the MPS	prototype	
+			\end{itemize}			
 
 		\end{itemize}
 
