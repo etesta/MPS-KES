@@ -14,6 +14,7 @@
 \usepackage{sidecap}
 \usepackage{soul}
 \usepackage{setspace}
+\usepackage{changepage}
 
 \newcommand{\mr}[2]{\multirow{#1}{*}{#2}}  
 \newcommand{\mc}[3]{\multicolumn{#1}{#2}{#3}}  
@@ -35,7 +36,7 @@
 \author{E. Testa\inst{1}, B.F.B. Huisman\inst{1,2}, D. Dauvergne\inst{3}, J. M. L\'etang\inst{2}, D. Sarrut\inst{3}}
 \institute[]{
 	\inst{1} Universit{\'e} de Lyon, Universit{\'e} Claude Bernard Lyon 1, CNRS/IN2P3, Institut de Physique Nucl{\'e}aire de Lyon, 69622 Villeurbanne, France, \inst{2} CREATIS, Université de Lyon; CNRS UMR5220; INSERM U1044; INSA-Lyon; Université Lyon 1; Centre Léon Bérard, Lyon, France, \inst{3} Universit\'e Grenoble Alpes, Laboratoire de Physique Subatomique et de Cosmologie, CNRS/IN2P3, Grenoble, France}
-\footer{contact: e.testa@ipnl.in2p3.fr}
+% \footer{\includegraphics[height=0.025\textheight]{./figures/logo_IPNL}\includegraphics[height=0.025\textheight]{./figures/logo-creatis}\includegraphics[height=0.025\textheight]{./figures/Logo_LPSC}\includegraphics[height=0.025\textheight]{./figures/logo_primes}\\ Labex PRIMES ANR-11-LABX-0063. \hfill contact: \url{e.testa@ipnl.in2p3.fr}}
 
 \begin{document}
 	
@@ -57,7 +58,7 @@
 		\begin{column}{0.49\textwidth}
 			\centering{\Red{\large{PG collimated cameras}}}
 			\begin{itemize}
-				\item 2 main collimator configurations: Multi-Parallel Slit (MPS) \cite{Pinto2014} and Knife-Edge Slit (KES) collimators \cite{Smeets2012} (Figure XXX)
+				\item 2 main collimator configurations: Multi-Parallel Slit (MPS) \cite{Pinto2014} and Knife-Edge Slit (KES) collimators \cite{Smeets2012} (Figure~\ref{MPS-KES_scheme})
 				\item No theoretical considerations have been proposed for the specific 1D collimation systems developed for PG detection 
 			\end{itemize}			
 		\end{column}
@@ -81,13 +82,20 @@
 		
 	  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	  \begin{block}{The Analytical Model of MPS and KES collimations}
-			
-% 			\begin{columns}[t]
-% 				\begin{column}{0.7\textwidth}
-					\includegraphics[width=0.7\textwidth]{./figures/MPS-KES_scheme}
-% 				\end{column}
+			\vspace{-10mm}
+			\begin{columns}[t]
+				\begin{column}{0.5\textwidth}
+			\begin{figure}
+							\vspace{-10mm}
+				\includegraphics[width=\textwidth]{./figures/MPS-KES_scheme}
+				\caption{MPS (left) and KES (right) collimation}
+				\label{MPS-KES_scheme}
+			\end{figure}
 
-% 				\begin{column}{0.3\textwidth}
+					
+				\end{column}
+
+				\begin{column}{0.49\textwidth}
 					
 					\begin{table}[h]
 					\small
@@ -96,65 +104,48 @@
 						\midrule
 																				& MPS                              & KES \\
 						\midrule
-						Effective slit width ($s_e$)& $s$                              & $s + \frac{\ln(2)}{\mu~\tan(\alpha)}$ \\
-						Spatial resolution (Res)		& $s \left(1+\frac{d_1}{D}\right)$ & $s_e \left( 1+\frac{d_1^{'}}{d_2^{'}} \right)$ \\
-						Detection efficiency (Eff)	& $\frac{H s}{ 4 \pi L D } (1-f) $ & $\frac{H s_e}{ 4 \pi L d_2^{'} } \left( 1 + \frac{x^2}{d_2^{'2}} \right)^{-3/2} $ \\
-						Collimator effective thickness ($T_e$) & $D\times f$           & $T$ \\
+						$s_e$& $s$                              & $s + \frac{\ln(2)}{\mu~\tan(\alpha)}$ \\
+						FOW		& $s \left(1+\frac{d_1}{D}\right)$ & $s_e \left( 1+\frac{d_1^{'}}{d_2^{'}} \right)$ \\
+						DE	& $\frac{H s}{ 4 \pi L D } (1-f) $ & $\frac{H s_e}{ 4 \pi L d_2^{'} } \left( 1 + \frac{x^2}{d_2^{'2}} \right)^{-3/2} $ \\
+						$T_e$ & $D\times f$           & $T$ \\
 						\midrule
 					\end{tabular}
-					\caption{Detection efficiencies and spatial resolution predicted by the analytical model}
+					\caption{Detection efficiencies (DE) and spatial resolution (FOW) predicted by the analytical model. $s_e$: effective slit width ; $T_e$: Collimator effective thickness. }
 					\end{table}
 					
-% 				\end{column}
-% 			\end{columns}
+				\end{column}
+			\end{columns}
 	  \end{block}
 	  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 		
-	  \begin{block}{Monte Carlo simulations}
+	  \begin{block}{Monte Carlo simulations \& PG profile analysis}
 			
 			\begin{itemize}
-				\item Gate 7.2 with Geant4 4.10.02 and the QGSP\_BIC\_HP\_EMY physics list
-				\item Optimization: vpgTLE variance reduction method $\Rightarrow$ gain of $\sim 10^3$ \cite{Huisman2016}
-				\item Background (BKG) modeling: 
+				\item Monte Carlo simulations
 				\begin{itemize}
-					\item Estimates of background counts in the detector are taken from \cite{Perali2014} (KES, $2.5\cdot10^{-7}$ counts/incident proton and per 8~mm bin) and \cite{Pinto2014} (MPS, $5 \cdot 10^{-7}$ counts per primary proton per 4~mm bin) which are both based on measured data
+					\item 2-stage simulation with Gate 7.2 (Geant4 4.10.02)
+					\item First stage: target irradiation (QGSP\_BIC\_HP\_EMY physics list)
+					\begin{itemize}
+						\item Optimization: vpgTLE variance reduction method $\Rightarrow$ gain of $\sim 10^3$ \cite{Huisman2016}
+					\end{itemize}
+					\item Second stage: photon propagation in the geometry (emlivermore physics list)
+				\end{itemize}					
+				\item PG profile analysis
+				\begin{itemize}				
+					\item Background (BKG) modeling: 
+					\begin{itemize}
+						\item Estimates of background counts in the detector (mainly due to secondary neutrons) are taken from \cite{Perali2014} (KES, $5 \cdot 10^{-7}$ counts per primary proton per 4~mm bin) and \cite{Pinto2014} (MPS, $2.5\cdot10^{-7}$ counts/incident proton and per 8~mm bin) which are both based on measured data
+					\end{itemize}				
+					\item Fall-Off Position (FOP): position corresponding to the half FO amplitude in the spline-fit to the PG profile
+			\end{itemize}
 
-				\end{itemize}
+
 
 			\end{itemize}
 
 	  \end{block}		
 		
-	  \begin{block}{Figures of merit}
-			
-			\begin{itemize}
-				\item Detection efficiency: \#detected PG/\#emitted PG in the camera Field of View (FOV)
-				\item Spatial resolution: the width of the PG profile fall-off, namely the FWHM of the peak resulting from the computation of the PG profile first derivative
-				\item Fall-off Retrieval Precision (FRP): \tcr{TODO}
-			\end{itemize}
-
-
-	  \end{block}				
-		
-			  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-	  \begin{block}{References}
-	    \tiny
-% 			\begin{spacing}{0.5}
-	    \setbeamertemplate{bibliography item}[text] 
-%	    \bibliographystyle{elsarticle-num}
-	    \bibliographystyle{ieeetr}
-	    \bibliography{biblio_abb}				
-% 			\end{spacing}
-
-
-	  \end{block}
-       
-	  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    
-	\end{column} % end of left column
-	
-	\begin{column}{0.49\textwidth} % right column
-	  \vspace{-2ex}
-		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 		\begin{block}{Simulated geometries}
 		
 					\begin{itemize}
@@ -201,17 +192,38 @@
 						\end{table}
 				\end{column}			
 
-				\begin{column}{0.49\textwidth}
+				\begin{column}{0.5\textwidth}
 					\begin{figure}
 						\includegraphics[width=\textwidth]{./figures/detectors_cyl}			
-						\caption{\hl{Change the target diameter: 15 cm}}
+						\caption{Prototypes representation}
 						\label{CamerasScheme}
 					\end{figure}					
 				\end{column}				
 
 			\end{columns}
 
-	  \end{block}		
+	  \end{block}		  
+	\end{column} % end of left column
+	
+	\begin{column}{0.49\textwidth} % right column
+	  \vspace{-2ex}
+		
+		
+		
+	  \begin{block}{Figures of merit}
+			
+			\begin{itemize}
+				\item Detection efficiency: \#detected PG/\#emitted PG in the camera Field of View (FOV)
+				\item Spatial resolution: the width of the PG profile fall-off, namely the FWHM of the peak resulting from the computation of the PG profile first derivative
+				\item Fall-off Retrieval Precision (FRP): Standard deviation of the FOP distribution obtained with 50 MC simulation runs.
+			\end{itemize}
+
+
+	  \end{block}				
+		
+
+       
+	  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 		
 		\begin{block}{Results}
 			{\Red{\large{AMV}}}
@@ -224,8 +236,8 @@
 							& AM 											& MC 									&& AM 										& MC								\\
 				\midrule
 
-				Res		& 14.52 mm								& 17.9 mm 	 					&& 13.5 mm								& 13.8 mm						\\
-				Eff		& $6.66 \cdot 10^{-4}$  & \tcr{TODO}	&&	$1.06 \cdot 10^{-3}$   & \tcr{TODO}	\\
+				FOW		& 14.52 mm								& 17.9 mm 	 					&& 13.5 mm								& 13.8 mm						\\
+				DE		& $6.66 \cdot 10^{-4}$  & \tcr{TODO}	&&	$1.06 \cdot 10^{-3}$   & \tcr{TODO}	\\
 				\midrule
 			\end{tabular}
 			\end{table}			
@@ -275,9 +287,39 @@
 			\end{table}				
 		\end{block}
 
+	\begin{block}{Discussion and conclusion}	
+		\begin{itemize}
+			\item Analytical Model (AM)
+			\begin{itemize}
+				\item Good agreement in overall with MC
+				\item Unlike what can be concluded from previous studies \cite{Smeets2016,Lin2016, Park2019}, \tcr{striking similarities between MPS and KES performances} 
+				\begin{itemize}
+					\item[$\Rightarrow$] Same DE and FOW with perfect collimators	
+					\item[$\Rightarrow$] With real collimators: slightly poorer DE for MPS and FOW for KES 
+				\end{itemize}
+
+				
+			\end{itemize}
+
+		\end{itemize}
+
 		
 		
+	\end{block}
+
 		
+			  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+	  \begin{block}{References}
+	    \tiny
+% 			\begin{spacing}{0.5}
+	    \setbeamertemplate{bibliography item}[text] 
+%	    \bibliographystyle{elsarticle-num}
+	    \bibliographystyle{ieeetr}
+	    \bibliography{biblio_abb}				
+% 			\end{spacing}
+
+
+	  \end{block}		
 		
 
 	  
@@ -285,39 +327,8 @@
 	  
 	\end{column}
 	
-      \end{columns}
+\end{columns}
 
-      \vfill
-%       \vspace{3ex}
-
-	\begin{block}{Acknowledgments}
-		\includegraphics[height=0.025\textheight]{./figures/logo_IPNL}
-		\hspace{0.025\textwidth}
-		\includegraphics[height=0.025\textheight]{./figures/logo-creatis}
-		\hspace{0.025\textwidth}		
-		\includegraphics[height=0.025\textheight]{./figures/Logo_LPSC}
-		\hspace{0.025\textwidth}
-		\includegraphics[height=0.025\textheight]{./figures/logo_primes}
-		This work is supported by the Labex PRIMES ANR-11-LABX-0063.
-% 		\vspace{2ex}
-% 
-% 		\begin{center}
-% 			\includegraphics[height=0.03\textheight]{./figures/logo_IPNL}
-% 			\hspace{0.035\textwidth}
-% 			\includegraphics[height=0.03\textheight]{./figures/logo_cnrs_in2p3}
-% 			\hspace{0.035\textwidth}
-% 			\includegraphics[height=0.03\textheight]{./figures/logo_uni_lyon2}
-% 			\hspace{0.035\textwidth}
-% 			\includegraphics[height=0.03\textheight]{./figures/logo-creatis}
-% 			\hspace{0.035\textwidth}		
-% 			\includegraphics[height=0.03\textheight]{./figures/INSA}
-% 			\hspace{0.035\textwidth}				
-% 			\includegraphics[height=0.03\textheight]{./figures/logo_MI2B}
-% 			\hspace{0.035\textwidth}
-% 			\includegraphics[height=0.03\textheight]{./figures/logo_primes}
-% 		\end{center}
-	\end{block}
-	
       
-    \end{frame}
-  \end{document}
+\end{frame}
+\end{document}

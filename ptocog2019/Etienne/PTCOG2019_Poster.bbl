@@ -20,4 +20,18 @@ B.~F.~B. Huisman and et~al., ``{Accelerated prompt gamma estimation for
 I.~Perali and et~al., ``{Prompt gamma imaging of proton pencil beams at
   clinical dose rate},'' {\em PMB}, 2014.
 
+\bibitem{Smeets2016}
+J.~Smeets and et~al., ``{Exp. Comparison of KES and MPS Collimators for Prompt
+  Gamma Imaging of Proton Pencil Beams},'' {\em RO}, 2016.
+
+\bibitem{Lin2016}
+H.-H. Lin and et~al., ``{A comparison of two prompt gamma imaging techniques
+  with collimator-based cameras for range verification in proton therapy},''
+  {\em RPC}, 2016.
+
+\bibitem{Park2019}
+J.~H. Park and et~al., ``{Comparison of knife-edge and multi-slit camera for
+  proton beam range verification by Monte Carlo simulation},'' {\em NET},
+  vol.~51, 2019.
+
 \end{thebibliography}
