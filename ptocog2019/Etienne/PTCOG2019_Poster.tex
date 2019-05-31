@@ -15,6 +15,7 @@
 \usepackage{soul}
 \usepackage{setspace}
 \usepackage{changepage}
+\usepackage{csquotes}
 
 \newcommand{\mr}[2]{\multirow{#1}{*}{#2}}  
 \newcommand{\mc}[3]{\multicolumn{#1}{#2}{#3}}  
@@ -44,7 +45,7 @@
 \vfill
   
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    
-\begin{block}{Introduction}
+\begin{block}{1. Introduction}
 	\begin{columns}[t]
 		\begin{column}{0.49\textwidth}
 			\centering{\Red{\large{Ion-range verification during hadrontherapy}}}
@@ -72,16 +73,16 @@
 	\begin{column}{0.49\textwidth}
 	  \vspace{-2ex}
 	  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	  \begin{block}{Objectives}
+	  \begin{block}{2. Objectives}
 			\begin{itemize}
-				\item Development an analytical model (AM) of MPS and KES collimations $\Rightarrow$ main intrinsic features of each collimator
+				\item Development of an analytical model (AM) of MPS and KES collimations $\Rightarrow$ main intrinsic features of each collimator
 				\item Verification of the AM by means of Monte Carlo (MC) simulations 
-				\item Comparison the two MPS and KES prototypes developed by IBA and the CLaRyS collaboration, respectively.
+				\item Comparison the MPS and KES prototypes developed by the CLaRyS collaboration \cite{Pinto2014} and IBA \cite{Smeets2012}, respectively.
 			\end{itemize}				    
 	  \end{block}
 		
 	  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	  \begin{block}{The Analytical Model of MPS and KES collimations}
+	  \begin{block}{3. The Analytical Model of MPS and KES collimations}
 			\vspace{-10mm}
 			\begin{columns}[t]
 				\begin{column}{0.5\textwidth}
@@ -110,7 +111,7 @@
 						$T_e$ & $D\times f$           & $T$ \\
 						\midrule
 					\end{tabular}
-					\caption{Detection efficiencies (DE) and spatial resolution (FOW) predicted by the analytical model. $s_e$: effective slit width ; $T_e$: Collimator effective thickness. }
+					\caption{Detection efficiencies (DE) and spatial resolution (Res=FOW) predicted by the analytical model. FOW: Fall-Off Width of the PG profile (see \enquote{Figures of merit}) ; $s_e$: effective slit width ; $T_e$: Collimator effective thickness. }
 					\end{table}
 					
 				\end{column}
@@ -118,7 +119,7 @@
 	  \end{block}
 	  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 		
-	  \begin{block}{Monte Carlo simulations \& PG profile analysis}
+	  \begin{block}{4. Monte Carlo simulations \& PG profile analysis}
 			
 			\begin{itemize}
 				\item Monte Carlo simulations
@@ -134,9 +135,10 @@
 				\begin{itemize}				
 					\item Background (BKG) modeling: 
 					\begin{itemize}
-						\item Estimates of background counts in the detector (mainly due to secondary neutrons) are taken from \cite{Perali2014} (KES, $5 \cdot 10^{-7}$ counts per primary proton per 4~mm bin) and \cite{Pinto2014} (MPS, $2.5\cdot10^{-7}$ counts/incident proton and per 8~mm bin) which are both based on measured data
+						\item Estimates of background counts in the detector (mainly due to secondary neutrons) are taken from \cite{Pinto2014} (MPS, $2.5\times10^{-7}$ counts/incident proton and per 8~mm bin) and \cite{Perali2014} (KES, $5 \times 10^{-7}$ counts per primary proton per 4~mm bin) which are both based on measured data
 					\end{itemize}				
 					\item Fall-Off Position (FOP): position corresponding to the half FO amplitude in the spline-fit to the PG profile
+					\item Fall-Off Width (FOW) : width of the PG profile fall-off, namely the FWHM of the peak resulting from the computation of the PG profile first derivative (see bottom row of Figure~\ref{PGprofiles})
 			\end{itemize}
 
 
@@ -146,7 +148,7 @@
 	  \end{block}		
 		
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-		\begin{block}{Simulated geometries}
+		\begin{block}{5. Simulated geometries}
 		
 					\begin{itemize}
 						\item 2 configurations (Table~\ref{CamerasParameters}):
@@ -154,12 +156,10 @@
 							\item The prototypes as they are published (Figure~\ref{CamerasScheme})
 							\item The prototypes with some alterations for the Analytical Model Verification (AMV)
 						\end{itemize}
-
-					\end{itemize}		
+					\end{itemize}	
+					\vspace{-15mm}
 			\begin{columns}[t]
-
-				
-				\begin{column}{0.49\textwidth}			
+				\begin{column}{0.45\textwidth}			
 			
 					\begin{table}[h]
 						\centering
@@ -168,9 +168,11 @@
 							\hline
 							\multicolumn{2}{|c|}{}& 	AMV  & PC\\
 							\hline
-							\multirow{2}{*}{Absorber}	& MPS & \multirow{2}{*}{LYSO} 							& BGO \\
+							\multirow{2}{*}{Absorber}	& MPS & \multirow{2}{*}{Perfect} 							& BGO \\
 							\cline{2-2}\cline{4-4}
 															& KES & 																& LYSO \\
+							\hline
+							\multicolumn{2}{|l|}{Collimator} & Perfect		&	Real					\\															
 							\hline
 							Energy & MPS & \multirow{2}{*}{$>1$~MeV}			&	$>1$~MeV						\\
 							\cline{2-2}\cline{4-4}
@@ -180,21 +182,21 @@
 							\cline{2-2}\cline{4-4}
 							selection				& KES & & no TOF \\
 							\hline		
-							\multicolumn{2}{|c|}{BKG} & No modeling & Exp. data based   \\
+							\multicolumn{2}{|l|}{BKG} & No modeling & Exp. data based   \\
 							\hline
-							\multicolumn{2}{|c|}{Target} & No & Yes   \\			
+							\multicolumn{2}{|l|}{Target} & No & Yes   \\			
 							\hline
-							\multicolumn{2}{|c|}{Beam} & \multicolumn{2}{|c|}{160 MeV proton}   \\								
+							\multicolumn{2}{|l|}{Beam} & \multicolumn{2}{|c|}{160 MeV proton}   \\								
 							\hline		
 						\end{tabular}
-						\caption{AMV: Analytical Model Verification -- PC: Prototypes Comparison. For AMV, the PG source corresponds to the PG emitted along the beam direction during the PMMA irradiation }
+						\caption{AMV: Analytical Model Verification -- PC: Prototypes Comparison. \enquote{Perfect} collimators and detectors: gamma full absorption. For AMV, the PG source corresponds to the PG emitted along the beam direction during the PMMA irradiation }
 						\label{CamerasParameters}
 						\end{table}
 				\end{column}			
 
 				\begin{column}{0.5\textwidth}
 					\begin{figure}
-						\includegraphics[width=\textwidth]{./figures/detectors_cyl}			
+						\includegraphics[width=\textwidth]{./figures/detectors_cyl}
 						\caption{Prototypes representation}
 						\label{CamerasScheme}
 					\end{figure}					
@@ -210,11 +212,11 @@
 		
 		
 		
-	  \begin{block}{Figures of merit}
+		\begin{block}{6. Figures of merit\label{FOM}}
 			
 			\begin{itemize}
-				\item Detection efficiency: \#detected PG/\#emitted PG in the camera Field of View (FOV)
-				\item Spatial resolution: the width of the PG profile fall-off, namely the FWHM of the peak resulting from the computation of the PG profile first derivative
+				\item Detection efficiency (DE): \#detected PG/\#emitted PG in the camera Field of View
+				\item Spatial resolution (Res) = FOW (Fall-Off Width)
 				\item Fall-off Retrieval Precision (FRP): Standard deviation of the FOP distribution obtained with 50 MC simulation runs.
 			\end{itemize}
 
@@ -225,7 +227,7 @@
        
 	  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 		
-		\begin{block}{Results}
+		\begin{block}{7. Results}
 			{\Red{\large{AMV}}}
 			\begin{table}[h]
 			\centering
@@ -236,8 +238,8 @@
 							& AM 											& MC 									&& AM 										& MC								\\
 				\midrule
 
-				FOW (mm)& 14.5 								& 17.9  	 					&& 13.5 								& 13.8 						\\
-				DE		& $6.66 \cdot 10^{-4}$  & $6.35 \cdot 10^{-4}$	&&	$1.06 \cdot 10^{-3}$   & $7.54 \cdot 10^{-4}$\\
+				FOW (mm)& 14.5 								& 16.9  	 					&& 13.5 								& 13.8 						\\
+				DE		& $6.66 \times 10^{-4}$  & $6.47 \times 10^{-4}$	&&	$1.06 \times 10^{-3}$   & $8.7 \times 10^{-4}$\\
 				\midrule
 			\end{tabular}
 			\end{table}			
@@ -261,7 +263,7 @@
 			
 				\begin{figure}
 					\includegraphics[width=\textwidth]{./figures/output-crop}			
-					\caption{PG profiles: MPS (left), KES (right). See column PC of Table~\ref{CamerasParameters} for the parameters.}
+					\caption{Top: PG profiles obtained with MPS (left) and KES (right). See column PC of Table~\ref{CamerasParameters} for the parameters. Bottom: first derivative of the PG profiles.}
 					\label{PGprofiles}
 				\end{figure}					
 				
@@ -296,27 +298,29 @@
 				$10^7$    				& 2.81 & 17.1 \\
 				\midrule
 			\end{tabular}
-			\caption{Standard deviation of the FOP distribution. See column PC of Table~\ref{CamerasParameters} for the parameters.}
+			\caption{Standard deviations (in mm) of the FOP distributions. See column PC of Table~\ref{CamerasParameters} for the parameters.}
 			\label{FRPCOMP}
 			\end{table}					
 		\end{block}
 
-	\begin{block}{Discussion and conclusion}	
+	\begin{block}{8. Discussion and conclusion}	
 		\begin{itemize}
 			\item Analytical Model (AM)
 			\begin{itemize}
 				\item Good agreement in overall with MC
-				\item Unlike what can be concluded from previous studies \cite{Smeets2016,Lin2016,Park2019}, Striking similarities between MPS and KES performances
+				\item Striking similarities between MPS and KES performances, unlike what can be concluded from previous studies \cite{Smeets2016,Lin2016,Park2019} 
 				\begin{itemize}
 					\item[$\Rightarrow$] Same DE and FOW with perfect collimators	
 					\item[$\Rightarrow$] With real collimators: slightly poorer DE for MPS and FOW for KES 
+					\item Note that the MPS prototype allows for the detection of the whole PG profile: the field of view of the MPS and KES prototypes are of 30~cm and 10~cm, respectively
 				\end{itemize}			
 			\end{itemize}
 
 			\item Prototypes comparison
 			\begin{itemize}
-				\item PG profiles: MPS prototype with larger FO amplitude and lower BKG level thanks to larger energy selection and TOF selection, respectively
-				\item[$\Rightarrow$] Better Fo Retrieval precision with the MPS	prototype	
+				\item PG profiles: MPS prototype with larger fall-off amplitude and lower BKG level thanks to larger energy and TOF selections, respectively
+				\item[$\Rightarrow$] Better Fall-Off Retrieval Precision (FRP) with the MPS	prototype
+				\item Precisions in agreement with the ones published in \cite{Pinto2014} and \cite{Smeets2012}
 			\end{itemize}			
 
 		\end{itemize}
