@@ -139,7 +139,7 @@
 						\item Estimates of background counts in the detector (mainly due to secondary neutrons) are taken from \cite{Pinto2014} (MPS, $2.5\times10^{-7}$ counts/incident proton and per 8~mm bin) and \cite{Perali2014} (KES, $5 \times 10^{-7}$ counts per primary proton per 4~mm bin) which are both based on measured data
 					\end{itemize}				
 					\item Fall-Off Position (FOP): position corresponding to the half FO amplitude in the spline-fit to the PG profile
-					\item Fall-Off Width (FOW) : width of the PG profile fall-off, namely the FWHM of the peak resulting from the computation of the PG profile first derivative (see bottom row of Figure~\ref{PGprofiles})
+					\item Fall-Off Width (FOW) : width of the PG profile fall-off, namely the FWHM of the peak resulting from the computation of the PG profile first derivative (botto row of Figure~\ref{PGprofiles})
 			\end{itemize}
 
 
@@ -290,15 +290,13 @@
 % 			\end{table}			
 			\begin{table}[h]
 			\centering
-			\begin{tabular}{lccccccc}
+			\begin{tabular}{lll}
 				\midrule
-				\# protons & \multicolumn{3}{c}{MPS} && \multicolumn{3}{c}{KES} \\
-				%\cline{2-3}\cline{5-6}
-				& FRP & FOW & DE && FRP & FOW & DE\\
+				\# protons 						& MPS & KES  \\
 				\midrule
-				$10^9$ & $0.32$ & $19.4$ & $1.04\times10^{-3}$ && $0.65$ & $20.1$ & $5.58\times10^{-4}$\\
-				$10^8$ & $1.05$ & $19.4$ & $$ && $1.80$ & $20.1$ & $$\\
-				$10^7$ & $2.81$ & $19.4$ & $$ && $17.1$ & $20.1$ & $$\\
+				$10^9$ & 0.32 & 0.65 \\
+				$10^8$    				& 1.05 & 1.80 \\
+				$10^7$    				& 2.81 & 17.1 \\
 				\midrule
 			\end{tabular}
 			\caption{Standard deviations (in mm) of the FOP distributions. See column PC of Table~\ref{CamerasParameters} for the parameters.}
