@@ -101,14 +101,7 @@ performance for both Multi Parallel Slit (MPS) and Knife Edge Slit (KES) collima
 in performance according to variation in geometrical parameters assuming that the camera absorber allows for a perfect gamma detection (full absorption on absorber entrance surface). The models will
 be evaluated against Monte-Carlo simulations in next sections. 
 
-The figure~\ref{fig:CamerasParameters} first defines several generic geometrical
-parameters, namely: $d_1$ the source to MPS-collimator distance, $d_2$ the
-MPS-collimator to crystal distance, $D$ the MPS-collimator depth, $d_1^{'}$ the
-source to KES-collimator center distance, $d_2^{'}$ the KES-collimator center to
-crystal distance, $L_{MPS}=d_1+D+d_2$ or $L_{KES}=d_1^{'} + d_2^{'}$ the total
-source-crystal distance, $H$ the camera height, $p$ the MPS collimator pitch, $f$
-the fill factor (ratio between septa width and the pitch), $s$ the slit width
-and $\alpha$ the KES-collimator angle. \answ{I would replace this paragraph by the following table} 
+Figure~\ref{fig:CamerasParameters} and Table~\ref{table:CamerasParameters} first defines several generic geometrical parameters.
 
 \begin{figure}[htbp]
     \centering
@@ -116,8 +109,6 @@ and $\alpha$ the KES-collimator angle. \answ{I would replace this paragraph by t
     \caption{Schemes of MPS and KES cameras. }
     \label{fig:CamerasParameters}
 \end{figure}    
-\todo{Etienne: todo => make an original figure,Change notation d1 MPS is not d1 KES. Use d1, d2, D MPS and d3 d4 for KES}
-\answ{I tried a compromise with the ' notation to reflect the fact that these parameters play the same role in the cameras features.}
 
 \begin{table}[h]
 \centering
@@ -134,7 +125,7 @@ and $\alpha$ the KES-collimator angle. \answ{I would replace this paragraph by t
 	Slit width										& \multicolumn{2}{c}{s} \\
 	\midrule
 \end{tabular}
-\caption{Geometrical parameters of the MPS and KES cameras.}
+\caption{Geometrical parameters of the MPS and KES cameras. One can also define the fill factor $f$ of the MPS collimator: $(p-s)/p$ (ratio between septa width and the pitch).}
 \label{table:CamerasParameters}
 \end{table}
 
@@ -286,7 +277,7 @@ Estimate the MPS and KES performances in Smeets 2016 and Lin 2017: the KES/MPS d
   \end{itemize}     
 \end{itemize}
 
-\subsubsection{Simulation tool}
+\subsubsection{Simulation tool}\label{sec:SimTool}
 
 Imaging paradigms such as PG detection are evaluated against experiments, and often also with Monte Carlo (MC) simulations~\citep{Moteabbed2011,Gueth2013,Robert2013,Golnik2014a,Janssen2014}. For rarely occurring processes such as PG simulation, convergence to the model of the truth to within acceptable statistical error can be slow. This paper presents an \emph{in silico} study of the feasibility of the clinical relevance of PG FOP estimation using collimated cameras, and uses the vpgTLE variance reduction method described in \cite{Huisman2016}. vpgTLE is a two stage process, where firstly a PG yield distribution image is estimated, which in the second stage is used as a PG source with which  can be investigated. Gate 7.2~\citep{Sarrut2014} with Geant 4.10.02 and the QGSP\_BIC\_HP\_EMY physics list, commonly used for PG studies, are used in this analysis. Thanks to vpgTLE, simulations for about $10^9$ protons (about $6\times10^8$ photons) took 1-2 hours on a single core of an Intel(R) Core(TM) i7-3740QM.
 
@@ -296,9 +287,9 @@ Imaging paradigms such as PG detection are evaluated against experiments, and of
 Two PG detectors tailored to FOP verification (illustrated in fig.~\ref{fig:detectors}) were chosen:
 \begin{itemize}[noitemsep]
 \item the CLaRyS multi-parallel-slit (MPS) camera, Case 1 \citep{Pinto2014a}
-\item[] This camera intends to measure the whole PG profile to control ion-ranges in the patient with a field of view (FoV) of 300 mm. It consists of a bismuth germanium oxide (BGO) absorber \answ{Check the material used in \enquote{Prototypes comparison}. Did you use BGO for MPS?}and a tungsten alloy collimator. It makes use of ToF selection to reduce the neutron background. In the optimization carried out by \cite{Pinto2014a}, parameters such as collimator pitch, axis-to-collimator and axis-to-detector were varied, and their impacts evaluated in terms of fall-off retrieval precision (FRP) and spatial resolution (sharpness of the fall-off region). Here, configuration 1 (with relaxed constraints on spatial resolution) was chosen for its optimal FRP performance. As was done by \cite{Pinto2014a}, the camera lengths (collimator and scintillator volume) are chosen \emph{up to} 300 mm, such that the length is an integer multiple of the pitch size, with for the collimator a collimator-leaf-width extra, to ensure each pixel has a leaf on both sides. With the 8 mm pitch and 2.6 mm collimator-leafs, this results in a scintillator volume of length 296 mm and collimator length 298.6 mm.
+\item[] This camera intends to measure the whole PG profile to control ion-ranges in the patient with a field of view (FoV) of 300 mm. It consists of a bismuth germanium oxide (BGO) absorber and a tungsten alloy collimator. It makes use of ToF selection to reduce the neutron background. In the optimization carried out by \cite{Pinto2014a}, parameters such as collimator pitch, axis-to-collimator and axis-to-detector were varied, and their impacts evaluated in terms of fall-off retrieval precision (FRP) and spatial resolution (sharpness of the fall-off region). Here, configuration 1 (with relaxed constraints on spatial resolution) was chosen for its optimal FRP performance. As was done by \cite{Pinto2014a}, the camera lengths (collimator and scintillator volume) are chosen \emph{up to} 300 mm, such that the length is an integer multiple of the pitch size, with for the collimator a collimator-leaf-width extra, to ensure each pixel has a leaf on both sides. With the 8 mm pitch and 2.6 mm collimator-leafs, this results in a scintillator volume of length 296 mm and collimator length 298.6 mm.
 \item the IBA knife-edge slit (KES) camera \citep{Perali2014,Sterpin2015}
-\item[] The purpose of this camera consists of verifying the BP position with a FoV of 100 mm.\answ{I am surprised by the height of the MPS and KES camera given in fig.~\ref{fig:detectors}: 100 and 120~mm, respectively. The prototype heights are actually of 200~mm. We can keep these heights but we should take it into account in the AM.} It consists of a Cerium doped Lutetium based (LYSO) absorber and a tungsten alloy collimator.\cite{Richter2016} provides the first clinically obtained results. At this time, no other camera has been subjected to clinical tests, which is why we consider this prototype a benchmark.
+\item[] The purpose of this camera consists of verifying the BP position with a FoV of 100 mm. It consists of a Cerium doped Lutetium based (LYSO) absorber and a tungsten alloy collimator.\cite{Richter2016} provides the first clinically obtained results. At this time, no other camera has been subjected to clinical tests, which is why we consider this prototype a benchmark.
 \end{itemize}
 
 \begin{figure}[htp]
@@ -335,20 +326,22 @@ We use the test-case presented in \cite{Perali2014} as the KES detector properti
 
 % Since we are using a simulation for the validation of the theoretical expressions in table~\ref{GeomFormulas}, for the fairest comparison possible, we can equalize certain aspects which might cause one camera or the other to give favorable impression. In principle this comparison is not about absorption materials, acquisition electronics or PG selections, but PG collimator characteristics. So, for the validation of the expressions in table~\ref{GeomFormulas} and comparison on LCE, SR and FRP we set the absorber material of the MPS to that of the KES: LYSO. The energy and ToF selection windows are kept identical for both cameras, and are varied in order to study their impact on the figures of merit.
 
-In the case of simulation for analytical model verifications, we use identical absorbers for both prototypes, namely the absorber of the KES prototype and we apply the same energy and TOF selection: the same energy selection ($E> 1$~MeV) and the same TOF selection (no TOF selection). Since AMV deals with gamma detection, no background modeling is applied in this AMV-specific setup. \todo{Question to Etienne: we discussed that for detection yield, we would not use the background. Then we should here explain clearly for which fig. of merit we use which background, and why. Agreed?}\answ{You are right, I removed the background modeling in this AMV study.}
+In the case of simulation for analytical model verifications, we use identical absorbers for both prototypes, namely the absorber of the KES prototype and we apply the same energy and TOF selection: the same energy selection ($E> 1$~MeV) and the same TOF selection (no TOF selection). Since AMV deals with gamma detection, no background modeling is applied in this AMV-specific setup. \todo{To be modified according to Table~\ref{table:CameraParameters} which is up to date.}
 
-Table~\ref{table:CameraParameters}\answ{Check the material used in \enquote{Prototypes comparison}. Did you use BGO for MPS?}{} gives an overview of the main cameras parameters used for AMV and prototypes comparison.
+Table~\ref{table:CameraParameters} gives an overview of the main cameras parameters used for AMV and prototypes comparison.
 
 \begin{table}[h]
 \centering
 \begin{tabular}{|l|l|l|l|}
 	\hline
-	\multicolumn{2}{|c|}{}& 	Analytical model verification & Prototypes comparison\\
+	\multicolumn{2}{|c|}{}& 	Analytical model verification (AMV) & Prototypes comparison (PC)\\
 	\hline
-	\multirow{2}{*}{Absorber}	& MPS & \multirow{2}{*}{LYSO} 							& BGO \\
+	\multirow{2}{*}{Absorber}	& MPS & \multirow{2}{*}{Perfect or like PC } 							& BGO \\
 	\cline{2-2}\cline{4-4}
 									& KES & 																& LYSO \\
 	\hline
+		\multicolumn{2}{|l|}{Collimator} & Perfect or like PC					& Tungsten alloy \\	
+	\hline	
 	Energy & MPS & \multirow{2}{*}{>1 MeV}			&		>1 MeV						\\
 	\cline{2-2}\cline{4-4}
 	selection				& KES & & 3--6 MeV \\
@@ -359,8 +352,12 @@ Table~\ref{table:CameraParameters}\answ{Check the material used in \enquote{Prot
 	\hline		
 	\multicolumn{2}{|c|}{Background modeling} & No modeling & Experimental data based modeling  \\
 	\hline		
+	\multicolumn{2}{|l|}{Target} & No &  Cylindrical PMMA phantom    \\			
+	\hline
+	\multicolumn{2}{|l|}{Beam} & \multicolumn{2}{|c|}{160 MeV proton}   \\								
+	\hline			
 \end{tabular}
-\caption{Summary of the main cameras parameters used for AMV and prototypes comparison.}
+\caption{Summary of the main cameras parameters used for AMV and prototypes comparison. In the case of AMV, the gamma source corresponds to the PGs emmited during the PMMA phantom irradiation with 160 MeV proton beam (first stage of the simulation tool, see section~\ref{sec:SimTool}). However the target has been removed in the second stage of the simulation tool (PG detection) to avoid any attenuation and allow for a direct comparison of the detection efficiency with the AM predictions. }
 \label{table:CameraParameters}
 \end{table}
 
@@ -403,13 +400,12 @@ The comparison of the analytical model with Monte Carlo simulations will perform
 
 \paragraph{Detection efficiency}
 
-We can compare the detection efficiency of camera unit with two MC estimates:
-\begin{itemize}
-	\item the detection efficiency of a camera unit defined as the ratio of the mean number of detected gammas over the number of emitted gammas for camera units seeing the PG profile,
-	\item the PG falloff contrast (FOC), which we define as the difference between peak and background, normalized by the number of primaries and per millimeter (since the two cameras have differing bin sizes).
-\end{itemize}
-The two quantities are strongly correlated. The former directly corresponds to the definition of the anaytical detection efficiency $DE_{cu}$ the latter accouts for the partial collimator transparency and it is the camera endpoint in the context of ion-range verification.
-\todo{we must mention which background we use here.}
+The detection efficiency can be defined as the ratio of the mean number of detected gammas over the number of emitted gammas for camera units seeing the PG profile.
+% \begin{itemize}
+% 	\item the detection efficiency of a camera unit defined as the ratio of the mean number of detected gammas over the number of emitted gammas for camera units seeing the PG profile,
+% 	\item the PG falloff contrast (FOC), which we define as the difference between peak and background, normalized by the number of primaries and per millimeter (since the two cameras have differing bin sizes).
+% \end{itemize}
+% The two quantities are strongly correlated. The former directly corresponds to the definition of the anaytical detection efficiency $DE_{cu}$ the latter accouts for the partial collimator transparency and it is the camera endpoint in the context of ion-range verification.
 
 \paragraph{Spatial resolution}
 
@@ -428,16 +424,16 @@ Table~\ref{table:FOM} presents the figures of merit used for the analytical mode
 
 \begin{table}[h]
 \centering
-\begin{tabular}{|l|l|c|c|}
+\begin{tabular}{|l|l|c|}
 	\hline
-												& Analytical 		& \multicolumn{2}{c|}{ MC}\\
+												& Analytical 		& MC\\
 	\hline
-	Detection efficiency	& Eff						& Eff$_\text{MC}$ 	& FOC \\
+	Detection efficiency	& Eff						& Eff$_\text{MC}$ \\
 	\hline
-	Spatial resolution 		& Res						& \multicolumn{2}{c|}{FOW}\\
+	Spatial resolution 		& Res						& FOW\\
 	\hline	
 \end{tabular}
-\caption{Figures of merit for the analytical model verification. Eff$_\text{MC}$ refers to the \emph{signal} (PG) detection efficiency. FOC: Fall-off contrast. FOW: Fall-off width.}
+\caption{Figures of merit for the analytical model verification. FOW: Fall-off width.}
 \label{table:FOM}
 \end{table}
 
@@ -445,20 +441,22 @@ Table~\ref{table:FOM} presents the figures of merit used for the analytical mode
 
 \subsection{Analytical Model Verification}
 
-Figures~\ref{PGprofileFairComp}: PG profiles obtained with MPS and KES with the same absorber, the same energy E>1~MeV and no TOF selection.\answ{Figure to be updated. Current figure with a wrong energy selection.}
+Figures~\ref{PGprofileFairComp}: PG profiles obtained with MPS and KES with perfect absorber, the same energy E>1~MeV and no TOF selection.\answ{update of the figure with the parameters defined in Table~\ref{table:CameraParameters} (column AMV with perfect collimator and absorber) and the same layout as Figure~\ref{fig:PGprofileProtoComp}.}
 
 \begin{figure}[!htp]
   \centering
   \subfloat[MPS]{\label{SmeetsComparison}\includegraphics[width=.45\textwidth]{MPS_3-6MeV_noTOF}}\quad
   \subfloat[KES]{\label{LinComparison}\includegraphics[width=.45\textwidth]{KES_3-6MeV_noTOF}}
-  \caption{\label{PGprofileFairComp} MPS and KES comparisons with the same absorber and the same energy (3-6~MeV) and TOF selection (no TOF selection). \textcolor{red}{Sum the statistics of the various 1e9 PG profiles to get the smoothest profiles (we are interested in PG profile shapes). This will allow us to better estimate the falloff features, namely amplitude and width. Put the 2 PG profiles on a single figure?}}
+  \caption{\label{PGprofileFairComp} MPS and KES comparisons with perfect absorber and the same energy (E>1 MeV) and no TOF selection.}
 \end{figure}  
 
 Table~\ref{tab:AMV} compares the detection efficiency and the spatial resolution obtained from the analytical model and Monte Carlo simulations.
 
 % The FOW shown in table~\ref{FOWCOMP} shows that both cameras perform similar with ToF selection. For the MPS the ToF selection makes no difference (up to 2\%), while for the KES it gives a 10-20\% improvement. The results are a bit worse than the calculated values in table~\ref{GeomFormulas}, but close to the 20 mm as postulated in \cite{Priegnitz2015}.
 
-When we make the collimator perfectly absorbing (we kill any tracks entering the material), we can see the KES's effective slit width in action: the transmission through the collimator creating a wider $s_e$ is gone and we see the FOW decrease between 40 and 100\%.\answ{It is not what the data presented in Table~\ref{tab:AMV} show} This is roughly in line with the calculated $s_e$: \textcolor{red}{ETIENNE?} Surprisingly the FOW of the KES approaches the theoretical value nearly, while the MPS is still a few millimeters worse than calculated.
+When we make the collimator perfectly absorbing (we kill any tracks entering the material), we can see the KES's effective slit width in action: the transmission through the collimator creating a wider $s_e$ is gone and we see the FOW decrease between 40 and 100\%. This is roughly in line with the calculated $s_e$: \textcolor{red}{ETIENNE?} Surprisingly the FOW of the KES approaches the theoretical value nearly, while the MPS is still a few millimeters worse than calculated. 
+
+\answ{Table~\ref{tab:AMV} 1) We have in principle 4 combinations with real/perfect collimator and real/perfect absorber. I propose to use only two configuration for each measurement (Res and Eff). Res: real/perfect collimator with perfect absorber to see the influence of collimator transparency on Res. Eff: real/perfect absorber with perfect collimator to see the influence of the absorber intrinsic efficiency on the camera efficiency. 2) The discrepancy between the KES efficiencies obtained with AM and MC ($1.06 \cdot 10^{-3}$  vs $7.54\cdot10^{-4}$) has still to be understood.}
 
 
 % \begin{table}
@@ -487,7 +485,7 @@ When we make the collimator perfectly absorbing (we kill any tracks entering the
 	\cline{3-8}
 	\multicolumn{2}{c}{}& AM 											& MC 									& AM 										& MC								& AM 										& MC\\
 	\midrule
- 	Res	& Real detector		& 												& 19.9 mm 	 					&  								& 21.5 mm						&&\\
+	Res	& Real detector		& 												& 19.9 mm 	 					&  								& 21.5 mm						&&\\
 			& Perfect detector	& 14.5 mm								& 16.9 / 23.1 mm 	 					& 13.5 mm								& 12.0 mm						&&\\
 	Eff & Real detector		&  $6.66 \cdot 10^{-4}$ 	& $6.35\cdot10^{-4}$	&	$1.06 \cdot 10^{-3}$  & $7.54\cdot10^{-4}$& 1.59	& 1.19	\\
 	    & Perfect detector	&   	& $6.47\cdot10^{-4}$	&	  & $8.70\cdot10^{-4}$& 	& 1.35	\\
@@ -496,8 +494,7 @@ When we make the collimator perfectly absorbing (we kill any tracks entering the
 \caption{MPS and KES detection efficiencies and spatial resolution from analytical models and MC. The predictions of the analytical model (AM column) are derived from the equations of table~\ref{table:AMformulas}, at the center of the camera in the case of KES ($x=0$). MC data have been obtained with energy selection E>1~MeV. For the Perfect Detector simulation, the collimator was adjusted to be 100\% opaque, and detection with perfect precision and 100\% efficiency.}
 \label{tab:AMV}
 \end{table}
-\answ{I am surprised by the KES spatial resolution obtained by MC. I would have expected a much large resolution due to the collimator transparency.}
-\answ{Update the MC efficiency with the energy selection E>1~MeV. There is something weird: the spatial resolution obtained with MC increases when the collimator becomes perfect. I comment in the latex file the table with the spatial resolution obtained with MC with several TOF and energy selections.}
+
 
 % \begin{figure}[htp]
 %   \includegraphics[width=\textwidth]{FairComparison}
@@ -510,13 +507,13 @@ Performance under clinical conditions is the eventual purpose of these PG camera
 
 \subsubsection{PG profiles}
 
-Figure~\ref{PGprofileProtoComp}.
+Figure~\ref{fig:PGprofileProtoComp}.
 
 \begin{figure}[!htp]
   \centering
-  \subfloat[MPS]{\label{SmeetsComparison}\includegraphics[width=.45\textwidth]{MPS_1-8MeV_TOF}}\quad
-  \subfloat[KES]{\label{LinComparison}\includegraphics[width=.45\textwidth]{KES_3-6MeV_noTOF}}
-  \caption{\label{PGprofileProtoComp} MPS and KES prototypes comparisons. MPS BGO aborber with 1-8 MeV energy selection and TOF selection. KES: LYSO absorber with 3-6 MeV and no TOF selection). \textcolor{red}{Sum the statistics of the various 1e9 PG profiles to get the smoothest profiles (we are interested in PG profile shapes). This will allow us to better estimate the falloff features, namely amplitude and width. Put the 2 PG profiles on a single figure?}}
+  \subfloat[MPS]{\label{SmeetsComparison}\includegraphics[width=.45\textwidth]{PMMA_phantom-ipnl-auger-tof-1-FOW}}\quad
+  \subfloat[KES]{\label{LinComparison}\includegraphics[width=.45\textwidth]{PMMA_phantom-iba-auger-notof-3-FOW}}
+  \caption{\label{fig:PGprofileProtoComp} MPS and KES prototypes comparisons. MPS BGO aborber with 1-8 MeV energy selection and TOF selection. KES: LYSO absorber with 3-6 MeV and no TOF selection).}
 \end{figure}  
 
 KES/MPS ratio $\sim 400/350 \sim 0.9$. We can see the impact of the energy selection of the KES prototype (3-6~MeV) that drastically reduces the camera efficiency.
@@ -541,8 +538,9 @@ KES/MPS ratio $\sim 400/350 \sim 0.9$. We can see the impact of the energy selec
 
 Figure showing the falloff retrieval precision (FRP) (standard deviation of the falloff position distributions) for the 2 prototypes as a function of the number of incident protons ($10^7$, $10^8$, $10^9$).
 
-\textcolor{red}{We do not have this figure yet. The figure in the spot grouping paper shows the mean and standard deviations on the falloff position differences for the 3 spots considered. }\answ{The spot grouping paper results have been obtained with a voxellized geometry. In the present paper we use a homogeneous target (see M\&M section)}
+\answ{Since the FRP of KES increases a lot for $10^7$ protons, we should probably show the distributions of falloff positions for the 2 prototypes as proposed. }
 
+\answ{Table~\ref{FRPCOMP}:  1) For the sake of simplicity, I would use the AMV configuration with perfect collimator and absorber for the first set of data (currently \enquote{LYSO and no bg}). 2) This table is a bit crowded. I would try to plot these data on 2 figures: FRP as a function of the number of incident protons for the various sets of parameters. One figure for the AMV configuration and another one for the prototype comparison.}
 
 \begin{table}[h]
 \centering
@@ -552,9 +550,9 @@ Figure showing the falloff retrieval precision (FRP) (standard deviation of the 
 	          & Energy selection 				& 1   &     & 3   &     & 1   &     & 3   &     \\
 	          & Camera 							& MPS & KES & MPS & KES & MPS & KES & MPS & KES \\
 	\midrule
- 	$10^9$    & both LYSO absorber, no bg        & update this row & 0.44 & 0.49 & 0.52 & 0.42 & 0.40 & 0.45 & 0.55 \\
- 	$10^8$    & both LYSO absorber, no bg        & update this row & 1.22 & 1.70 & 1.74 & 1.24 & 1.29 & 1.63 & 1.48 \\
- 	$10^7$    & both LYSO absorber, no bg        & update this row & 4.03 & 5.88 & 5.65 & 3.76 & 4.89 & 5.65 & 10.76 \\
+ 	$10^9$    & LYSO and no bg        & ? & 0.44 & 0.49 & 0.52 & 0.42 & 0.40 & 0.45 & 0.55 \\
+ 	$10^8$    & LYSO and no bg        & ? & 1.22 & 1.70 & 1.74 & 1.24 & 1.29 & 1.63 & 1.48 \\
+ 	$10^7$    & LYSO and no bg        & ? & 4.03 & 5.88 & 5.65 & 3.76 & 4.89 & 5.65 & 10.76 \\
 	\midrule
  	$10^9$    & detectors as proposed     & \textbf{0.32} & 0.56 & 0.36 & 0.57 & 0.31 & 0.60 & 0.46 & \textbf{0.65} \\
  	$10^8$    & detectors as proposed     & \textbf{1.05} & 1.69 & 1.30 & 1.96 & 1.04 & 1.93 & 1.34 & \textbf{1.80} \\
@@ -564,11 +562,12 @@ Figure showing the falloff retrieval precision (FRP) (standard deviation of the 
 \caption{Fall-off retrieval precision (defined as the standard deviation of the FOP over the number of times the simulation is ran. In bold, the cuts and ToF selections as proposed.}
 \label{FRPCOMP}
 \end{table}
-\answ{What is the number of incident protons? For the same selections, we expect that KES has a better FRP than MPS thanks to its detection efficiency. It is far from being the case. That should come from a larger background level in KES (about twice the one of MPS in the background modeling). However this difference of FRP is quite surprising.}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Discussion}
 
 Mention the limitations of the KES: detection efficiency not constant over the FOV.
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
