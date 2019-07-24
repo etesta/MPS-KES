@@ -445,16 +445,16 @@ Figures~\ref{PGprofileFairComp}: PG profiles obtained with MPS and KES with perf
 
 \begin{figure}[!htp]
   \centering
-  \subfloat[MPS]{\label{SmeetsComparison}\includegraphics[width=.45\textwidth]{MPS_3-6MeV_noTOF}}\quad
-  \subfloat[KES]{\label{LinComparison}\includegraphics[width=.45\textwidth]{KES_3-6MeV_noTOF}}
+  \subfloat[MPS]{\label{SmeetsComparison}\includegraphics[width=.45\textwidth]{amv_mps_fow}}\quad
+  \subfloat[KES]{\label{LinComparison}\includegraphics[width=.45\textwidth]{amv_kes_fow}}
   \caption{\label{PGprofileFairComp} MPS and KES comparisons with perfect absorber and the same energy (E>1 MeV) and no TOF selection.}
 \end{figure}  
 
-Table~\ref{tab:AMV} compares the detection efficiency and the spatial resolution obtained from the analytical model and Monte Carlo simulations.
+Table~\ref{tab:AMV} compares the detection efficiency and the spatial resolution obtained from the analytical model and Monte Carlo simulations. Since the model does not explicitly deal with collimator transparency or absorber efficiency, we compare the AM to a Monte Carlo simulation with perfect absorber and collimator. Because such conditions are unphysical, results with a physical collimator and physical absorber are shown for the spatial resolution and detection efficiency respectively.
 
 % The FOW shown in table~\ref{FOWCOMP} shows that both cameras perform similar with ToF selection. For the MPS the ToF selection makes no difference (up to 2\%), while for the KES it gives a 10-20\% improvement. The results are a bit worse than the calculated values in table~\ref{GeomFormulas}, but close to the 20 mm as postulated in \cite{Priegnitz2015}.
 
-When we make the collimator perfectly absorbing (we kill any tracks entering the material), we can see the KES's effective slit width in action: the transmission through the collimator creating a wider $s_e$ is gone and we see the FOW decrease between 40 and 100\%. This is roughly in line with the calculated $s_e$: \textcolor{red}{ETIENNE?} Surprisingly the FOW of the KES approaches the theoretical value nearly, while the MPS is still a few millimeters worse than calculated. 
+When we make the collimator perfectly absorbing (any tracks entering the collimator material are killed), we observe the KES's effective slit width in action: the transmission through the collimator creating a wider $s_e$ is gone and we see the FOW decrease between 40 and 100\%. This is roughly in line with the calculated $s_e$: \textcolor{red}{ETIENNE?} Surprisingly the FOW of the KES approaches the theoretical value nearly, while the MPS is still a few millimeters worse than calculated. 
 
 \answ{Table~\ref{tab:AMV} 1) We have in principle 4 combinations with real/perfect collimator and real/perfect absorber. I propose to use only two configuration for each measurement (Res and Eff). Res: real/perfect collimator with perfect absorber to see the influence of collimator transparency on Res. Eff: real/perfect absorber with perfect collimator to see the influence of the absorber intrinsic efficiency on the camera efficiency. 2) The discrepancy between the KES efficiencies obtained with AM and MC ($1.06 \cdot 10^{-3}$  vs $7.54\cdot10^{-4}$) has still to be understood.}
 
@@ -485,13 +485,13 @@ When we make the collimator perfectly absorbing (we kill any tracks entering the
 	\cline{3-8}
 	\multicolumn{2}{c}{}& AM 											& MC 									& AM 										& MC								& AM 										& MC\\
 	\midrule
-	Res	& Physical detector		& 												& 19.9 mm 	 					&  								& 21.5 mm						&&\\
-			& Perfect detector	& 14.5 mm								& 16.9 / 23.1 mm 	 					& 13.5 mm								& 12.0 mm						&&\\
-	Eff & Physical detector		&  $6.66 \cdot 10^{-4}$ 	& $6.35\cdot10^{-4}$	&	$1.06 \cdot 10^{-3}$  & $7.54\cdot10^{-4}$& 1.59	& 1.19	\\
-	    & Perfect detector	&   	& $6.47\cdot10^{-4}$	&	  & $8.70\cdot10^{-4}$& 	& 1.35	\\
+	Res	& Physical collimator		& 												& 17.2 mm 	 					&  								& 19.3 mm						&&\\
+			& Perfect detector	& 14.5 mm								& 22.5 mm 	 					& 13.5 mm								& 12.0 mm						&&\\
+	Eff & Physical absorber		&  	& $3.40\cdot10^{-4}$	&	 & $3.48\cdot10^{-4}$& 	& 1.02	\\
+	    & Perfect detector	&  $6.66 \cdot 10^{-4}$  	& $6.49\cdot10^{-4}$	&	$1.06 \cdot 10^{-3}$   & $9.74\cdot10^{-4}$& 1.59	& 1.50	\\
  	\midrule
 \end{tabular}
-\caption{MPS and KES detection efficiencies and spatial resolution from analytical models and MC. The predictions of the analytical model (AM column) are derived from the equations of table~\ref{table:AMformulas}, at the center of the camera in the case of KES ($x=0$). MC data have been obtained with energy selection E>1~MeV. For the Perfect Detector simulation, the collimator was adjusted to be 100\% opaque, and detection with perfect precision and 100\% efficiency.}
+\caption{MPS and KES detection efficiencies ("Eff") and spatial resolution ("Res") from analytical models and MC. The predictions of the analytical model (AM column) are derived from the equations of table~\ref{table:AMformulas}, at the center of the camera in the case of KES ($x=0$). MC data have been obtained with energy selection E>1~MeV. For the Perfect Detector simulation, the collimator was adjusted to be 100\% opaque, and detection with perfect precision and 100\% efficiency.}
 \label{tab:AMV}
 \end{table}
 
