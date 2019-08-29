@@ -106,9 +106,7 @@ Therefore, the first objective of this article is to present an analytical model
 
 %Camera performance is mainly characterized by a compromise between spatial resolution and detection efficiency. During camera design, modifications of some geometrical parameters, such as collimator-crystal distance, collimator pitch or depth\dots, often lead to improvement of one of this criteria and deterioration of the other. 
 
-In order to compare performance of different camera types and configurations, we derive an analytical model that predict camera performances. Such models allow to estimate variation in performance according to variation in geometrical parameters assuming perfect gamma detection in the absorber (full gamma absorption on the absorber entrance surface).
-
-Figure~\ref{fig:CamerasParameters} presents the schemes of the MPS and KES cameras gathering the geometrical parameters defined in Table~\ref{table:CamerasParameters}.
+In order to compare performance of different camera types and configurations, we derive an analytical model that predict camera performances. Such models allow to estimate variation in performance according to variation in geometrical parameters assuming perfect gamma detection in the absorber (full gamma absorption on the absorber entrance surface). Figure~\ref{fig:CamerasParameters} presents the schemes of the MPS and KES cameras gathering the geometrical parameters defined in Table~\ref{table:CamerasParameters}.
 
 \begin{figure}[htbp]
     \centering
@@ -123,14 +121,14 @@ Figure~\ref{fig:CamerasParameters} presents the schemes of the MPS and KES camer
 	\midrule
 																& MPS               & KES \\
 	\midrule
-	Source-collimator distance		& $d_1$             & $d_1^{'}$ \\
- 	Collimator-absorber distance	& $d_2$             & $d_2^{'}$ \\
-	Source-absorber distance			& $L=d_1+D+d_2$			& $L=d_1^{'}+d_2^{'}$\\
+	Source-collimator distance		& $d_1$             & $d_1'$ \\
+ 	Collimator-absorber distance	& $d_2$             & $d_2'$ \\
+	Source-absorber distance			& $L=d_1+D+d_2$			& $L=d_1'+d_2'$\\
  	Collimator thickness 					& $D$               & $T$ \\
-	Camera pitch									& $p$								& $p^{'}$\\
+	Camera pitch									& $p$								& $p'$\\
 	Knife-edge slit angle					& $\varnothing$			& $\alpha$\\	
-	\cline{2-3}
-	Slit width										& \multicolumn{2}{c}{s} \\
+	%\cline{2-3}
+	Slit width										& s & s \\ %\multicolumn{2}{c}{s} \\
 	\midrule
 \end{tabular}
 \caption{Geometrical parameters of the MPS and KES cameras. One can also define the fill factor $f$ of the MPS collimator: $f=(p-s)/p$ (ratio between the septa width and the pitch). It is worth to note that the source-collimator distance and the collimator-absorber distance are not defined exactly in the same way in the two collimator designs.}
@@ -141,12 +139,12 @@ Figure~\ref{fig:CamerasParameters} presents the schemes of the MPS and KES camer
 
 \subsubsection{Spatial resolution}
 
-\newcommand\FOV{\textrm{Res}\,}
+\newcommand\FOV{\textrm{Res}}
 \newcommand\MPS{\textrm{MPS}}
 \newcommand\KES{\textrm{KES}}
 %\newcommand\du{\textrm{du}}
 \newcommand\du{}
-\newcommand\DE{\textrm{Eff}\,}
+\newcommand\DE{\textrm{Eff}}
 
 From a geometrical point of view, the spatial resolution, denoted $\FOV_{\du}$, is characterized by the \textit{detector unit field of view}. This is the portion of
 the source that can be seen through a single camera unit: a single slit for the MPS and a single detector unit for the KES. The probability of a photon emitted at a
@@ -158,7 +156,7 @@ as the FWHM of this trapezoid, see eq~\ref{eq:fov_mps} and \ref{eq:fov_kes}.
   \label{eq:fov_mps}
   \FOV_{\du}^{\MPS} & = & s\left(1+ \frac{d_1}{D}\right) = p(1-f) \frac{D+d_1}{D} \\
   \label{eq:fov_kes}
-   \FOV_{\du}^{\KES} & = & s\left(1+ \frac{d_1^{'}}{d_2^{'}}\right) = \frac{sL}{d_2^{'}}
+   \FOV_{\du}^{\KES} & = & s\left(1+ \frac{d_1'}{d_2'}\right) = \frac{sL}{d_2'}
 \end{eqnarray}
 
 If collimator transparency is neglected, $\FOV_{\du}$ is fully defined by geometrical parameters, in particular the slit width $s$. However, prompt gamma have high penetration capability that can not be neglected in the case of KES where the collimator depth is very small in the region of the knife edge around the slit. Indeed, we define the \textit{Effective Slit Opening} $s_e$ that can be used in the evaluation of the field of view and the efficiency in place of the geometrical slit width. \cite{Metzler2005}
@@ -172,7 +170,7 @@ length of the collimator material.
 
 \begin{eqnarray}
   s_e & = & s + \frac{\ln2}{\mu\tan\alpha}   \label{eq:se} \\
-   \FOV_{\du}^{\KES} & = & s_e\left(1+ \frac{d_1^{'}}{d_2^{'}}\right) = \frac{s_eL}{d_2^{'}}          
+   \FOV_{\du}^{\KES} & = & s_e\left(1+ \frac{d_1'}{d_2'}\right) = \frac{s_eL}{d_2'}          
   \label{eq:fov_kes_se}
 \end{eqnarray}
 
@@ -180,10 +178,10 @@ Hence, eq.~\ref{eq:fov_mps} and eq.~\ref{eq:fov_kes_se} represent the spatial re
 
 \subsubsection{Detection efficiency}
 
-The probability that a gamma reaches a given detector unit is described by the solid angle $\Omega\,_D$ of the detector unit in respect to the gamma emission point. 
+The probability that a gamma reaches a given detector unit is described by the solid angle $\Omega_D$ of the detector unit in respect to the gamma emission point.
 
 For MPS, the solid angle is composed of the azimuthal angle and the polar angle. With small angle approximation, it is described by
-eq.~\ref{eq:solid_angle_mps}. Note that this is true only when $\Omega\,_D$ is
+eq.~\ref{eq:solid_angle_mps}. Note that this is true only when $\Omega_D$ is
 limited by the slit width, i.e. the absorber size and the distances (e.g. $L$ and $D$) are such that
 all photons that cross the collimator impinge on detector material. 
 
@@ -191,18 +189,18 @@ For KES, the solid angle under which a point of the source sees a detector unit 
 consider the solid angle for a point of the source that is within the central
 part of the field of view of the crystal at location $x$ on the detector plane
 (the origin of the detector plane facing the center of the slit). Under small
-angle approximation, the solid angle is given by eq.~\ref{eq:solid_angle_kes}.
+angle approximation, the solid angle is given by eq.~\ref{eq:solid_angle_kes}. \ds{it is a kind of upper bound on the DetEff, right ? }
 
 \begin{align}  
-  \Omega\,_D^{\MPS} & = \frac{H}{L} \frac{s}{D+d_1} \label{eq:solid_angle_mps} \\
-	\Omega\,_D^{\KES} & = \frac{H L p'}{\Lambda^3(x)} =  \frac{H p'}{L^2 \left( 1+\frac{x^2}{d_2^{'2}} \right)^{3/2}} \label{eq:solid_angle_kes} 
+  \Omega_D^{\MPS} & = \frac{H}{L} \frac{s}{D+d_1} \label{eq:solid_angle_mps} \\
+	\Omega_D^{\KES} & = \frac{H L p'}{\Lambda^3(x)} =  \frac{H p'}{L^2 \left( 1+\frac{x^2}{d_2^{'2}} \right)^{3/2}} \label{eq:solid_angle_kes} 
 \end{align}
 with $\Lambda$ the distance between the source point and the crystal in the KES.
 
 
-Since we are intereted in extended gamma emission source, let us consider now a linear source in front the cameras (red lines in Figure~\ref{fig:CamerasParameters}). In this case, the camera detection efficiency is determined not only by the point source detection efficiency (PSDE) characterized by $\Omega\,_D$ but also by the fraction of the source seen by the camera (the FOV factor) $f_{\textrm{FOV}} = \frac{\FOV_{\du}}{p}$ where $p$ is the pitch of the camera. It is in principle larger than 1 since cameras are usually designed to see all the source without any hidden regions.
+Since we are interested in extended gamma emission source, let us consider now a linear source in front the cameras (red lines in Figure~\ref{fig:CamerasParameters}). In this case, the camera detection efficiency is determined not only by the point source detection efficiency (PSDE) characterized by $\Omega_D$, but also by the fraction of the source seen by the camera (the FOV factor) $f_{\textrm{FOV}} = \frac{\FOV_{\du}}{p}$ where $p$ is the pitch of the camera. It is, in principle, larger than 1 since cameras are usually designed to see all the source without any hidden regions.
 
-Hence the detection efficiency of a detector unit ($\DE_{\du}$) and therefore the detection efficiency of the whole camera located in front a linear source perpendicular to  the camera plane can be expressed as:
+Hence, the detection efficiency of a detector unit ($\DE_{\du}$) and therefore the detection efficiency of the whole camera located in front a linear source perpendicular to  the camera plane can be expressed as:
 \begin{align} 
 	\DE_{\du} = \textrm{PSDE} \times f_{\textrm{FOV}}
 \end{align}
@@ -210,7 +208,7 @@ with $\textrm{PSDE}$ the detection efficiency for a point-like source that sees 
 
 \begin{eqnarray}
   \label{eq:de_mps}
-  \DE_{\du}^{\MPS} & = & \frac{\Omega\,_D^{\MPS}}{4\pi} \frac{\FOV_{\du}^{\MPS}}{p} \nonumber\\
+  \DE_{\du}^{\MPS} & = & \frac{\Omega_D^{\MPS}}{4\pi} \frac{\FOV_{\du}^{\MPS}}{p} \nonumber\\
                 & = & \frac{1}{4\pi} \frac{H}{L} \frac{s}{D+d_1} p(1-f)
                       \frac{D+d_1}{D} \frac{1}{p} \nonumber\\
                 & = & \frac{Hs(1-f)^2}{4 \pi L D}
@@ -218,8 +216,8 @@ with $\textrm{PSDE}$ the detection efficiency for a point-like source that sees 
 
 \begin{eqnarray}
   \label{eq:de_kes}
-	\DE_{\du}^{\KES} & = & \frac{\Omega\,_D^{\KES}}{4\pi} \frac{\FOV_{\du}^{\KES}}{p'} \nonumber\\
-	& = & \frac{s_e H}{4\pi d_2^{'} L} \frac{1}{\left( 1+\frac{x^2}{d_2^{'2}}\right)^{3/2}}
+	\DE_{\du}^{\KES} & = & \frac{\Omega_D^{\KES}}{4\pi} \frac{\FOV_{\du}^{\KES}}{p'} \nonumber\\
+	& = & \frac{s_e H}{4\pi d_2' L} \frac{1}{\left( 1+\frac{x^2}{d_2^{'2}}\right)^{3/2}}
 \end{eqnarray}
 
 
@@ -240,9 +238,9 @@ formulas is their similarities.
 	\midrule
 	                            & MPS                              & KES \\
 	\midrule
-	Effective slit width ($s_e$)& $s$                              & $s + \frac{\ln(2)}{\mu~\tan(\alpha)}$ \\
- 	Spatial resolution (Res)		& $s \left(1+\frac{d_1}{D}\right)$ & $s_e \left( 1+\frac{d_1^{'}}{d_2^{'}} \right)$ \\
-	Detection efficiency (Eff)	& $\frac{H s}{ 4 \pi L D } (1-f) $ & $\frac{H s_e}{ 4 \pi L d_2^{'} } \left( 1 + \frac{x^2}{d_2^{'2}} \right)^{-3/2} $ \\
+	Effective slit width ($s_e$)& $s$                              & $s + \frac{\ln(2)}{\mu \tan(\alpha)}$ \\
+ 	Spatial resolution (Res)		& $s \left(1+\frac{d_1}{D}\right)$ & $s_e \left( 1+\frac{d_1'}{d_2'} \right)$ \\
+	Detection efficiency (Eff)	& $\frac{H s}{ 4 \pi L D } (1-f) $ & $\frac{H s_e}{ 4 \pi L d_2' } \left( 1 + \frac{x^2}{d_2^{'2}} \right)^{-3/2} $ \\
  	Collimator effective thickness ($T_e$) & $D\times f$           & $T$ \\
 	\midrule
 \end{tabular}
@@ -252,8 +250,8 @@ formulas is their similarities.
 
 To be more specific, let us define the following conditions that we will refer to as \enquote{MPS and KES Similarities Conditions} (MKSC):
 \begin{itemize}
-	\item same distance between the source and the MPS collimator entrance and between the source and the middle of the KES collimator: $d_1=d_1^{'}$ ;
-	\item MPS collimator thickness equal to the KES collimator-absorber distance: $D=d_2^{'}$ ;
+	\item same distance between the source and the MPS collimator entrance and between the source and the middle of the KES collimator: $d_1=d_1'$ ;
+	\item MPS collimator thickness equal to the KES collimator-absorber distance: $D=d_2'$ ;
 	\item same source-absorber distance $L$ (which entails $d_2=0$ with the previous conditions), same height $H$ and same slit width $s$.	
 \end{itemize}
 We can also consider perfect collimator condition (PCC) for which the collimators present infinite absorption capacity. In this condition, $s_e=s$ and the filling factor $f$ of the MPS can be decreased down to zero without degrading the collimation properties.
@@ -262,14 +260,14 @@ Combining these conditions (MKSC and PCC) then MPS and KES have strictly the sam
 \begin{itemize}
 	\item the partial transparency of the collimators leads to:
 	\begin{itemize}
-		\item an effective slit width of KES larger than the one of the MPS. In the case of the KES prototype of the IBA group, the term accounting for collimator transparency $\left(\frac{\ln(2)}{\mu~\tan(\alpha)}\right)$ is about 5~mm (with $\mu\sim 8\times10^{-1}$~cm$^{-1}$ for the tungsten alloy in the 3-6~MeV range and $\alpha=63$\textdegree) meaning that the effective slit $s_e$ is about twice the actual slit width ($s=6$~cm).
-		\item an actual fill factor that cannot be neglected: in the case of the MPS prototype of the CLaRyS collaboration it can adjusted but a standard value is 0.4 leading to an actual detection efficiency about half the one of the perfect MPS collimator with $f=0$. 
+		\item an effective slit width of KES larger than the one of the MPS. In the case of the KES prototype of the IBA group, the term accounting for collimator transparency $\left(\frac{\ln(2)}{\mu \tan(\alpha)}\right)$ is about 5~mm (with $\mu\sim 8\times10^{-1}$~cm$^{-1}$ for the tungsten alloy in the 3-6~MeV range and $\alpha=63$\textdegree) meaning that the effective slit $s_e$ is about twice the actual slit width ($s=6$~cm).
+		\item an actual fill factor that cannot be neglected: in the case of the MPS prototype of the CLaRyS collaboration it can adjusted but a standard value is 0.4, leading to an actual detection efficiency about half the one of the perfect MPS collimator with $f=0$. 
 	\end{itemize}
 	\item the KES design intrinsically leads to a detection efficiency that decreases when the source moves away from the center of the camera while the MPS detection efficiency remains constant over the whole camera field of view.
 \end{itemize}
 It is worth to note that the partial transparency of the collimators leads to an increase of the KES spatial resolution (Res) and a decrease of the MPS detection efficiency (Eff) with similar amplitudes (factor of 2). Since both Res and Eff are proportional to the slit width $s$ one can expect that KES and MPS designs fulfilling MKSC should have very close actual performances if the KES slit width corresponds to the half of the MPS slit width. 
 
-For illustration purpose, Figure~\ref{fig:AMpredictions} \answ{Figure to be improved if we think it is interesting} shows the analytical model predictions for the MPS and KES designs compared in \citep{Smeets2016, Lin2017, Park2017}. We can observe the compromise between detection efficiency and spatial resolution: the designs chosen in these comparisons lead to $\DE_{\du}^{\KES}$ and $\FOV_{\du}^{\KES}$ larger than MPS ones by factors ranging from $\sim3$ to $\sim7$. The detection efficency obtained by \cite{Park2017} is much larger than the other ones due to camera height ($H$) increased by a factor of 2.
+For illustration purpose, Figure~\ref{fig:AMpredictions} \answ{Figure to be improved if we think it is interesting \ds{YES ! very interesting} } shows the analytical model predictions for the MPS and KES designs compared in \citep{Smeets2016, Lin2017, Park2017}. Parameters have been extracted from the publications \ds{Maybe a table with the values for all parameters ?}. We can observe the compromise between detection efficiency and spatial resolution: the designs chosen in these comparisons lead to $\DE_{\du}^{\KES}$ and $\FOV_{\du}^{\KES}$ larger than MPS ones by factors ranging from $\sim3$ to $\sim7$. The detection efficency obtained by \cite{Park2017} is much larger than the other ones due to camera height ($H$) increased by a factor of 2. 
 
 \begin{figure}[!htp]
   \centering
@@ -301,7 +299,7 @@ For illustration purpose, Figure~\ref{fig:AMpredictions} \answ{Figure to be impr
 
 % Estimate the MPS and KES performances in Smeets 2016 and Lin 2017: the KES/MPS detection efficiency ratio is 1.6 for Smeets 2016 and 5.3 for Lin 2017 (assuming the use of the same energy window) $\Rightarrow$ these comparisons were unfair\dots \answ{TO BE COMPLETED by Etienne}
 
-In order to compare the analytical model with MC simulations allowing the modeling of the camera absorber intrinsic efficiency, we can simply estimate at first order the intrinsic efficiency of the MPS and KES aborbers with the Beer-Lambert law assuming that a photon has simply to interact to be detected. At 4~MeV, the MPS absorber of the CLaRyS collaboration and the KES absorber of the IBA group have intrinsic efficencies of 56\% and 57\% (respectively 3~cm thick BGO scintillators and 3~cm LYSO scintillators).
+In the following, we compare the analytical model with MC simulations. We estimate, at first order, the intrinsic efficiency of the MPS and KES absorbers with the Beer-Lambert law assuming that a photon is detected as soon as it reaches the detector. At 4~MeV, the MPS absorber of the CLaRyS collaboration and the KES absorber of the IBA group have intrinsic efficencies of 56\% and 57\% (respectively 3~cm thick BGO scintillators and 3~cm LYSO scintillators).
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -352,7 +350,7 @@ The MPS and KES prototypes are illustrated in Figure~\ref{fig:detectors}).
 
 %As was done by \cite{Pinto2014a}, the camera lengths (collimator and scintillator volume) are chosen \emph{up to} 300 mm, such that the length is an integer multiple of the pitch size, with for the collimator a collimator-leaf-width extra, to ensure each pixel has a leaf on both sides. With the 8 mm pitch and 2.6 mm collimator-leafs, this results in a scintillator volume of length 296 mm and collimator length 298.6 mm.
 \item The KES prototype developed by the IBA group
-\item[] The purpose of this camera consists of verifying the BP position with a FoV of 100 mm. It consists of two rows of 20 LYSO blocs of 4~mm ($p^{'}$) $\times 100$~mm ($H/2$) $\times30$~mm (thickness) and a tungsten alloy collimator \citep{Perali2014,Sterpin2015}. The standard energy selection for this prototype is $3<E<6$~MeV.
+\item[] The purpose of this camera consists of verifying the BP position with a FoV of 100 mm. It consists of two rows of 20 LYSO blocs of 4~mm ($p'$) $\times 100$~mm ($H/2$) $\times30$~mm (thickness) and a tungsten alloy collimator \citep{Perali2014,Sterpin2015}. The standard energy selection for this prototype is $3<E<6$~MeV.
 %\cite{Richter2016} provides the first clinically obtained results. At this time, no other camera has been subjected to clinical tests, which is why we consider this prototype a benchmark.
 \end{itemize}
 
