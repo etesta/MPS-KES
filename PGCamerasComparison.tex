@@ -328,14 +328,14 @@ The objective of MC simulations is twofold: the analytical model verification (A
 \subsubsection{Simulation tool}\label{sec:SimTool}
 
 Imaging paradigms such as PG detection are evaluated against experiments, and often also with Monte Carlo (MC) simulations %~\citep{Moteabbed2011,Gueth2013,Robert2013,Golnik2014a,Janssen2014}. 
-For rarely occurring processes such as PG simulation, convergence to the truth to within acceptable statistical error can be slow. Therefore we used in this study the vpgTLE variance reduction method described in \cite{Huisman2016}. vpgTLE is a two stage process, where firstly a PG yield distribution image is estimated, which in the second stage is used as a PG source. Gate 7.2~\citep{Sarrut2014} with Geant 4.10.02 and the QGSP\_BIC\_HP\_EMY physics list, commonly used for PG studies, are used in this work. Thanks to vpgTLE, simulations for about $10^9$ protons (about $6\times10^8$ photons) took 1-2 hours on a single core of an Intel(R) Core(TM) i7-3740QM.
+For rarely occurring processes such as PG simulation, convergence to the truth to within acceptable statistical error can be slow. Therefore, we used in this study the vpgTLE variance reduction method described in \cite{Huisman2016}. vpgTLE is a two stage process, where firstly a PG yield distribution image is estimated, which in the second stage is used as a PG source. Gate 7.2~\citep{Sarrut2014} with Geant 4.10.02 and the QGSP\_BIC\_HP\_EMY physics list, commonly used for PG studies, are used in this work. Thanks to vpgTLE, simulations for about $10^9$ protons (about $6\times10^8$ photons) took 1-2 hours on a single core of an Intel(R) Core(TM) i7-3740QM.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{PG camera modeling}\label{sec:camera}
+%\subsubsection{PG camera modeling}\label{sec:camera}
 
-\paragraph{Prototypes comparison}
+\subsubsection{Prototypes comparison}\label{sec:camera} % paragraph
 
-The MPS and KES prototypes are illustrated in Figure~\ref{fig:detectors}).
+The MPS and KES prototypes are illustrated in Figure~\ref{fig:detectors}.
 
 \begin{figure}[htp]
   \centering
@@ -344,27 +344,24 @@ The MPS and KES prototypes are illustrated in Figure~\ref{fig:detectors}).
   \label{fig:detectors}
 \end{figure}
 
-\begin{itemize}[noitemsep]
-\item The MPS prototype developed by the CLaRyS collaboration
-\item[] This camera intends to measure the whole PG profile to control ion-ranges in the patient with a field of view (FoV) of 300 mm. It consists of a bismuth germanium oxide (BGO) absorber and a tungsten alloy collimator. Each block has a sensitive volume of 3.5$\times$3.8$\times$3 cm$^{3}$ and is streaked in 8$\times$8 pseudo-pixels of 4~mm in edge. In the optimization carried out by \cite{Pinto2014a}, parameters such as collimator pitch, axis-to-collimator and axis-to-detector were varied, and their impacts evaluated in terms of fall-off retrieval precision (FRP) and spatial resolution (sharpness of the fall-off region). Here, configuration 1 (with relaxed constraints on spatial resolution) was chosen for its better FRP performance. One can notice that the pitch of the camera (8~mm) corresponds to a whole number of the BGO pseudo-pixel size (4~mm). The event selection from the gamma energy deposition $E$ in the absorber is $E>1$~MeV. Finally this prototype makes use of ToF selection to reduce the neutron background. For the IBA C230 accelerator with a period of 10 ns, \cite{Pinto2014a} chose a window of 4 ns around the PG maximum, based on experimental ToF spectra. This means that about 60\% of the noise could be removed.
+\paragraph{The MPS prototype developed by the CLaRyS collaboration.}
+This camera intends to measure the whole PG profile to control ion-ranges in the patient with a field of view (FoV) of 300 mm. It consists of a bismuth germanium oxide (BGO) absorber and a tungsten alloy collimator. Each block has a sensitive volume of 3.5$\times$3.8$\times$3 cm$^{3}$ and is streaked in 8$\times$8 pseudo-pixels of 4~mm in edge. In the optimization carried out by \cite{Pinto2014a}, parameters such as collimator pitch, axis-to-collimator and axis-to-detector were varied, and their impacts evaluated in terms of fall-off retrieval precision (FRP) and spatial resolution (sharpness of the fall-off region). Here, configuration 1 (with relaxed constraints on spatial resolution) was chosen for its better FRP performance. One can notice that the pitch of the camera (8~mm) corresponds to a whole number of the BGO pseudo-pixel size (4~mm). The event selection from the gamma energy deposition $E$ in the absorber is $E>1$~MeV. Finally this prototype makes use of ToF selection to reduce the neutron background. For the IBA C230 accelerator with a period of 10 ns, \cite{Pinto2014a} chose a window of 4 ns around the PG maximum, based on experimental ToF spectra. This means that about 60\% of the noise could be removed.
 
 %As was done by \cite{Pinto2014a}, the camera lengths (collimator and scintillator volume) are chosen \emph{up to} 300 mm, such that the length is an integer multiple of the pitch size, with for the collimator a collimator-leaf-width extra, to ensure each pixel has a leaf on both sides. With the 8 mm pitch and 2.6 mm collimator-leafs, this results in a scintillator volume of length 296 mm and collimator length 298.6 mm.
-\item The KES prototype developed by the IBA group
-\item[] The purpose of this camera consists of verifying the BP position with a FoV of 100 mm. It consists of two rows of 20 LYSO blocs of 4~mm ($p'$) $\times 100$~mm ($H/2$) $\times30$~mm (thickness) and a tungsten alloy collimator \citep{Perali2014,Sterpin2015}. The standard energy selection for this prototype is $3<E<6$~MeV.
+\paragraph{The KES prototype developed by the IBA group}
+
+The purpose of this camera consists of verifying the BP position with a FoV of 100 mm. It consists of two rows of 20 LYSO blocs of 4~mm ($p'$) $\times 100$~mm ($H/2$) $\times30$~mm (thickness) and a tungsten alloy collimator \citep{Perali2014,Sterpin2015}. The standard energy selection for this prototype is $3<E<6$~MeV.
 %\cite{Richter2016} provides the first clinically obtained results. At this time, no other camera has been subjected to clinical tests, which is why we consider this prototype a benchmark.
-\end{itemize}
+
 
 The absorbers of the two prototypes use different scintillators, photodetectors and data acquisition system. In this study, these differences are not implemented. Instead, for the sake of simplicity, the absorbers are modeled as scintillators using the Anger logic. If the integrated energy deposited in a crystal lies in the acceptable energy and ToF window, the event is recorded. The position of the event in the crystal is considered as the energy weighed barycenter of all interactions in the crystal, plus a random value taken from a 5mm FWHM Gaussian to simulate the electronics and the detector resolution. This approximation is justified by the fact that the spatial resolution of the prototypes of the order of 20~mm is much larger than the spatial resolution of the actual detectors corresponding to bins of 4~mm.\answ{I am not sure that this approximation will be accepted by the reviewers.}
 
-We will compare the MPS and KES prototypes with their published properties, that is to say: $E>1$~MeV and ToF for MPS and $3<E<6$~MeV without ToF for KES. For the sake of completeness and to facilitate the interpretation of the camera performances, all the combinations of energy and TOF selections will be studied as well. \answ{To be updated according the Results section}
+We compared the MPS and KES prototypes with their published properties: $E>1$~MeV and ToF for MPS and $3<E<6$~MeV without ToF for KES. For the sake of completeness and to facilitate the interpretation of the camera performances, several combinations of energy and TOF selections will be studied as well. \answ{To be updated according the Results section}
 
 
-\paragraph{Analytical Model Verification (AMV)} In order to allow for a direct comparison of MC simulations with the analytical model, simulations with perfect collimators and detectors will be performed.
+\subsubsection{Analytical Model Verification (AMV)} % paragraph
 
-
-
-
-Table~\ref{table:CameraParameters} gives an overview of the main cameras parameters used for AMV and prototypes comparison.
+In order to allow for a direct comparison of MC simulations with the analytical model, simulations with perfect collimators and detectors will be performed. Table~\ref{table:CameraParameters} gives an overview of the main cameras parameters used for AMV and prototypes comparison.
 
 \begin{table}[h]
 \centering
@@ -393,7 +390,7 @@ Table~\ref{table:CameraParameters} gives an overview of the main cameras paramet
 	\multicolumn{2}{|l|}{Beam} & \mc{2}{|c|}{160 MeV proton}   \\								
 	\hline			
 \end{tabular}
-\caption{Summary of the main cameras parameters used for AMV and prototypes comparison. In the case of AMV, the gamma source corresponds to the PGs emitted during the PMMA phantom irradiation with 160 MeV proton beam (first stage of the simulation tool, see section~\ref{sec:SimTool}). However the target has been removed in the second stage of the simulation tool (PG detection) to avoid any attenuation and allow for a direct comparison of the detection efficiency with the AM predictions. The configuration of the column \enquote{Prototypes comparison} corresponds to the reference one with standard energy and TOF selections. }
+\caption{Summary of the main cameras parameters used for AMV and prototypes comparison. In the case of AMV, the gamma source corresponds to the PGs emitted during the PMMA phantom irradiation with 160 MeV proton beam (first stage of the simulation tool, see section~\ref{sec:SimTool}). However the target has been removed in the second stage of the simulation tool (PG detection) to avoid any attenuation and allow for a direct comparison of the detection efficiency with the AM predictions. The configuration of the column \enquote{Prototypes comparison} corresponds to the reference one with standard energy and TOF selections. \ds{the 'PC' abbrev is not really clear in the first column. Maybe start by second column ?}}
 \label{table:CameraParameters}
 \end{table}
 
@@ -401,14 +398,12 @@ Table~\ref{table:CameraParameters} gives an overview of the main cameras paramet
 
 \paragraph{Prototypes comparison}
 
-Background (BKGD) estimation in PG simulation is a difficult and largely unsolved issue \citep{Huisman2016,Sterpin2015,Pinto2014a,Perali2014}. Simulations would ideally include beam nozzle and whole room modeling, but these are habitually omitted. ToF selection techniques can improve the signal-to-noise ratio (SNR) \citep{Testa2008,Roellinghoff2014a}, but then depend on the proper simulation of the beam accelerator time structure. As noted in \cite{Huisman2016}, no validation for background in PG simulations has been performed at this time. In this study, the stable time structure of current generation cyclotrons was assumed, in which the neutron background is largely constant. 
-
-Estimates of background counts in the detector are taken from \cite{Pinto2014a,Perali2014}, which are both based on measured data:
+Background (BKGD) estimation in PG simulation is a difficult and still an unsolved issue \citep{Huisman2016,Sterpin2015,Pinto2014a,Perali2014}. Simulations would ideally include beam nozzle and whole room modeling, but these are habitually omitted. ToF selection techniques can improve the signal-to-noise ratio (SNR) \citep{Testa2008,Roellinghoff2014a}, but then it depends on the proper simulation of the beam accelerator time structure. As noted in \cite{Huisman2016}, no validation for background in PG simulations has been performed at this time. In this study, the stable time structure of current generation cyclotrons was assumed, in which the neutron background is essentially constant. The sstimates of background counts in the detector were taken from \cite{Pinto2014a,Perali2014}, which are both based on measured data:
 
 \begin{itemize}[noitemsep]
-\item MPS: \cite{Pinto2014a} Figure~9: $1 \cdot 10^{3} \pm 1 \cdot 10^{2}$ per $4\cdot10^9$ primary protons per 8 mm bin
+\item MPS: \cite{Pinto2014a} $1 \cdot 10^{3} \pm 1 \cdot 10^{2}$ per $4\cdot10^9$ primary protons per 8 mm bin (Figure~9)
 \item[] Converted to per primary proton: $2.5 \cdot 10^{-7} \pm 0.25 \cdot 10^{-7}$
-\item KES: \cite{Perali2014} Figure~11: $5 \cdot 10^{-7} \pm 0.5 \cdot 10^{-7}$ per primary proton per 4 mm bin
+\item KES: \cite{Perali2014} $5 \cdot 10^{-7} \pm 0.5 \cdot 10^{-7}$ per primary proton per 4 mm bin (Figure~11)
 \end{itemize}
 
 Per unit of bin length, the background yield of the MPS with ToF is therefore 4 times as low as the background seen with the KES. For the KES camera the background with ToF can be obtained by multiplying the background with the same $\frac{4 ns}{10 ns} = 0.4$ fraction as with the MPS. 
@@ -421,7 +416,7 @@ For the AMV, the background will be left out, as only gamma detection is modeled
 
 \paragraph{Prototypes comparison}
 
-We use the test-case presented in \cite{Perali2014} as the KES detector properties such as background were published for that scenario, again in order to remove any doubt that a difference in camera performance could be due to a difference in implementation or setup. A 160 MeV mono-energetic proton beam is shot into a cylindrical PMMA phantom (length 30 cm, radius 15 cm). Employing the batch method we realize 50 simulations for each experiment.
+We use the test-case presented in \cite{Perali2014} because the KES detector properties, such as the background, were published for that scenario, again in order to remove any doubt that a difference in camera performance could be due to a difference in implementation or setup. A 160 MeV mono-energetic proton beam is shot into a cylindrical PMMA phantom (length 30 cm, radius 15 cm). Employing the batch method we performed 50 simulations for each experiment.
 
 \paragraph{Analytical Model Verification (AMV)}
 
@@ -461,7 +456,8 @@ In the case of AMV, the same source is used (first stage of the simulation tool,
 
 \subsubsection{Analytical Model Verification}
 
-The comparison of the analytical model with Monte Carlo simulations will be performed on the two features predicted by the model, namely the detection efficiency and the spatial resolution. The detection efficiency can be computed by MC simulations as the ratio of the mean number of detected gammas over the number of emitted gammas for camera units seeing the PG profile. Regarding the spatial resolution, it is derived from the fall-off width of the the simulated PG profiles. We define this width as the FWHM of the peak resulting from the computation of the PG profile first derivative. 
+The comparison of the analytical model with Monte Carlo simulations will be performed on the two features predicted by the model, namely the detection efficiency and the spatial resolution. The detection efficiency can be computed by MC simulations as the ratio of the mean number of detected gammas over the number of emitted gammas for camera units seeing the PG profile. Regarding the spatial resolution, it is derived from the fall-off width of the the simulated PG profiles. We define this width as the FWHM of the peak resulting from the computation of the PG profile first derivative. \ds{citation ?}
+
 % \begin{itemize}
 % 	\item the detection efficiency of a camera unit defined as the ratio of the mean number of detected gammas over the number of emitted gammas for camera units seeing the PG profile,
 % 	\item the PG falloff contrast (FOC), which we define as the difference between peak and background, normalized by the number of primaries and per millimeter (since the two cameras have differing bin sizes).
@@ -477,7 +473,7 @@ The comparison of the analytical model with Monte Carlo simulations will be perf
 
 \subsubsection{Prototypes Comparison}
 
-In addition to the figures of merit mentioned for AMV, the fall-off retrieval precision (FRP) will be determined for its clinical relevance. The FRP is the standard deviation of the fall-off position (FOP) distribution, which is obtained by way of the batch method. Each of these can then be examined as function of the energy and ToF selections.
+In addition to the figures of merit mentioned for AMV, the fall-off retrieval precision (FRP) will be determined for its clinical relevance. The FRP is the standard deviation of the fall-off position (FOP) distribution, which is obtained by way of the batch method \ds{citation ?}. Each of these can then be examined as function of the energy and ToF selections.
 
 
 \section{Results}
