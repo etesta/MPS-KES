@@ -456,7 +456,7 @@ In the case of AMV, the same source is used (first stage of the simulation tool,
 
 \subsubsection{Analytical Model Verification}
 
-The comparison of the analytical model with Monte Carlo simulations will be performed on the two features predicted by the model, namely the detection efficiency and the spatial resolution. The detection efficiency can be computed by MC simulations as the ratio of the mean number of detected gammas over the number of emitted gammas for camera units seeing the PG profile. Regarding the spatial resolution, it is derived from the fall-off width of the the simulated PG profiles. We define this width as the FWHM of the peak resulting from the computation of the PG profile first derivative. \ds{citation ?}
+The comparison of the analytical model with Monte Carlo simulations will be performed on the two features predicted by the model, namely the detection efficiency and the spatial resolution. The detection efficiency can be computed by MC simulations as the ratio of the mean number of detected gammas over the number of emitted gammas for camera units seeing the PG profile. Regarding the spatial resolution, it is derived from the fall-off width of the simulated PG profiles. We define this width as the FWHM of the peak resulting from the computation of the PG profile first derivative. \ds{citation ?}
 
 % \begin{itemize}
 % 	\item the detection efficiency of a camera unit defined as the ratio of the mean number of detected gammas over the number of emitted gammas for camera units seeing the PG profile,
@@ -473,7 +473,7 @@ The comparison of the analytical model with Monte Carlo simulations will be perf
 
 \subsubsection{Prototypes Comparison}
 
-In addition to the figures of merit mentioned for AMV, the fall-off retrieval precision (FRP) will be determined for its clinical relevance. The FRP is the standard deviation of the fall-off position (FOP) distribution, which is obtained by way of the batch method \ds{citation ?}. Each of these can then be examined as function of the energy and ToF selections.
+In addition to the figures of merit mentioned for AMV, the fall-off retrieval precision (FRP) will be determined for its clinical relevance. The FRP is the standard deviation of the fall-off position (FOP) distribution, which is obtained by way of the batch method \ds{citation of the appendix ?}. Each of these can then be examined as function of the energy and ToF selections.
 
 
 \section{Results}
@@ -486,7 +486,7 @@ Figure~\ref{PGprofileFairComp} shows PG profiles obtained with MPS and KES with 
   \centering
   \subfloat[MPS]{\label{SmeetsComparison}\includegraphics[width=.45\textwidth]{amv_mps_fow}}\quad
   \subfloat[KES]{\label{LinComparison}\includegraphics[width=.45\textwidth]{amv_kes_fow}}
-  \caption{\label{PGprofileFairComp} MPS and KES comparisons with perfect absorber and the same energy (E>1 MeV) and no TOF selection.}
+  \caption{\label{PGprofileFairComp} MPS and KES comparisons with perfect absorber and the same energy (E>1 MeV) and no TOF selection. \ds{I wonder if the x scale could be the same for KES and MPS, it will allow better comparison and emphasis the difference in FOV}}
 \end{figure}  
 
 Table~\ref{tab:AMV} compares the detection efficiency and the spatial resolution obtained from the analytical model and Monte Carlo simulations. 
@@ -533,7 +533,7 @@ Table~\ref{tab:AMV} compares the detection efficiency and the spatial resolution
 	    & Perfect camera			&  $6.66 \cdot 10^{-4}$ & $6.49\cdot10^{-4}$	&	3\%					&& $1.06 \cdot 10^{-3}$  & $9.74\cdot10^{-4}$			& 9\%\\
  	\midrule
 \end{tabular}
-\caption{MPS and KES detection efficiencies ("Eff") and spatial resolution ("Res") from analytical models and MC. The predictions of the analytical model (AM column) are derived from the equations of table~\ref{table:AMformulas}, at the center of the camera in the case of KES ($x=0$). MC data have been obtained with energy selection E>1~MeV. For the \enquote{Perfect camera} simulation, the collimator was adjusted to be 100\% opaque, and detection with perfect precision and 100\% efficiency. RD: relative deviation.}
+\caption{MPS and KES detection efficiencies ("Eff") and spatial resolution ("Res") from analytical models and MC. The predictions of the analytical model (AM column) are derived from the equations of table~\ref{table:AMformulas}, at the center of the camera in the case of KES ($x=0$). MC data have been obtained with energy selection E>1~MeV. For the \enquote{Perfect camera} simulation, the collimator was adjusted to be 100\% opaque, and detection with perfect precision and 100\% efficiency. RD: relative deviation between AM and MC. \ds{Start rather by Perfect Cam instead of  Phys Cam}}
 \label{tab:AMV}
 \end{table}
 
@@ -545,7 +545,7 @@ Table~\ref{tab:AMV} compares the detection efficiency and the spatial resolution
 
 \subsection{Prototype Comparison}
 
-Performance under clinical conditions is the eventual purpose of these PG cameras, and therefore we here include the results of the clinical case study. Since both cameras prototypes were optimized assuming their particular choice for absorber and energy selection window, here we chose to set \answ{To be completed}
+Performance under clinical conditions is the primary purpose of these PG cameras, and therefore we include the results of the clinical case study. Since both cameras prototypes were optimized assuming their particular choice for absorber and energy selection window, here we chose to set \answ{To be completed}
 
 \subsubsection{PG profiles}
 
@@ -555,10 +555,10 @@ Figure~\ref{fig:PGprofileProtoComp}.
   \centering
   \subfloat[MPS]{\label{SmeetsComparison}\includegraphics[width=.45\textwidth]{PMMA_phantom-ipnl-auger-tof-1-FOW}}\quad
   \subfloat[KES]{\label{LinComparison}\includegraphics[width=.45\textwidth]{PMMA_phantom-iba-auger-notof-3-FOW}}
-  \caption{\label{fig:PGprofileProtoComp} MPS and KES prototypes comparisons. MPS BGO aborber with 1-8 MeV energy selection and TOF selection. KES: LYSO absorber with 3-6 MeV and no TOF selection).}
+  \caption{\label{fig:PGprofileProtoComp} MPS and KES prototypes comparisons. MPS BGO aborber with 1-8 MeV energy selection and TOF selection. KES: LYSO absorber with 3-6 MeV and no TOF selection). \ds{again x axis to same scale}}
 \end{figure}  
 
-KES/MPS ratio $\sim 400/350 \sim 0.9$. We can see the impact of the energy selection of the KES prototype (3-6~MeV) that drastically reduces the camera efficiency.
+KES/MPS ratio $\sim 400/350 \sim 0.9$. We can see the impact of the energy selection of the KES prototype (3-6~MeV) that drastically reduces the camera efficiency. \ds{in fig max value in MPS around 3000, vs 1400 in KES.}
 
 \begin{table}[h]
 \centering
@@ -668,10 +668,10 @@ The results of this procedure are illustrated in figure~\ref{fig:our-fit}. Every
   \centering
   \subfloat[KES]{\label{FOWKES}\includegraphics[width=.45\textwidth]{FOW_PMMA_phantom-iba-auger-tof-3}}\quad
   \subfloat[MPS]{\label{FOWMPS}\includegraphics[width=.45\textwidth]{FOW_PMMA_phantom-ipnl-auger-tof-3}}
-  \caption{\label{FOWILLUS} MPS and KES FOW estimation illustrated.}
+  \caption{\label{FOWILLUS} MPS and KES FOW estimation illustrated. \ds{idem x scale}}
 \end{figure}
 
-Figure~\ref{FOWILLUS} shows and illustration of the procedure for two selected profiles obtained with each collimator. To estimate the fall-off with FOW, we smooth the profile in a similar manner as for the FOP estimation, as detailed in appendix~\ref{sec:fopproc} (row 1 in Figure~\ref{FOWILLUS}). Then, a first and second order derivative is computed. On the first order derivative, a Gaussian is fitted (dashed line on second row), on the interval (solid line) between the profile maximum (Bragg Peak) and the first inflection point past the FOP on the second order derivative (here the 1D PG profile is at the baseline of the background, see third row). The Gaussian is fit with a fixed offset of zero, because the baseline of the background is zero. The full width half max of the fitted Gaussian is then taken as the FOW (second row).
+Figure~\ref{FOWILLUS} shows and illustration of the procedure for two selected profiles obtained with each collimator. To estimate the fall-off width (FOW), we smooth the profile in a similar manner as for the FOP estimation, as detailed in appendix~\ref{sec:fopproc} (row 1 in Figure~\ref{FOWILLUS}). Then, a first and second order derivative is computed. On the first order derivative, a Gaussian is fitted (dashed line on second row), on the interval (solid line) between the profile maximum (Bragg Peak) and the first inflection point past the FOP on the second order derivative (here the 1D PG profile is at the baseline of the background, see third row). The Gaussian is fit with a fixed offset of zero, because the baseline of the background is zero. The full width half max of the fitted Gaussian is then taken as the FOW (second row).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
