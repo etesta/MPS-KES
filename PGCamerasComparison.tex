@@ -27,6 +27,7 @@
 
 % Comments
 \newcommand{\ds}[2][orange]{\textcolor{#1}{#2}}
+\newcommand{\bh}[2][red]{\textcolor{#1}{#2}}
 
 % \usepackage[toc,page]{appendix} %for appendix titles
 % \usepackage[titletoc,title]{appendix} %for appendix titles
@@ -68,7 +69,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
 
-The well-defined range of particles in matter is the main reason they are used in cancer treatment today. Unfortunately we are not able to take full advantage of this property, because of treatment uncertainties, e.g. uncertainties in patient positioning, changes of patient anatomy between treatment fractions and uncertainties in the Hounsfield unit to particle stopping power conversion \citep{Paganetti2012}. Often, medical practice leads to the use of several irradiation fields to ensure robust treatment planning at the expense of larger doses in healthy tissue in respect to ideal treatment with single irradiation field. Moreover margins around the tumor are added, reducing the potential benefits of particle treatment \citep{Knopf2013}. Ion-range verification could permit more precise planning which could take maximum advantage of the steep Bragg peak (BP) fall-off and reduce damage to tissues surrounding the tumor. A promising modality to perform this verification consists in detecting prompt gammas (PGs), a natural byproduct in particle treatments \citep{Krimmer2017a, Parodi2018}. Various modalities are currently under investigation and can be classified in two categories: imaging devices using either mechanical or electronical collimation (respectively collimated \citep{Perali2014, Min2012, Pinto2014a} and Compton cameras \citep{Krimmer2015,Kurosawa2012,Thirolf2016,Polf2015,Llosa2016}) and non-imaging devices such as Prompt Gamma Spectroscopy (PGS) \citep{Hueso-Gonzalez2016}, Prompt Gamma Timing (PGT) \citep{Pausch2016} and Prompt Gamma Peak Integral (PGPI) \citep{Krimmer2017}. Regarding cameras using mechanical collimators, two types of designs have been considered: Multi-Parallel Slit (MPS) and Knife-Edge Slit (KES). The latter has been chosen by the IBA group to build their prototype that has been tested during the treatment of a patient \ds{(only one patient ?)} at OncoRay in Dresden, Germany. Both types of collimators provide part or the whole of the one-dimensional PG profile along the beam direction.
+The well-defined range of particles in matter is the main reason they are used in cancer treatment today. Unfortunately we are not able to take full advantage of this property, because of treatment uncertainties, e.g. uncertainties in patient positioning, changes of patient anatomy between treatment fractions and uncertainties in the Hounsfield unit to particle stopping power conversion \citep{Paganetti2012}. Often, medical practice leads to the use of several irradiation fields to ensure robust treatment planning at the expense of larger doses in healthy tissue in respect to ideal treatment with single irradiation field. Moreover margins around the tumor are added, reducing the potential benefits of particle treatment \citep{Knopf2013}. Ion-range verification could permit more precise planning which could take maximum advantage of the steep Bragg peak (BP) fall-off and reduce damage to tissues surrounding the tumor. A promising modality to perform this verification consists in detecting prompt gammas (PGs), a natural byproduct in particle treatments \citep{Krimmer2017a, Parodi2018}. Various modalities are currently under investigation and can be classified in two categories: imaging devices using either mechanical or electronical collimation (respectively collimated \citep{Perali2014, Min2012, Pinto2014a} and Compton cameras \citep{Krimmer2015,Kurosawa2012,Thirolf2016,Polf2015,Llosa2016}) and non-imaging devices such as Prompt Gamma Spectroscopy (PGS) \citep{Hueso-Gonzalez2016}, Prompt Gamma Timing (PGT) \citep{Pausch2016} and Prompt Gamma Peak Integral (PGPI) \citep{Krimmer2017}. Regarding cameras using mechanical collimators, two types of designs have been considered: Multi-Parallel Slit (MPS) and Knife-Edge Slit (KES). The latter has been chosen by the IBA group to be prototyped and has been tested during treatment of patients \ds{(only one patient ?)}\bh{fixed wording.} at OncoRay in Dresden, Germany. Both types of collimators provide part or the whole of the one-dimensional PG profile along the beam direction.
 
 To date, three publications \citep{Smeets2016, Lin2017, Park2017} have attempted to compare these two types of collimators with various geometries. Indeed, although they refer to the same KES design from \citep{Perali2014} some geometrical parameters are slighlty different in \citep{Lin2017, Park2017} (i.e. the source-collimator distance and the collimator-absorber distance). The same applies for the MPS design: \cite{Smeets2016} uses a modified MPS design from \cite{Pinto2014a}, \cite{Lin2017} used the design from \cite{Gueth2013} and \cite{Park2017} their own specific design. It is worth to note that the authors of the latter publication justified the need for a complementary study by the fact that the MPS geometries used in \cite{Smeets2016, Lin2017} were not \enquote{optimized}. 
 Unfortunately the fact that the optimizations of KES and MPS designs were not performed according the same figures of merit can not ensure a fair comparison of the two designs. Actually from a general point of view the design of any collimated device is a compromise between detection efficiency and spatial resolution. While collimator features have been extensively investigated in the context of nuclear imaging \citep{Gunter2004}, no theoretical considerations have been proposed for the specific 1D collimation systems developed in the context of ion-range verification during hadrontherapy.
@@ -267,7 +268,7 @@ Combining these conditions (MKSC and PCC) then MPS and KES have strictly the sam
 \end{itemize}
 It is worth to note that the partial transparency of the collimators leads to an increase of the KES spatial resolution (Res) and a decrease of the MPS detection efficiency (Eff) with similar amplitudes (factor of 2). Since both Res and Eff are proportional to the slit width $s$ one can expect that KES and MPS designs fulfilling MKSC should have very close actual performances if the KES slit width corresponds to the half of the MPS slit width. 
 
-For illustration purpose, Figure~\ref{fig:AMpredictions} \answ{Figure to be improved if we think it is interesting \ds{YES ! very interesting} } shows the analytical model predictions for the MPS and KES designs compared in \citep{Smeets2016, Lin2017, Park2017}. Parameters have been extracted from the publications \ds{Maybe a table with the values for all parameters ?}. We can observe the compromise between detection efficiency and spatial resolution: the designs chosen in these comparisons lead to $\DE_{\du}^{\KES}$ and $\FOV_{\du}^{\KES}$ larger than MPS ones by factors ranging from $\sim3$ to $\sim7$. The detection efficency obtained by \cite{Park2017} is much larger than the other ones due to camera height ($H$) increased by a factor of 2. 
+For illustration purposes, Figure~\ref{fig:AMpredictions} \answ{Figure to be improved if we think it is interesting \ds{YES ! very interesting} \bh{figure looks good to me, I see far, far worse in medical physics ;)}} shows the analytical model predictions for the MPS and KES designs compared in \citep{Smeets2016, Lin2017, Park2017}. Parameters have been extracted from the publications \ds{Maybe a table with the values for all parameters ?}\bh{these parameters are the expressions found in table 2}. We can observe the compromise between detection efficiency and spatial resolution: the designs chosen in these comparisons lead to $\DE_{\du}^{\KES}$ and $\FOV_{\du}^{\KES}$ larger than MPS ones by factors ranging from $\sim3$ to $\sim7$. The detection efficency obtained by \cite{Park2017} is much larger than the other ones due to camera height ($H$) increased by a factor of 2. 
 
 \begin{figure}[!htp]
   \centering
@@ -390,7 +391,7 @@ In order to allow for a direct comparison of MC simulations with the analytical 
 	\multicolumn{2}{|l|}{Beam} & \mc{2}{|c|}{160 MeV proton}   \\								
 	\hline			
 \end{tabular}
-\caption{Summary of the main cameras parameters used for AMV and prototypes comparison. In the case of AMV, the gamma source corresponds to the PGs emitted during the PMMA phantom irradiation with 160 MeV proton beam (first stage of the simulation tool, see section~\ref{sec:SimTool}). However the target has been removed in the second stage of the simulation tool (PG detection) to avoid any attenuation and allow for a direct comparison of the detection efficiency with the AM predictions. The configuration of the column \enquote{Prototypes comparison} corresponds to the reference one with standard energy and TOF selections. \ds{the 'PC' abbrev is not really clear in the first column. Maybe start by second column ?}}
+\caption{Summary of the main cameras parameters used for AMV and prototypes comparison (PC). In the case of AMV, the gamma source corresponds to the PGs emitted during the PMMA phantom irradiation with 160 MeV proton beam (first stage of the simulation tool, see section~\ref{sec:SimTool}). However the target has been removed in the second stage of the simulation tool (PG detection) to avoid any attenuation and allow for a direct comparison of the detection efficiency with the AM predictions. The configuration of the column \enquote{Prototypes comparison} corresponds to the reference one with standard energy and TOF selections. \ds{the 'PC' abbrev is not really clear in the first column. Maybe start by second column ?}\bh{modified the caption by adding (PC), does that help?}}
 \label{table:CameraParameters}
 \end{table}
 
@@ -456,7 +457,7 @@ In the case of AMV, the same source is used (first stage of the simulation tool,
 
 \subsubsection{Analytical Model Verification}
 
-The comparison of the analytical model with Monte Carlo simulations will be performed on the two features predicted by the model, namely the detection efficiency and the spatial resolution. The detection efficiency can be computed by MC simulations as the ratio of the mean number of detected gammas over the number of emitted gammas for camera units seeing the PG profile. Regarding the spatial resolution, it is derived from the fall-off width of the simulated PG profiles. We define this width as the FWHM of the peak resulting from the computation of the PG profile first derivative. \ds{citation ?}
+The comparison of the analytical model with Monte Carlo simulations will be performed on the two features predicted by the model, namely the detection efficiency and the spatial resolution. The detection efficiency can be computed by MC simulations as the ratio of the mean number of detected gammas over the number of emitted gammas for camera units seeing the PG profile. Regarding the spatial resolution, it is derived from the fall-off width of the simulated PG profiles. We define this width as the FWHM of the peak resulting from the computation of the PG profile first derivative. \ds{citation ?}\bh{not needed, because this is a choice. it is a very obvious one once you have seen a PG profile derivative. perhaps it needs more explanation?}
 
 % \begin{itemize}
 % 	\item the detection efficiency of a camera unit defined as the ratio of the mean number of detected gammas over the number of emitted gammas for camera units seeing the PG profile,
@@ -473,8 +474,9 @@ The comparison of the analytical model with Monte Carlo simulations will be perf
 
 \subsubsection{Prototypes Comparison}
 
-In addition to the figures of merit mentioned for AMV, the fall-off retrieval precision (FRP) will be determined for its clinical relevance. The FRP is the standard deviation of the fall-off position (FOP) distribution, which is obtained by way of the batch method \ds{citation of the appendix ?}. Each of these can then be examined as function of the energy and ToF selections.
+In addition to the figures of merit mentioned for AMV, the fall-off retrieval precision (FRP) will be determined for its clinical relevance. The FRP is the standard deviation of the fall-off position (FOP) distribution, which is obtained by way of the batch method. \ds{citation of the appendix ?}\bh{I added a ref here at the end. perhaps this appendix could be added to the materials and methods, what do you think? It is not the focus of this study, but it was needed to develop/chose a certain method in order to carry the study out.}. Each of these can then be examined as function of the energy and ToF selections.
 
+Refer to appendix~\ref{sec:fopproc} for a comprehensive description of our procedures for retrieving the FOP, FOW and FRP.
 
 \section{Results}
 
@@ -486,7 +488,7 @@ Figure~\ref{PGprofileFairComp} shows PG profiles obtained with MPS and KES with 
   \centering
   \subfloat[MPS]{\label{SmeetsComparison}\includegraphics[width=.45\textwidth]{amv_mps_fow}}\quad
   \subfloat[KES]{\label{LinComparison}\includegraphics[width=.45\textwidth]{amv_kes_fow}}
-  \caption{\label{PGprofileFairComp} MPS and KES comparisons with perfect absorber and the same energy (E>1 MeV) and no TOF selection. \ds{I wonder if the x scale could be the same for KES and MPS, it will allow better comparison and emphasis the difference in FOV}}
+  \caption{\label{PGprofileFairComp} MPS and KES comparisons with perfect absorber and the same energy (E>1 MeV) and no TOF selection. \ds{I wonder if the x scale could be the same for KES and MPS, it will allow better comparison and emphasis the difference in FOV}\bh{I remember doing this at some point (by plotting the curves in the same axis), but because they are quite different it became difficult to show each profile clearly. I prefer to keep it like it is, so that the profiles cover their axis maximally.}}
 \end{figure}  
 
 Table~\ref{tab:AMV} compares the detection efficiency and the spatial resolution obtained from the analytical model and Monte Carlo simulations. 
@@ -524,16 +526,17 @@ Table~\ref{tab:AMV} compares the detection efficiency and the spatial resolution
 	\midrule
 	\multicolumn{2}{c}{}				& \multicolumn{3}{c}{MPS}																	&& \multicolumn{3}{c}{KES}										\\
 	\cline{3-5}\cline{7-9}
-	\multicolumn{2}{c}{}				& AM 										& MC 									& RD	 			&& AM 										& MC								\\
+	\multicolumn{2}{c}{}				& AM 										& MC 									& RD	 			&& AM 										& MC							\\
 	\midrule
-	Res	& Phys. camera					& $\varnothing$					& 17.2 mm 	 					&						&& 23.7									& 19.3 mm									& 23\% \\
-			& Perfect camera				& 14.5 mm								& \hl{22.5 mm} 	 			& \hl{35\%}	&& 13.5 mm								& 12.0 mm									& 13\%  \\
+	Res	& Perfect camera				& 14.5 mm								& \hl{22.5 mm} 	 			& \hl{35\%}	&& 13.5 mm								& 12.0 mm									& 13\%  \\
+		& Phys. camera					& 					& 17.2 mm 	 					&						&& 23.7									& 19.3 mm									& 23\% \\
+
 	\midrule
-	Eff & Phys. camera				&  $3.76 \cdot 10^{-4}$	& $3.40\cdot10^{-4}$	&	11\%					&& $6.03 \cdot 10^{-4}$	& \hl{$3.48\cdot10^{-4}$}	& \hl{73\%}\\
-	    & Perfect camera			&  $6.66 \cdot 10^{-4}$ & $6.49\cdot10^{-4}$	&	3\%					&& $1.06 \cdot 10^{-3}$  & $9.74\cdot10^{-4}$			& 9\%\\
+	Eff    & Perfect camera			&  $6.66 \cdot 10^{-4}$ & $6.49\cdot10^{-4}$	&	3\%					&& $1.06 \cdot 10^{-3}$  & $9.74\cdot10^{-4}$			& 9\%\\
+	       & Phys. camera				&  $3.76 \cdot 10^{-4}$	& $3.40\cdot10^{-4}$	&	11\%					&& $6.03 \cdot 10^{-4}$	& \hl{$3.48\cdot10^{-4}$}	& \hl{73\%}\\
  	\midrule
 \end{tabular}
-\caption{MPS and KES detection efficiencies ("Eff") and spatial resolution ("Res") from analytical models and MC. The predictions of the analytical model (AM column) are derived from the equations of table~\ref{table:AMformulas}, at the center of the camera in the case of KES ($x=0$). MC data have been obtained with energy selection E>1~MeV. For the \enquote{Perfect camera} simulation, the collimator was adjusted to be 100\% opaque, and detection with perfect precision and 100\% efficiency. RD: relative deviation between AM and MC. \ds{Start rather by Perfect Cam instead of  Phys Cam}}
+\caption{MPS and KES detection efficiencies ("Eff") and spatial resolution ("Res") from analytical models and MC. The predictions of the analytical model (AM column) are derived from the equations of table~\ref{table:AMformulas}, at the center of the camera in the case of KES ($x=0$). MC data have been obtained with energy selection E>1~MeV. For the \enquote{Perfect camera} simulation, the collimator was adjusted to be 100\% opaque, and detection with perfect precision and 100\% efficiency. RD: relative deviation between AM and MC. \ds{Start rather by Perfect Cam instead of  Phys Cam}\bh{done}}
 \label{tab:AMV}
 \end{table}
 
@@ -558,7 +561,7 @@ Figure~\ref{fig:PGprofileProtoComp}.
   \caption{\label{fig:PGprofileProtoComp} MPS and KES prototypes comparisons. MPS BGO aborber with 1-8 MeV energy selection and TOF selection. KES: LYSO absorber with 3-6 MeV and no TOF selection). \ds{again x axis to same scale}}
 \end{figure}  
 
-KES/MPS ratio $\sim 400/350 \sim 0.9$. We can see the impact of the energy selection of the KES prototype (3-6~MeV) that drastically reduces the camera efficiency. \ds{in fig max value in MPS around 3000, vs 1400 in KES.}
+KES/MPS ratio $\sim 400/350 \sim 0.9$. We can see the impact of the energy selection of the KES prototype (3-6~MeV) that drastically reduces the camera efficiency. \ds{in fig max value in MPS around 3000, vs 1400 in KES.}\bh{These are probably old figures, because they dont match as you observe. I'm not sure this paragraph is still relevant. Shall we start writing it from scratch, based on figure \ref{fig:PGprofileProtoComp}?}
 
 \begin{table}[h]
 \centering
@@ -635,7 +638,7 @@ This work was partly supported by SIRIC LYric Grant INCa-DGOS-4664, LABEX PRIMES
 
 From a clinical perspective, the range estimate could be more interesting than FOP, because it can distinguish simple offset errors from patient morphological change. While the MPS camera was conceived for whole range PG profile detection, the KES camera FoV was chosen for BP region PG detection only. To make the comparison fair, only the FOP could be considered. Multiple approaches to extracting a FOP from the line profile have been proposed \citep{Smeets2012,Gueth2013,Roellinghoff2014a,Janssen2014,Sterpin2015}. In preparatory work, a number of the proposed procedures were investigated. Significant sensitivity to free parameters on the final FOP estimates were seen. In summary, the FOP estimate depends greatly on the procedure, and often on having yields uncommon on the spot-level in clinical TPs, and also on an absence of unavoidable inhomogeneities.
 
-Therefore the fitting method was not chosen as a topic for study in this paper. Instead, a simple method that works on most the data available to the authors was used: first a smoothed and interpolated spline function is fitted against the detected PG data points, after which a baseline and (distal) peak position are determined. The intersection of the spline with the half-height of the peak above the baseline is then taken as the FOP. A more detailed description of the procedure may be found in appendix~\ref{sec:fopproc}.
+Therefore the fitting method was not chosen as a topic for study in this paper. Instead, a simple method that works on most the data available to the authors was used: first a smoothed and interpolated spline function is fitted against the detected PG data points, after which a baseline and (distal) peak position are determined. The intersection of the spline with the half-height of the peak above the baseline is then taken as the FOP.
 
 
 \begin{enumerate}[noitemsep]
