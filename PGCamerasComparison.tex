@@ -482,7 +482,7 @@ Refer to appendix~\ref{sec:fopproc} for a comprehensive description of our proce
 
 \subsection{Analytical Model Verification}
 
-Figure~\ref{PGprofileFairComp} shows PG profiles obtained with MPS and KES with perfect absorber, the same energy E>1~MeV and no TOF selection.\answ{The figure is in principle up to date. To be double checked.}
+Figure~\ref{PGprofileFairComp} shows PG profiles obtained with MPS and KES with perfect absorber, the same energy E>1~MeV and no TOF selection.\answ{The figure is in principle up to date. To be double checked.}\bh{I guess we include them for qualitative purposes only. I'm thinking they could even be removed. We can always put them back if referee request it.}
 
 \begin{figure}[!htp]
   \centering
@@ -490,8 +490,6 @@ Figure~\ref{PGprofileFairComp} shows PG profiles obtained with MPS and KES with 
   \subfloat[KES]{\label{LinComparison}\includegraphics[width=.45\textwidth]{amv_kes_fow}}
   \caption{\label{PGprofileFairComp} MPS and KES comparisons with perfect absorber and the same energy (E>1 MeV) and no TOF selection. \ds{I wonder if the x scale could be the same for KES and MPS, it will allow better comparison and emphasis the difference in FOV}\bh{I remember doing this at some point (by plotting the curves in the same axis), but because they are quite different it became difficult to show each profile clearly. I prefer to keep it like it is, so that the profiles cover their axis maximally.}}
 \end{figure}  
-
-Table~\ref{tab:AMV} compares the detection efficiency and the spatial resolution obtained from the analytical model and Monte Carlo simulations. The MC-obtained fall-off retrieval position is also given.
 
 %Since the model does not explicitly deal with collimator transparency or absorber efficiency, we compare the AM to a Monte Carlo simulation with perfect absorber and collimator. Because such conditions are unphysical, results with a physical collimator and physical absorber are shown for the spatial resolution and detection efficiency respectively.
 
@@ -535,15 +533,21 @@ Table~\ref{tab:AMV} compares the detection efficiency and the spatial resolution
 	Eff    & Perfect camera			&  $6.66 \cdot 10^{-4}$ & $6.49\cdot10^{-4}$	&	3\%					&& $1.06 \cdot 10^{-3}$  & $9.74\cdot10^{-4}$			& 9\%\\
 	       & Phys. camera				&  $3.76 \cdot 10^{-4}$	& $3.40\cdot10^{-4}$	&	11\%					&& $6.03 \cdot 10^{-4}$	& \hl{$3.48\cdot10^{-4}$}	& \hl{73\%}\\
  	\midrule
-	Frp    & Perfect camera			&  & 0.90 mm	&  &&  & 0.10 mm			& \\
-	       & Phys. camera				&  & 0.93 mm	&  && 	& 0.15 mm	& \\
+	FRP    & Perfect camera			&  & 0.90 mm	&  &&  & 0.10 mm			& \\
+	       & Phys. camera				&  & 0.26 mm	&  && 	& 0.33 mm	& \\
  	\midrule
 \end{tabular}
 \caption{MPS and KES detection efficiencies ("Eff") and spatial resolution ("Res") from analytical models and MC. The predictions of the analytical model (AM column) are derived from the equations of table~\ref{table:AMformulas}, at the center of the camera in the case of KES ($x=0$). MC data have been obtained with energy selection E>1~MeV. For the \enquote{Perfect camera} simulation, the collimator was adjusted to be 100\% opaque, and detection with perfect precision and 100\% efficiency. RD: relative deviation between AM and MC. \ds{Start rather by Perfect Cam instead of  Phys Cam}\bh{done}}
 \label{tab:AMV}
 \end{table}
 
+Table~\ref{tab:AMV} compares the detection efficiency and the spatial resolution obtained from the analytical model and Monte Carlo simulations. \bh{What exactly is the emphasis in the table for? Should it be discussed here?}
 
+\paragraph{Spatial Resolution} The results for the spatial resolution 
+
+\paragraph{Efficiency}
+
+\paragraph{Fall-off Retrieval position} The MC-obtained fall-off retrieval position is also given in table~\ref{tab:AMV}. The model does not predict FRP, but results are given to see the effect of switching from a perfect camera model to the physical one. The closeness of the results implies that for the MPS in particular the opacity of the collimator and quality of PG detection in the absorber don't have much room for improvement.
 
 % \begin{figure}[htp]
 %   \includegraphics[width=\textwidth]{FairComparison}
