@@ -491,7 +491,7 @@ Figure~\ref{PGprofileFairComp} shows PG profiles obtained with MPS and KES with 
   \caption{\label{PGprofileFairComp} MPS and KES comparisons with perfect absorber and the same energy (E>1 MeV) and no TOF selection. \ds{I wonder if the x scale could be the same for KES and MPS, it will allow better comparison and emphasis the difference in FOV}\bh{I remember doing this at some point (by plotting the curves in the same axis), but because they are quite different it became difficult to show each profile clearly. I prefer to keep it like it is, so that the profiles cover their axis maximally.}}
 \end{figure}  
 
-Table~\ref{tab:AMV} compares the detection efficiency and the spatial resolution obtained from the analytical model and Monte Carlo simulations. 
+Table~\ref{tab:AMV} compares the detection efficiency and the spatial resolution obtained from the analytical model and Monte Carlo simulations. The MC-obtained fall-off retrieval position is also given.
 
 %Since the model does not explicitly deal with collimator transparency or absorber efficiency, we compare the AM to a Monte Carlo simulation with perfect absorber and collimator. Because such conditions are unphysical, results with a physical collimator and physical absorber are shown for the spatial resolution and detection efficiency respectively.
 
@@ -535,10 +535,14 @@ Table~\ref{tab:AMV} compares the detection efficiency and the spatial resolution
 	Eff    & Perfect camera			&  $6.66 \cdot 10^{-4}$ & $6.49\cdot10^{-4}$	&	3\%					&& $1.06 \cdot 10^{-3}$  & $9.74\cdot10^{-4}$			& 9\%\\
 	       & Phys. camera				&  $3.76 \cdot 10^{-4}$	& $3.40\cdot10^{-4}$	&	11\%					&& $6.03 \cdot 10^{-4}$	& \hl{$3.48\cdot10^{-4}$}	& \hl{73\%}\\
  	\midrule
+	Frp    & Perfect camera			&  & 0.90 mm	&  &&  & 0.10 mm			& \\
+	       & Phys. camera				&  & 0.93 mm	&  && 	& 0.15 mm	& \\
+ 	\midrule
 \end{tabular}
 \caption{MPS and KES detection efficiencies ("Eff") and spatial resolution ("Res") from analytical models and MC. The predictions of the analytical model (AM column) are derived from the equations of table~\ref{table:AMformulas}, at the center of the camera in the case of KES ($x=0$). MC data have been obtained with energy selection E>1~MeV. For the \enquote{Perfect camera} simulation, the collimator was adjusted to be 100\% opaque, and detection with perfect precision and 100\% efficiency. RD: relative deviation between AM and MC. \ds{Start rather by Perfect Cam instead of  Phys Cam}\bh{done}}
 \label{tab:AMV}
 \end{table}
+
 
 
 % \begin{figure}[htp]
@@ -548,44 +552,46 @@ Table~\ref{tab:AMV} compares the detection efficiency and the spatial resolution
 
 \subsection{Prototype Comparison}
 
-Performance under clinical conditions is the primary purpose of these PG cameras, and therefore we include the results of the clinical case study. Since both cameras prototypes were optimized assuming their particular choice for absorber and energy selection window, here we chose to set \answ{To be completed}
+Performance under clinical conditions is the primary purpose of these PG cameras, and therefore we include the results of the clinical case study. As described in table~\ref{table:CameraParameters}, we took settings and corresponding background estimates for the camera's published settings to simulate each camera as-is during measuremnts of the same PMMA phantom.
 
 \subsubsection{PG profiles}
 
-Figure~\ref{fig:PGprofileProtoComp}.
+Figure~\ref{fig:PGprofileProtoComp} shows the PG profiles with $10^9$ protons, averaged over 50 runs. The averaging removes statistical fluctuations so that the base structure of the profiles can be best studied. The MPS camera is large enough to capture both the fall-off and fall-in positions, so the camera was displaced slightly (5cm in the distal direction) in order for the full profile to show up. The camera's are positioned on the PG production fall-off, so the expected fall-off is at +50mm and 0mm for the MPS and KES respectively.
 
 \begin{figure}[!htp]
   \centering
-  \subfloat[MPS]{\label{SmeetsComparison}\includegraphics[width=.45\textwidth]{PMMA_phantom-ipnl-auger-tof-1-FOW}}\quad
-  \subfloat[KES]{\label{LinComparison}\includegraphics[width=.45\textwidth]{PMMA_phantom-iba-auger-notof-3-FOW}}
-  \caption{\label{fig:PGprofileProtoComp} MPS and KES prototypes comparisons. MPS BGO aborber with 1-8 MeV energy selection and TOF selection. KES: LYSO absorber with 3-6 MeV and no TOF selection). \ds{again x axis to same scale}}
+  \subfloat[MPS]{\label{SmeetsComparison}\includegraphics[width=.45\textwidth]{pc_mps_fow}}\quad
+  \subfloat[KES]{\label{LinComparison}\includegraphics[width=.45\textwidth]{pc_kes_fow}}
+  \caption{\label{fig:PGprofileProtoComp}MPS and KES prototypes comparisons. MPS BGO aborber with 1-8 MeV energy selection and TOF selection. KES: LYSO absorber with 3-6 MeV and no TOF selection. On the top row the reconstructed profiles, averaged over 50 simulation each with $10^9$ protons. On the bottom row in blue the first derivative of the profile, with in black the Gaussian fit in the fall-off region, with which the fall-off position and width will estimated. Note that the horizontal scales are different and correspond to each camera's field of view.}
 \end{figure}  
 
-KES/MPS ratio $\sim 400/350 \sim 0.9$. We can see the impact of the energy selection of the KES prototype (3-6~MeV) that drastically reduces the camera efficiency. \ds{in fig max value in MPS around 3000, vs 1400 in KES.}\bh{These are probably old figures, because they dont match as you observe. I'm not sure this paragraph is still relevant. Shall we start writing it from scratch, based on figure \ref{fig:PGprofileProtoComp}?}
+We can see that, as expected, the MPS has higher PG counts, because of the wider energy selection (the PG production spectrum shows most production at lower energies). We see qualitatively the fall-off positions are at the expected coordinate, and that the BP is more pronounced in the MPS. At the tail end we see the backgrounds converge on roughly the same level. \bh{is this strange? I guess I've seen too many profile graphs to know this anymore ;)}
 
 \begin{table}[h]
 \centering
 \begin{tabular}{llllll}
 	\midrule
-				& MPS			& KES \\
+			& MPS					& KES \\
 	\midrule
- 	Res		& 				&\\
-	Eff  	&					&\\
+ 	Res		& 19.4 mm				& 20.1 mm\\
+	Eff  	& $1.04\cdot10^{-3}$	& $5.58\cdot10^{-4}$\\
  	\midrule
 \end{tabular}
 \caption{Detection efficiencies and spatial resolution of MPS and KES prototypes. Energy and TOF selection: E>1~MeV and TOF for MPS -- 3-6~MeV and no TOF for KES.}
 \label{tab:ProtoPerformance}
 \end{table}
-\answ{To be completed}
 
+Table~\ref{tab:ProtoPerformance} summarizes the spatial resolution and efficiency results. Even though the MPS had a more pronounced fall-off, we can see the spatial resolutions are roughly equivalent. \bh{Some comment on efficiency?}
 
 \subsubsection{FRP}
 
-Figure showing the falloff retrieval precision (FRP) (standard deviation of the falloff position distributions) for the 2 prototypes as a function of the number of incident protons ($10^7$, $10^8$, $10^9$).\answ{Since the FRP of KES increases a lot for $10^7$ protons, we should probably show the distributions of falloff positions for the 2 prototypes as proposed. }
+\begin{figure}[!htp]
+  \centering
+  \includegraphics[width=.8\textwidth]{pc_frp_plot}
+  \caption{\label{fig:PCFRPComp}Fall-off retrieval position comparison for the Prototype Comparison.}
+\end{figure}
 
-
-
-\answ{Table~\ref{FRPCOMP}:  1) For the sake of simplicity, I would use the AMV configuration with perfect collimator and absorber for the first set of data (currently \enquote{LYSO and no bg}). 2) This table is a bit crowded. I would try to plot these data on 2 figures: FRP as a function of the number of incident protons for the various sets of parameters. One figure for the AMV configuration and another one for the prototype comparison.}
+Figure showing the falloff retrieval precision (FRP) (standard deviation of the falloff position distributions) for the 2 prototypes as a function of the number of incident protons ($10^7$, $10^8$, $10^9$). As expected, more primaries translate to a better FRP. Both cameras achieve submillimetric accuracy at $10^9$ primaries, and millimetric precision with $10^8$ primaries. With fewer than $10^8 primaries$, the cameras, KES in particular, are outside the limits of interest of shift detection.
 
 \begin{table}[h]
 \centering
@@ -595,7 +601,7 @@ Figure showing the falloff retrieval precision (FRP) (standard deviation of the 
 	          & Energy selection 				& 1   &     & 3   &     & 1   &     & 3   &     \\
 	          & Camera 							& MPS & KES & MPS & KES & MPS & KES & MPS & KES \\
 	\midrule
- 	$10^9$    & AMV perfect det.        & 0.90 & 0.10 & (no tof or energy selection)\\
+ 	$10^9$    & AMV perfect det.        & 0.90 & 0.10 & NTNE\\
 % 	$10^9$    & AMV perfect det.        & ? & 0.44 & 0.49 & 0.52 & 0.42 & 0.40 & 0.45 & 0.55 \\
 % 	$10^8$    & LYSO and no bg        & ? & 1.22 & 1.70 & 1.74 & 1.24 & 1.29 & 1.63 & 1.48 \\
 % 	$10^7$    & LYSO and no bg        & ? & 4.03 & 5.88 & 5.65 & 3.76 & 4.89 & 5.65 & 10.76 \\
@@ -605,7 +611,7 @@ Figure showing the falloff retrieval precision (FRP) (standard deviation of the 
  	$10^7$    & detectors as proposed     & \textbf{2.81} & 7.96 & 3.65 & 12.9 & 2.96 & 14.8 & 19.3 & \textbf{17.1} \\
 	\midrule
 \end{tabular}
-\caption{Fall-off retrieval precision (defined as the standard deviation of the FOP over the number of times the simulation is ran. In bold, the cuts and ToF selections as proposed.}
+\caption{\bh{THIS TABLE IS TO BE REMOVED. REPLACED WITH FRP PLOT.}Fall-off retrieval precision (defined as the standard deviation of the FOP over the number of times the simulation is ran. In bold, the cuts and ToF selections as proposed.}
 \label{FRPCOMP}
 \end{table}
 
@@ -613,11 +619,33 @@ Figure showing the falloff retrieval precision (FRP) (standard deviation of the 
 \section{Discussion}
 
 Mention the limitations of the KES: detection efficiency not constant over the FOV + limited FOV
+\bh{Perhaps Etienne is most suited write this part.}
 
+
+\subsection{Clinical implications}
+
+It is often stated PG cameras will be able to be used to track deviations at the spot-level. The cameras in this study required $10^8$ primaries for an acceptable FRP. It is helpful to put this in clinical perspective, so we plot the structure of two treatment plans in figures \ref{fig:planmid} and \ref{fig:planhigh}. These treatmentplans were produced and used for two clinical cases, the former considered of medium complexity, which is to say a fairly typical plan, and the second of high complexity. It stands to reason that from a clincal point of view, treatment monitoring becomes more interesting as the complexity of the plan increases, because plans become more complex in more difficult or sensitive cases, where a correct planned and delivered dose are desirable.
+
+\begin{figure}[htp]
+  \centering
+  \includegraphics[width=0.8\linewidth]{MENINGIOMA_F1nonorm-plot}
+  \caption{Treatmentplan for a Meningioma case, which is considered a plan-type of medium complexity. On top: the spots are binned as function of energy and spot weight (number of protons), with high spot counts in red (hot spots) and low spot counts in blue (cool spots).}
+  \label{fig:planmid}
+\end{figure}
+
+\begin{figure}[htp]
+  \centering
+  \includegraphics[width=0.8\linewidth]{CSI_F1nonorm-plot}
+  \caption{Treatmentplan for a large and complex pediatric brain and spine case. The left two fields are for the brain, the right two for the spine. The color scale chosen the same as in figure \ref{fig:planmid}.}
+  \label{fig:planhigh}
+\end{figure}
+
+From figures \ref{fig:planmid} and \ref{fig:planhigh} we can observe that spot-level monitoring is unlikely with the camera prototypes included in this study. In the complex case not a single spot has a prescription of $10^8$ protons or more. Fortunately, nearly all energy layers exceed $10^8$ primaries, so monitoring at the layer-level poses no issues for these cameras. Nevertheless, we hope the theoretical framework developed and validated in this paper will help move PG camera designs towards the realm where spot-level monitoring would become feasible.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusion}
 
+We have presented and validated an analytical model that relates the collimator dimensions of Prompt Gamma cameras to a predicted spatial resolution and detection efficiency. Two collimator designs are modelled: multi-parallel slit and knife edge. The validation consisted of Monte Carlo simulations of two current Prompt Gamma camaera prototypes, one of which has been employed in clinical setting. We also show the performance of these two prototypes in their proposed configuration with a mono-energetic spot in a PMMA phantom with background modelling. The prototypes reach millimetric precision with $10^8$ primaries or more. The fall-off retrieval position performance is put into clinical context.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Acknowledgements}
