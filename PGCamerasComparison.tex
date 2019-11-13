@@ -627,20 +627,22 @@ We can see that, as expected, the MPS has higher PG counts, because of the wider
 
 \et{We expect different \enquote{tail levels}:
 	\begin{itemize}
-		\item Tail level (Figure~\ref{fig:PGprofileProtoComp}) = Tail level without background (Figure~\ref{fig:PGprofileFairComp}) (tail to collimator partial transparency -- light gray points)+ background level (section~\ref{sec:BKGD}). Table~\ref{tab:Tails} shows the expected tails with and without background: the MPS expected tail with background (650) is in accordance with the PG profile tail in Figure~\ref{fig:PGprofileProtoComp}. However it seems that the background has not been taken into account in the KES PG profile (tail level of $\sim800$ close to the tail without background of Figure~\ref{fig:PGprofileFairComp}).
+		\item Tail level (Figure~\ref{fig:PGprofileProtoComp}) = Tail level without background (Figure~\ref{fig:PGprofileFairComp}) (tail due to collimator partial transparency -- light gray points)+ background level (section~\ref{sec:BKGD}). Table~\ref{tab:Tails} shows the expected tails with and without background: the MPS expected tail with background (650) is in accordance with the PG profile tail in Figure~\ref{fig:PGprofileProtoComp}. However it seems that the background has not been taken into account in the KES PG profile (tail level of $\sim800$ close to the tail without background of Figure~\ref{fig:PGprofileFairComp}).
 		\begin{table}[h]
 		\centering		
 		\begin{tabular}{lll}
 			\midrule
 										& MPS			& KES \\
 			\midrule
-			Tail wo BKGD	& 400			& 800\\
-			BKGD level  	& 250			& 500\\
+			Tail wo BKGD (Figure~\ref{fig:PGprofileProtoComp})	& 400			& 800\\
+			BKGD level (section~\ref{sec:BKGD}) 	& 250			& 500\\
 			\midrule
-			Tail with BKGD& 650			& 1300\\
+			Expected tail with BKGD& 650			& 1300\\
 			\midrule
+			\enquote{Observed} Tail in Figure Figure~\ref{fig:PGprofileProtoComp} & $\sim650$			& $\sim800$\\
+			\bottomrule
 		\end{tabular}		
-		\caption{Counts for $10^9$ incident protons. \et{Table to be removed from the paper.}}
+		\caption{\et{Expected background counts (in the tail region) for $10^9$ incident protons. Table to be removed from the paper.}}
 		\label{tab:Tails}
 		\end{table}		
 		\item Note that the cameras have different bin sizes (8 mm for MPS and 4 mm for KES). We need to divide the MPS counts by 2 to compare the tail levels.
