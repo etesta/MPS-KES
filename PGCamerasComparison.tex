@@ -73,7 +73,7 @@
 
 The well-defined range of particles in matter is the main reason they are used in cancer treatment today. Unfortunately we are not able to take full advantage of this property, because of treatment uncertainties, e.g. uncertainties in patient positioning, changes of patient anatomy between treatment fractions and uncertainties in the Hounsfield unit to particle stopping power conversion \citep{Paganetti2012}. Often, medical practice leads to the use of several irradiation fields to ensure robust treatment planning at the expense of larger healthy tissue volume irradiation in respect to ideal treatment with single irradiation field. Moreover margins around the tumor are added, reducing the potential benefits of particle treatment \citep{Knopf2013}. Ion-range verification could permit more precise planning which could take maximum advantage of the steep Bragg peak (BP) fall-off and reduce damage to tissues surrounding the tumor. A promising modality to perform this verification consists in detecting prompt gammas (PGs), a natural byproduct in particle treatments \citep{Krimmer2017a, Parodi2018}. Various modalities are currently under investigation and can be classified in two categories: imaging devices using either mechanical or electronical collimation (respectively collimated \citep{Perali2014, Min2012, Pinto2014a} and Compton cameras \citep{Krimmer2015,Kurosawa2012,Thirolf2016,Polf2015,Llosa2016}) and non-imaging devices such as Prompt Gamma Spectroscopy (PGS) \citep{Hueso-Gonzalez2016}, Prompt Gamma Timing (PGT) \citep{Pausch2016} and Prompt Gamma Peak Integral (PGPI) \citep{Krimmer2017}. Regarding cameras using mechanical collimators, two types of designs have been considered: Multi-Parallel Slit (MPS) and Knife-Edge Slit (KES). The latter has been chosen by the IBA group to be prototyped and has been tested clinically with pencil beam scanning \citep{Xie2017}. Both types of collimators provide part or the whole of the one-dimensional PG profile along the beam direction.
 
-To date, three publications \citep{Smeets2016, Lin2017, Park2017} have attempted to compare these two types of collimators with various geometries. Indeed, although they refer to the same KES design from \citep{Perali2014} some geometrical parameters are slightly different in \citep{Lin2017, Park2017} (i.e. the source-collimator distance and the collimator-absorber distance). The same applies for the MPS design: \cite{Smeets2016} uses a modified MPS design from \cite{Pinto2014a}, \cite{Lin2017} used the design from \cite{Gueth2013} and \cite{Park2017} their own specific design. It is worth to note that the authors of the latter publication justified the need for a complementary study by the fact that the MPS geometries used in \cite{Smeets2016, Lin2017} were not \enquote{optimized}. 
+To date, three publications \citep{Smeets2016, Lin2017, Park2017} have attempted to compare these two types of collimators with various geometries. Indeed, although they refer to the same KES design from \citep{Perali2014} some geometrical parameters are slightly different in \citep{Lin2017, Park2017} (i.e. the source-collimator distance and the collimator-detector distance). The same applies for the MPS design: \cite{Smeets2016} uses a modified MPS design from \cite{Pinto2014a}, \cite{Lin2017} used the design from \cite{Gueth2013} and \cite{Park2017} their own specific design. It is worth to note that the authors of the latter publication justified the need for a complementary study by the fact that the MPS geometries used in \cite{Smeets2016, Lin2017} were not \enquote{optimized}. 
 Unfortunately the fact that the optimizations of KES and MPS designs were not performed according the same figures of merit can not ensure a fair comparison of the two designs. Actually from a general point of view the design of any collimated device is a compromise between detection efficiency and spatial resolution. While collimator features have been extensively investigated in the context of nuclear imaging \citep{Gunter2004}, no theoretical considerations have been proposed for the specific 1D collimation systems developed in the context of ion-range verification during hadrontherapy.
 Therefore, the first objective of this article is to present an analytical model based on geometrical considerations that allows for a theoretical estimation of the detection efficiency and spatial resolution, for both MPS and KES designs. The intrinsic features of MPS and KES collimators are then derived and the model is validated by means of Monte Carlo (MC) simulations. In light of the predictions of this analytical model, the PG prototypes developed by the CLaRyS collaboration \citep{Pinto2014a, Krimmer2015} and the IBA group \citep{Perali2014} are compared and their performances are assessed in terms of detection efficiency, spatial resolution and fall-off retrieval precision thanks to MC simulations.
 
@@ -113,7 +113,7 @@ In order to compare performance of different camera types and configurations, we
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=.8\textwidth]{MPS-KES_scheme}
-    \caption{Schemes of the Multi-Parallel Slit (MPS) and the Knife-Edge Slit (KES) cameras. The definition of the various parameters is given in Table~\ref{table:CamerasParameters}. The red line corresponds to a linear source perpendicular to the slit camera planes. $\Lambda$ is the the distance between the source point and the absorber entrance surface in the KES via the middle of the collimator slit.}
+    \caption{Schemes of the Multi-Parallel Slit (MPS) and the Knife-Edge Slit (KES) cameras. The definition of the various parameters is given in Table~\ref{table:CamerasParameters}. The red line corresponds to a linear source perpendicular to the slit camera planes. $\Lambda$ is the the distance between the source point and the detector entrance surface in the KES via the middle of the collimator slit.}
     \label{fig:CamerasParameters}
 \end{figure}    
 
@@ -124,8 +124,8 @@ In order to compare performance of different camera types and configurations, we
 																& MPS               & KES \\
 	\midrule
 	Source-collimator distance		& $d_1$             & $d_1'$ \\
- 	Collimator-absorber distance	& $d_2$             & $d_2'$ \\
-	Source-absorber distance			& $L=d_1+D+d_2$			& $L=d_1'+d_2'$\\
+ 	Collimator-detector distance	& $d_2$             & $d_2'$ \\
+	Source-detector distance			& $L=d_1+D+d_2$			& $L=d_1'+d_2'$\\
  	Collimator thickness 					& $D$               & $T$ \\
 	Camera pitch									& $p$								& $p'$\\
 	Knife-edge slit angle					& --								& $\alpha$\\	
@@ -134,7 +134,7 @@ In order to compare performance of different camera types and configurations, we
 	Camera height									& $H$ 							& $H$ \\	
 	\midrule
 \end{tabular}
-\caption{Geometrical parameters of the MPS and KES cameras. One can also define the fill factor $f$ of the MPS collimator: $f=(p-s)/p$ (ratio between the septa width and the pitch). It is worth to note that the source-collimator distance and the collimator-absorber distance are not defined exactly in the same way in the two collimator designs.}
+\caption{Geometrical parameters of the MPS and KES cameras. One can also define the fill factor $f$ of the MPS collimator: $f=(p-s)/p$ (ratio between the septa width and the pitch). It is worth to note that the source-collimator distance and the collimator-detector distance are not defined exactly in the same way in the two collimator designs.}
 \label{table:CamerasParameters}
 \end{table}
 
@@ -183,10 +183,7 @@ Hence, eq.~\ref{eq:fov_mps} and eq.~\ref{eq:fov_kes_se} represent the spatial re
 
 The probability that a gamma reaches a given detector unit is described by the solid angle $\Omega_D$ of the detector unit in respect to the gamma emission point.
 
-For MPS, the solid angle is composed of the azimuthal angle and the polar angle. With small angle approximation, it is described by
-eq.~\ref{eq:solid_angle_mps}. Note that this is true only when $\Omega_D$ is
-limited by the slit width, i.e. the absorber size and the distances (e.g. $L$ and $D$) are such that
-all photons that cross the collimator impinge on detector material. 
+For MPS, the solid angle is composed of the azimuthal angle and the polar angle. With small angle approximation, it is described by eq.~\ref{eq:solid_angle_mps}. Note that this is true only when $\Omega_D$ is limited by the slit width, i.e. the absorber size and the distances (e.g. $L$ and $D$) are such that all photons that cross the collimator impinge on absorber material. 
 
 For KES, the solid angle under which a point of the source sees a detector unit depends on the location of the point source, $x$, since the distance between source and detector changes significantly over the field of view of the camera. We
 consider the solid angle for a point of the source that is within the central
@@ -254,8 +251,8 @@ formulas is their similarities.
 To be more specific, let us define the following conditions that we will refer to as \enquote{MPS and KES Similarities Conditions} (MKSC):
 \begin{itemize}
 	\item same distance between the source and the MPS collimator entrance and between the source and the middle of the KES collimator: $d_1=d_1'$ ;
-	\item MPS collimator thickness equal to the KES collimator-absorber distance: $D=d_2'$ ;
-	\item same source-absorber distance $L$ (which entails $d_2=0$ with the previous conditions), same height $H$ and same slit width $s$.	
+	\item MPS collimator thickness equal to the KES collimator-detector distance: $D=d_2'$ ;
+	\item same source-detector distance $L$ (which entails $d_2=0$ with the previous conditions), same height $H$ and same slit width $s$.	
 \end{itemize}
 We can also consider perfect collimator condition (PCC) for which the collimators present infinite absorption capacity. In this condition, $s_e=s$ and the filling factor $f$ of the MPS can be decreased down to zero without degrading the collimation properties.
 
@@ -263,7 +260,7 @@ Combining these conditions (MKSC and PCC) then MPS and KES have strictly the sam
 \begin{itemize}
 	\item the partial transparency of the collimators leads to:
 	\begin{itemize}
-		\item an effective slit width of KES larger than the one of the MPS. In the case of the KES prototype of the IBA group using a tungsten alloy collimator (density of 18.5~g/cm$^3$), the term accounting for collimator transparency $\left(\frac{\ln(2)}{\mu \tan(\alpha)}\right)$ is about 5~mm (with $\mu\sim 8\times10^{-1}$~cm$^{-1}$ in the 3-6~MeV range and $\alpha=63$\textdegree) meaning that the effective slit $s_e$ is about twice the actual slit width ($s=6$~cm).
+		\item an effective slit width of KES larger than the one of the MPS. In the case of the KES prototype of the IBA group using a tungsten alloy collimator (density of 18.5~g/cm$^3$), the term accounting for collimator transparency $\left(\frac{\ln(2)}{\mu \tan(\alpha)}\right)$ is about 5~mm (with $\mu\sim 8\times10^{-1}$~cm$^{-1}$ in the 3-6~MeV range and $\alpha=63$\textdegree) meaning that the effective slit $s_e$ is about twice the actual slit width ($s=6$~mm).
 		\item an actual fill factor that cannot be neglected: in the case of the MPS prototype of the CLaRyS collaboration it can be adjusted but a standard value is 0.4, leading to an actual detection efficiency about half the one of the perfect MPS collimator with $f=0$. 
 	\end{itemize}
 	\item the KES design intrinsically leads to a detection efficiency that decreases when the source moves away from the center of the camera while the MPS detection efficiency remains constant over the whole camera field of view.
@@ -356,9 +353,9 @@ This camera intends to measure the whole PG profile to control ion-ranges in the
 The purpose of this camera consists of verifying the BP position with a FoV of 100 mm. It consists of two rows of 20 LYSO blocs of 4~mm ($p'$) $\times 100$~mm ($H/2$) $\times30$~mm (thickness) and a tungsten alloy collimator \citep{Perali2014,Sterpin2015}. The standard energy selection for this prototype is $3<E<6$~MeV.
 %\cite{Richter2016} provides the first clinically obtained results. At this time, no other camera has been subjected to clinical tests, which is why we consider this prototype a benchmark.
 
-\paragraph{Absorbers modeling}
+\paragraph{Detector modeling}
 
-The absorbers of the two prototypes use different scintillators, photodetectors and data acquisition system. In this study, these differences are not implemented. Instead, for the sake of simplicity, the absorbers are modeled as monoblocks in which the event positions are stored in histograms with bins corresponding to the pitch of the cameras (8~mm for MPS and 4~mm for KES). When a gamma interacts with the absorber, an event is recorded if the integrated energy deposited in the absorber lies in the acceptable energy and TOF windows. Then the energy weighed barycenter of all interactions in the absorber is computed and the event position is assigned to the center of the bin where lies the energy weighed barycenter.
+The detectors of the two prototypes use different scintillators (absorbers), photodetectors and data acquisition system. In this study, the latter two are not implemented, thus the detector is reduced to its absorber. These are modeled as monoblocks in which the event positions are stored in histograms with bins corresponding to the pitch of the cameras (8~mm for MPS and 4~mm for KES). When a gamma interacts with the absorber, an event is recorded if the integrated energy deposited in the absorber lies in the acceptable energy and TOF windows. Then the energy weighed barycenter of all interactions in the absorber is computed and the event position is assigned to the center of the bin where lies the energy weighed barycenter.
 
 We compared the MPS and KES prototypes with their published properties: $E>1$~MeV and TOF for MPS and $3<E<6$~MeV without TOF for KES. For the sake of completeness and to facilitate the interpretation of the camera performances, several combinations of energy and TOF selections will be studied as well. 
 
@@ -367,7 +364,7 @@ We compared the MPS and KES prototypes with their published properties: $E>1$~Me
 
 \subsubsection{Analytical Model Verification (AMV)} % paragraph
 
-In order to allow for a direct comparison of MC simulations with the analytical model, simulations with perfect collimators and detectors will be performed. Table~\ref{tab:CameraParameters} gives an overview of the main cameras parameters used for AMV and prototypes comparison.
+In order to allow for a direct comparison of MC simulations with the analytical model, simulations with perfect collimators (PCC) and detectors will be performed. This camera version we refer to as 'perfect camera', while the unchanged version will be referred to as 'physical camera'. Table~\ref{tab:CameraParameters} gives an overview of the cameras main parameters used for AMV and prototypes comparison.
 
 \begin{table}[h]
 \centering
@@ -391,7 +388,7 @@ In order to allow for a direct comparison of MC simulations with the analytical 
 % 	\hline		
 % 	\mc{2}{|c|}{BKGD modeling} 					& No modeling & Exp. data based modeling  \\
 % 	\hline		
-% 	\multicolumn{2}{|l|}{Target} 				& No 															&  Cylindrical PMMA phantom    \\			
+% 	\multicolumn{2}{|l|}{Target} 				& No 															&  Cylindrical PMMA phantom    \\		
 % 	\hline
 % 	\multicolumn{2}{|l|}{Beam} 					& \mc{2}{c|}{160 MeV proton}   \\								
 % 	\hline			
@@ -400,11 +397,11 @@ In order to allow for a direct comparison of MC simulations with the analytical 
 	\hline
 	\mc{2}{|c|}{}												& Prototypes comparison (PC)			& 	Analytical model verif. (AMV)\\
 	\hline
-	\mr{2}{Absorber}							& MPS & BGO 														& \mr{2}{Perfect or like PC } 							\\
+	\mr{2}{Absorber}							& MPS & BGO 														& \mr{2}{Perfect} 							\\
 	\cline{2-3}
 																& KES & LYSO 														& 																\\
 	\hline
-		\multicolumn{2}{|l|}{Collimator} 	& Tungsten alloy 									& Perfect or like PC							\\	
+		\multicolumn{2}{|l|}{Collimator} 	& Tungsten alloy 									& Perfect							\\	
 	\hline	
 	Energy 												& MPS &		>1 MeV												& \mr{2}{>1 MeV}									\\
 	\cline{2-3}
@@ -421,7 +418,7 @@ In order to allow for a direct comparison of MC simulations with the analytical 
 	\multicolumn{2}{|l|}{Beam} 					& \mc{2}{c|}{160 MeV proton}   \\								
 	\hline			
 \end{tabular}
-\caption{Summary of the main cameras parameters used for AMV and prototypes comparison (PC). The configuration of the column \enquote{Prototypes comparison} corresponds to the reference one with standard energy and TOF selections. In the case of AMV, the gamma source corresponds to the PGs emitted during the PMMA phantom irradiation with 160 MeV proton beam (first stage of the simulation tool, see section~\ref{sec:SimTool}). However the target has been removed in the second stage of the simulation tool (PG detection) to avoid any attenuation and allow for a direct comparison of the detection efficiency with the AM predictions.}
+\caption{Summary of the cameras main parameters used for AMV and PC. The configuration of the column \enquote{Prototypes comparison} corresponds to the reference one with standard energy and TOF selections. In the case of AMV, the gamma source corresponds to the PGs emitted during the PMMA phantom irradiation with 160 MeV proton beam (first stage of the simulation tool, see section~\ref{sec:SimTool}). However the target has been removed in the second stage of the simulation tool (PG detection) to avoid any attenuation and allow for a direct comparison of the detection efficiency with the AM predictions.}
 \label{tab:CameraParameters}
 \end{table}
 
@@ -522,17 +519,18 @@ The comparison of the analytical model with Monte Carlo simulations will be perf
 
 In addition to the figures of merit mentioned for AMV, the fall-off retrieval precision (FRP) will be determined for its clinical relevance. The FRP is the standard deviation of the fall-off position (FOP) distribution, which is obtained by way of the batch method. Each of these can then be examined as function of the energy and TOF selections. A comprehensive description of our procedures for retrieving the FOP, FOW and FRP is provided in appendix~\ref{sec:fopproc}.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Results}
 
 \subsection{Analytical Model Verification}
 
-Figure~\ref{fig:PGprofileFairComp} shows PG profiles obtained with MPS and KES with perfect absorber, the same energy E>1~MeV and no TOF selection.\et{The figure is in principle up to date. To be double checked.}
+Figure~\ref{fig:PGprofileFairComp} shows PG profiles obtained with MPS and KES with perfect detector, the same energy E>1~MeV and no TOF selection.
 
 \begin{figure}[!htp]
   \centering
   \subfloat[MPS]{\label{SmeetsComparison}\includegraphics[width=.45\textwidth]{amv_mps_fow}}\quad
   \subfloat[KES]{\label{LinComparison}\includegraphics[width=.45\textwidth]{amv_kes_fow}}
-  \caption{\label{fig:PGprofileFairComp} MPS and KES comparisons with perfect collimator and absorber, the same energy (E>1 MeV) and no TOF selection. The first row shows the datapoints in black crosses with the curvefit in red. The points in light gray are the data from the physical detector for otherwise the identical simulation. On the bottom row the first derivative of the red fit is shown, with the dashed line the Gaussian fit over the fall-off region (solid). }
+  \caption{\label{fig:PGprofileFairComp} MPS and KES comparisons with perfect collimator and detector, the same energy (E>1 MeV) and no TOF selection. The first row shows the datapoints in black crosses with the curvefit in red. The points in light gray are the data from the physical detector for otherwise the identical simulation. On the bottom row the first derivative of the red fit is shown, with the dashed line the Gaussian fit over the fall-off region (solid). }
 \end{figure}  
 
 %Since the model does not explicitly deal with collimator transparency or absorber efficiency, we compare the AM to a Monte Carlo simulation with perfect absorber and collimator. Because such conditions are unphysical, results with a physical collimator and physical absorber are shown for the spatial resolution and detection efficiency respectively.
@@ -568,20 +566,23 @@ Figure~\ref{fig:PGprofileFairComp} shows PG profiles obtained with MPS and KES w
 	\midrule
 	\multicolumn{2}{c}{}				& \multicolumn{3}{c}{MPS}																	&& \multicolumn{3}{c}{KES}										\\
 	\cline{3-5}\cline{7-9}
-	\multicolumn{2}{c}{}				& AM 										& MC 									& RD	 			&& AM 										& MC							\\
+	\multicolumn{2}{c}{}				& AM 										& MC 									& RD	 			&& AM 										& MC & RD							\\
 	\midrule
-	Res	& Perfect camera				& 14.5 mm								& \hl{22.5 mm} 	 			& \hl{35\%}	&& 13.5 mm								& 12.0 mm									& 13\%  \\
-		& Phys. camera					& 					& 17.2 mm 	 					&						&& 23.7									& 19.3 mm									& 23\% \\
+	Res	& Perfect camera				& 14.5 mm								& 15.3 mm 	 			& 5.2 \%	&& 13.5 mm								& 18.3 mm									& 26 \%  \\
+		& Phys. camera					& 					& 17.3 mm 	 					&						&& 23.7									& 28.0 mm									& 15 \% \\
 
 	\midrule
-	Eff    & Perfect camera			&  $6.66 \cdot 10^{-4}$ & $6.49\cdot10^{-4}$	&	3\%					&& $1.06 \cdot 10^{-3}$  & $9.74\cdot10^{-4}$			& 9\%\\
-	       & Phys. camera				&  $3.76 \cdot 10^{-4}$	& $6.61\cdot10^{-4}$	&	43\%					&& $6.03 \cdot 10^{-4}$	& $1.03\cdot10^{-3}$	& 41\%\\
+	Eff    & Perfect camera			&  $6.66 \cdot 10^{-4}$ & $6.48\cdot10^{-4}$	&	3 \%					&& $1.06 \cdot 10^{-3}$  & $1.65\cdot10^{-3}$			& 36 \%\\
+	       & Phys. camera				&  $3.76 \cdot 10^{-4}$	& $4.60\cdot10^{-4}$	&	18 \%					&& $6.03 \cdot 10^{-4}$	& $1.28\cdot10^{-3}$	& 52 \%\\
  	\midrule
-	FRP    & Perfect camera			&  & 0.90 mm	&  &&  & 0.10 mm			& \\
-	       & Phys. camera				&  & 0.26 mm	&  && 	& 0.33 mm	& \\
+	FRP    & Perfect camera			&  & 0.13 mm	&  &&  & 6.7 mm	\bh{?}		& \\
+	       & Phys. camera				&  & 0.30 mm	&  && 	& 0.28 mm	& \\
  	\midrule
 \end{tabular}
-\caption{MPS and KES detection efficiencies ("Eff") and spatial resolution ("Res") from analytical models and MC. The predictions of the analytical model (AM column) are derived from the equations of table~\ref{table:AMformulas}, at the center of the camera in the case of KES ($x=0$). MC data have been obtained with energy selection E>1~MeV. For the \enquote{Perfect camera} simulation, the collimator was adjusted to be 100\% opaque, and detection with perfect precision and 100\% efficiency. RD: relative deviation between AM and MC.}
+%FRP = fopsigma
+%Res = fow
+%Eff = detcount/prod
+\caption{MPS and KES detection efficiencies ("Eff") and spatial resolution ("Res") from analytical models and MC. The predictions of the analytical model (AM column) are derived from the equations of table~\ref{table:AMformulas}, at the center of the camera in the case of KES ($x=0$). MC data have been obtained with energy selection E>1~MeV. RD: relative deviation between AM and MC.}
 \label{tab:AMV}
 \end{table}
 
@@ -601,7 +602,7 @@ Table~\ref{tab:AMV} compares the detection efficiency and the spatial resolution
 
 \paragraph{Efficiency}
 
-\paragraph{Fall-off Retrieval position} The MC-obtained fall-off retrieval position is also given in table~\ref{tab:AMV}. The model does not predict FRP, but results are given to see the effect of switching from a perfect camera model to the physical one. The closeness of the results implies that for the MPS in particular the opacity of the collimator and quality of PG detection in the absorber don't have much room for improvement.
+\paragraph{Fall-off Retrieval position} The MC-obtained fall-off retrieval position is also given in table~\ref{tab:AMV}. The model does not predict FRP, but results are given to see the effect of switching from a perfect camera model to the physical one. The closeness of the results implies that for the MPS in particular the opacity of the collimator and quality of PG detection in the detector don't have much room for improvement.
 
 % \begin{figure}[htp]
 %   \includegraphics[width=\textwidth]{FairComparison}
